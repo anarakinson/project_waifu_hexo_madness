@@ -13,16 +13,14 @@ func _process(delta):
 	pass
 
 func _on_picked_up():
-	for hexfig in $Hexes.get_children():
-		if hexfig.is_picked_up():
-			var new_parent = get_node("ChosenLayer")
-			hexfig.get_parent().remove_child(hexfig)
-			new_parent.add_child(hexfig)
-
+#	for hexfig in $Hexes.get_children():
+#		if hexfig.is_picked_up():
+#			$Hexes.remove_child(hexfig)
+#			$ChosenLayer.add_child(hexfig)
+	pass
 
 func _on_picked_down():
-	for hexfig in $ChosenLayer.get_children():
-		var new_parent = get_node("Hexes")
-		hexfig.get_parent().remove_child(hexfig)
-		new_parent.add_child(hexfig)
-
+#	for hexfig in $ChosenLayer.get_children():
+#		$ChosenLayer.remove_child(hexfig)
+#		$Hexes.add_child(hexfig)
+	pass

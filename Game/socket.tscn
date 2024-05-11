@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://cvg5aj0yet6vf"]
+[gd_scene load_steps=7 format=3 uid="uid://cvg5aj0yet6vf"]
 
 [ext_resource type="Texture2D" uid="uid://dcq8gk07l6xkq" path="res://assets/fantasyhextiles_v3.png" id="1_1g4b3"]
 [ext_resource type="Script" path="res://Game/socket.gd" id="1_4fcw5"]
@@ -21,6 +21,9 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_jtxib"]
 radius = 7.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_6ptb0"]
+radius = 1.0
+
 [node name="socket" type="Node2D"]
 script = ExtResource("1_4fcw5")
 
@@ -32,6 +35,11 @@ sprite_frames = SubResource("SpriteFrames_yodis")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SocketArea"]
 shape = SubResource("CircleShape2D_jtxib")
+
+[node name="SocketCentre" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SocketCentre"]
+shape = SubResource("CircleShape2D_6ptb0")
 
 [connection signal="area_entered" from="SocketArea" to="." method="_on_area_2d_area_entered"]
 [connection signal="area_exited" from="SocketArea" to="." method="_on_socket_area_area_exited"]

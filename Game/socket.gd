@@ -15,10 +15,12 @@ func get_center():
 	pass
 
 func _on_area_2d_area_entered(area):
-	if area.name == "HexArea":
-		is_occupied = true
+#	if area.name == "HexArea":
+#		is_occupied = true
+	pass
 
 
 func _on_socket_area_area_exited(area):
-	if area.name == "HexArea":
-		is_occupied = false
+#	if area.name == "HexArea":
+#		is_occupied = false
+	pass

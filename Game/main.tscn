@@ -11,15 +11,16 @@ script = ExtResource("1_8ogpq")
 y_sort_enabled = true
 
 [node name="SocketFigure" parent="Sockets" instance=ExtResource("4_r2qug")]
-position = Vector2(199, 236)
+position = Vector2(200, 236)
 
 [node name="Hexes" type="Node2D" parent="."]
 y_sort_enabled = true
 
 [node name="HexFigure" parent="Hexes" instance=ExtResource("3_n646m")]
-position = Vector2(573, 159)
+position = Vector2(608, 340)
 
 [node name="HexFigure2" parent="Hexes" instance=ExtResource("3_n646m")]
-position = Vector2(639, 362)
+position = Vector2(574, 154)
 
 [node name="ChosenLayer" type="Node2D" parent="."]
+y_sort_enabled = true

@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://cdsbjh5gle7t6"]
+[gd_scene load_steps=7 format=3 uid="uid://cdsbjh5gle7t6"]
 
 [ext_resource type="Texture2D" uid="uid://dcq8gk07l6xkq" path="res://assets/fantasyhextiles_v3.png" id="1_1oe62"]
 [ext_resource type="Script" path="res://Game/hex.gd" id="1_cdtya"]
@@ -19,12 +19,16 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0ghwt"]
-radius = 6.0
+radius = 7.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ai0w6"]
+radius = 1.0
 
 [node name="Hex" type="Node2D"]
 script = ExtResource("1_cdtya")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+visible = false
 position = Vector2(0, -9)
 sprite_frames = SubResource("SpriteFrames_0xeuy")
 
@@ -49,6 +53,11 @@ one_shot = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HexArea"]
 shape = SubResource("CircleShape2D_0ghwt")
+
+[node name="HexCentre" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HexCentre"]
+shape = SubResource("CircleShape2D_ai0w6")
 
 [connection signal="mouse_released" from="." to="." method="_on_mouse_released"]
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

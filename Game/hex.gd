@@ -9,11 +9,12 @@ var picked_up = false
 var current_position = Vector2()
 var inside_socket = false
 var inside_hex = false
+var start_position = Vector2()
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	start_position = position
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -26,6 +27,7 @@ func _process(delta):
 
 func insertion(delta):
 	global_position = global_position.move_toward(current_position, 1000)
+#	global_position = current_position
 
 
 func _on_button_pressed():
@@ -51,9 +53,10 @@ func _on_mouse_released():
 
 func _on_hex_area_area_entered(area):
 	if area.name == "SocketArea":
-		current_position = area.global_position
 		inside_socket = true
-	elif area.name == "HexArea":
+	elif area.name == "SocketCentre":
+		current_position = area.get_parent().global_position
+	elif area.name == "HexAreaCentre":
 		inside_hex = true
 			
 
@@ -61,5 +64,7 @@ func _on_hex_area_area_entered(area):
 func _on_hex_area_area_exited(area):
 	if area.name == "SocketArea":
 		inside_socket = false
-	elif area.name == "HexArea":
+	elif area.name == "SocketCentre":
+		pass
+	elif area.name == "HexAreaCentre":
 		inside_hex = false
