@@ -1,0 +1,57 @@
+[gd_scene load_steps=6 format=3 uid="uid://cdsbjh5gle7t6"]
+
+[ext_resource type="Texture2D" uid="uid://dcq8gk07l6xkq" path="res://assets/fantasyhextiles_v3.png" id="1_1oe62"]
+[ext_resource type="Script" path="res://Game/hex.gd" id="1_cdtya"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dtiwt"]
+atlas = ExtResource("1_1oe62")
+region = Rect2(32, 0, 32, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0xeuy"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dtiwt")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0ghwt"]
+radius = 6.0
+
+[node name="Hex" type="Node2D"]
+script = ExtResource("1_cdtya")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -9)
+sprite_frames = SubResource("SpriteFrames_0xeuy")
+
+[node name="Button" type="Button" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -14.0
+offset_top = -15.0
+offset_right = 14.0
+offset_bottom = 15.0
+grow_horizontal = 2
+grow_vertical = 2
+action_mode = 0
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="HexArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HexArea"]
+shape = SubResource("CircleShape2D_0ghwt")
+
+[connection signal="mouse_released" from="." to="." method="_on_mouse_released"]
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="area_entered" from="HexArea" to="." method="_on_hex_area_area_entered"]
+[connection signal="area_exited" from="HexArea" to="." method="_on_hex_area_area_exited"]

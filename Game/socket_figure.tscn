@@ -1,0 +1,29 @@
+[gd_scene load_steps=3 format=3 uid="uid://2lvocjxx1sya"]
+
+[ext_resource type="PackedScene" uid="uid://cvg5aj0yet6vf" path="res://Game/socket.tscn" id="1_lfkel"]
+[ext_resource type="Script" path="res://Game/socket_figure.gd" id="1_xqluo"]
+
+[node name="SocketFigure" type="Node2D"]
+y_sort_enabled = true
+scale = Vector2(2, 2)
+script = ExtResource("1_xqluo")
+
+[node name="socket1" parent="." instance=ExtResource("1_lfkel")]
+position = Vector2(24, -14)
+
+[node name="socket2" parent="." instance=ExtResource("1_lfkel")]
+
+[node name="socket3" parent="." instance=ExtResource("1_lfkel")]
+position = Vector2(24, 14)
+
+[node name="socket4" parent="." instance=ExtResource("1_lfkel")]
+position = Vector2(-24, -14)
+
+[node name="socket5" parent="." instance=ExtResource("1_lfkel")]
+position = Vector2(0, 28)
+
+[node name="socket6" parent="." instance=ExtResource("1_lfkel")]
+position = Vector2(-24, 14)
+
+[node name="socket7" parent="." instance=ExtResource("1_lfkel")]
+position = Vector2(0, -28)

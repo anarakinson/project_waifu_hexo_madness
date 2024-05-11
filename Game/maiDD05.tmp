@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://c0v6c0hr14ubu"]
+
+[ext_resource type="Script" path="res://Game/main.gd" id="1_8ogpq"]
+[ext_resource type="PackedScene" uid="uid://b86l852fm1fiv" path="res://Game/hex_figure.tscn" id="3_n646m"]
+[ext_resource type="PackedScene" uid="uid://2lvocjxx1sya" path="res://Game/socket_figure.tscn" id="4_r2qug"]
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_8ogpq")
+
+[node name="Sockets" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="SocketFigure" parent="Sockets" instance=ExtResource("4_r2qug")]
+position = Vector2(199, 236)
+
+[node name="Hexes" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="HexFigure" parent="Hexes" instance=ExtResource("3_n646m")]
+position = Vector2(578, 177)
+
+[node name="HexFigure2" parent="Hexes" instance=ExtResource("3_n646m")]
+position = Vector2(460, 391)
+
+[node name="ChosenLayer" type="Node2D" parent="."]

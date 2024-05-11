@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://b86l852fm1fiv"]
+
+[ext_resource type="Script" path="res://Game/hex_figure.gd" id="1_b6cii"]
+[ext_resource type="PackedScene" uid="uid://cdsbjh5gle7t6" path="res://Game/hex.tscn" id="1_jyp36"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jbfgk"]
+radius = 42.72
+
+[node name="HexFigure" type="Node2D"]
+y_sort_enabled = true
+scale = Vector2(2, 2)
+script = ExtResource("1_b6cii")
+
+[node name="Hexes" type="Node2D" parent="."]
+
+[node name="Hex1" parent="Hexes" instance=ExtResource("1_jyp36")]
+
+[node name="Hex2" parent="Hexes" instance=ExtResource("1_jyp36")]
+position = Vector2(24, 14)
+
+[node name="Hex3" parent="Hexes" instance=ExtResource("1_jyp36")]
+position = Vector2(-24, 14)
+
+[node name="HexFigureArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HexFigureArea"]
+shape = SubResource("CircleShape2D_jbfgk")
