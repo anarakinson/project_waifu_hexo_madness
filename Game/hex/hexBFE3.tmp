@@ -1,0 +1,202 @@
+[gd_scene load_steps=4 format=3 uid="uid://b86l852fm1fiv"]
+
+[ext_resource type="Script" path="res://Game/hex/hex_figure.gd" id="1_e47en"]
+[ext_resource type="PackedScene" uid="uid://cdsbjh5gle7t6" path="res://Game/hex/hex.tscn" id="2_lncv2"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jbfgk"]
+radius = 42.72
+
+[node name="HexFigure" type="Node2D"]
+y_sort_enabled = true
+scale = Vector2(2, 2)
+script = ExtResource("1_e47en")
+
+[node name="Hexes" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="Hex1-1" parent="Hexes" instance=ExtResource("2_lncv2")]
+position = Vector2(-48, 27.5)
+
+[node name="Hex1-2" parent="Hexes" instance=ExtResource("2_lncv2")]
+position = Vector2(-24, 14)
+
+[node name="Hex1-3" parent="Hexes" instance=ExtResource("2_lncv2")]
+
+[node name="Hex2-1" parent="Hexes" instance=ExtResource("2_lncv2")]
+position = Vector2(-48, 55.5)
+
+[node name="Hex2-2" parent="Hexes" instance=ExtResource("2_lncv2")]
+position = Vector2(-24, 42)
+
+[node name="Hex2-3" parent="Hexes" instance=ExtResource("2_lncv2")]
+position = Vector2(0, 28)
+
+[node name="Hex2-4" parent="Hexes" instance=ExtResource("2_lncv2")]
+position = Vector2(24, 14)
+
+[node name="Hex3-1" parent="Hexes" instance=ExtResource("2_lncv2")]
+position = Vector2(-24, 69.5)
+
+[node name="Hex3-2" parent="Hexes" instance=ExtResource("2_lncv2")]
+position = Vector2(0, 56)
+
+[node name="Hex3-3" parent="Hexes" instance=ExtResource("2_lncv2")]
+position = Vector2(24, 42)
+
+[node name="Hex3-4" parent="Hexes" instance=ExtResource("2_lncv2")]
+position = Vector2(48.5, 28)
+
+[node name="Hex4-1" parent="Hexes" instance=ExtResource("2_lncv2")]
+position = Vector2(0, 84)
+
+[node name="Hex4-2" parent="Hexes" instance=ExtResource("2_lncv2")]
+position = Vector2(24.5, 70)
+
+[node name="Hex4-3" parent="Hexes" instance=ExtResource("2_lncv2")]
+position = Vector2(48.5, 56)
+
+[node name="Hex5-2" parent="Hexes" instance=ExtResource("2_lncv2")]
+position = Vector2(48.5, 84)
+
+[node name="Hex5-1" parent="Hexes" instance=ExtResource("2_lncv2")]
+position = Vector2(24.5, 98)
+
+[node name="Hex5-3" parent="Hexes" instance=ExtResource("2_lncv2")]
+position = Vector2(72.5, 70)
+
+[node name="Hex4-7" parent="Hexes" instance=ExtResource("2_lncv2")]
+position = Vector2(72.5, 42.5)
+
+[node name="Hex5-4" parent="Hexes" instance=ExtResource("2_lncv2")]
+position = Vector2(96.5, 56)
+
+[node name="Hex2-6" parent="Hexes" instance=ExtResource("2_lncv2")]
+position = Vector2(-48, 83.5)
+
+[node name="Hex3-6" parent="Hexes" instance=ExtResource("2_lncv2")]
+position = Vector2(-24, 97.5)
+
+[node name="Hex4-4" parent="Hexes" instance=ExtResource("2_lncv2")]
+position = Vector2(0, 112)
+
+[node name="Hex5-5" parent="Hexes" instance=ExtResource("2_lncv2")]
+position = Vector2(48.5, 112)
+
+[node name="Hex5-6" parent="Hexes" instance=ExtResource("2_lncv2")]
+position = Vector2(24.5, 126)
+
+[node name="Hex5-7" parent="Hexes" instance=ExtResource("2_lncv2")]
+position = Vector2(72.5, 98)
+
+[node name="Hex5-8" parent="Hexes" instance=ExtResource("2_lncv2")]
+position = Vector2(96.5, 84)
+
+[node name="Hex2-7" parent="Hexes" instance=ExtResource("2_lncv2")]
+position = Vector2(-48, 111.5)
+
+[node name="Hex3-7" parent="Hexes" instance=ExtResource("2_lncv2")]
+position = Vector2(-24, 125.5)
+
+[node name="Hex4-5" parent="Hexes" instance=ExtResource("2_lncv2")]
+position = Vector2(0, 140)
+
+[node name="Hex5-9" parent="Hexes" instance=ExtResource("2_lncv2")]
+position = Vector2(48.5, 140)
+
+[node name="Hex5-10" parent="Hexes" instance=ExtResource("2_lncv2")]
+position = Vector2(24.5, 154)
+
+[node name="Hex5-11" parent="Hexes" instance=ExtResource("2_lncv2")]
+position = Vector2(72.5, 126)
+
+[node name="Hex5-12" parent="Hexes" instance=ExtResource("2_lncv2")]
+position = Vector2(96.5, 112)
+
+[node name="Hex2-8" parent="Hexes" instance=ExtResource("2_lncv2")]
+position = Vector2(-48, 139.5)
+
+[node name="Hex1-5" parent="Hexes" instance=ExtResource("2_lncv2")]
+position = Vector2(-72, 41.5)
+
+[node name="Hex2-9" parent="Hexes" instance=ExtResource("2_lncv2")]
+position = Vector2(-72, 69.5)
+
+[node name="Hex2-10" parent="Hexes" instance=ExtResource("2_lncv2")]
+position = Vector2(-72, 97.5)
+
+[node name="Hex2-11" parent="Hexes" instance=ExtResource("2_lncv2")]
+position = Vector2(-72, 125.5)
+
+[node name="Hex3-8" parent="Hexes" instance=ExtResource("2_lncv2")]
+position = Vector2(-24, 153.5)
+
+[node name="Hex4-8" parent="Hexes" instance=ExtResource("2_lncv2")]
+position = Vector2(0, 168)
+
+[node name="Hex5-13" parent="Hexes" instance=ExtResource("2_lncv2")]
+position = Vector2(48.5, 168)
+
+[node name="Hex5-14" parent="Hexes" instance=ExtResource("2_lncv2")]
+position = Vector2(24.5, 182)
+
+[node name="Hex5-15" parent="Hexes" instance=ExtResource("2_lncv2")]
+position = Vector2(72.5, 154)
+
+[node name="Hex5-16" parent="Hexes" instance=ExtResource("2_lncv2")]
+position = Vector2(96.5, 140)
+
+[node name="Hex4-6" parent="Hexes" instance=ExtResource("2_lncv2")]
+position = Vector2(96.5, 28.5)
+
+[node name="Hex5-17" parent="Hexes" instance=ExtResource("2_lncv2")]
+position = Vector2(120.5, 42)
+
+[node name="Hex5-18" parent="Hexes" instance=ExtResource("2_lncv2")]
+position = Vector2(120.5, 70)
+
+[node name="Hex5-19" parent="Hexes" instance=ExtResource("2_lncv2")]
+position = Vector2(120.5, 98)
+
+[node name="Hex5-20" parent="Hexes" instance=ExtResource("2_lncv2")]
+position = Vector2(120.5, 126)
+
+[node name="Hex2-12" parent="Hexes" instance=ExtResource("2_lncv2")]
+position = Vector2(-48, 168)
+
+[node name="Hex2-13" parent="Hexes" instance=ExtResource("2_lncv2")]
+position = Vector2(-72, 154)
+
+[node name="Hex3-9" parent="Hexes" instance=ExtResource("2_lncv2")]
+position = Vector2(-24, 182)
+
+[node name="Hex4-9" parent="Hexes" instance=ExtResource("2_lncv2")]
+position = Vector2(0, 196.5)
+
+[node name="Hex5-21" parent="Hexes" instance=ExtResource("2_lncv2")]
+position = Vector2(48.5, 196.5)
+
+[node name="Hex5-22" parent="Hexes" instance=ExtResource("2_lncv2")]
+position = Vector2(24.5, 210.5)
+
+[node name="Hex5-23" parent="Hexes" instance=ExtResource("2_lncv2")]
+position = Vector2(72.5, 182.5)
+
+[node name="Hex5-24" parent="Hexes" instance=ExtResource("2_lncv2")]
+position = Vector2(96.5, 168.5)
+
+[node name="Hex5-25" parent="Hexes" instance=ExtResource("2_lncv2")]
+position = Vector2(120.5, 154.5)
+
+[node name="Hex3-5" parent="Hexes" instance=ExtResource("2_lncv2")]
+position = Vector2(72.5, 14.5)
+
+[node name="Hex2-5" parent="Hexes" instance=ExtResource("2_lncv2")]
+position = Vector2(48, 1)
+
+[node name="Hex1-4" parent="Hexes" instance=ExtResource("2_lncv2")]
+position = Vector2(24, -14)
+
+[node name="HexFigureArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HexFigureArea"]
+shape = SubResource("CircleShape2D_jbfgk")

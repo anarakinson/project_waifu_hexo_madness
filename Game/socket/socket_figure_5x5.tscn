@@ -1,0 +1,192 @@
+[gd_scene load_steps=2 format=3 uid="uid://2lvocjxx1sya"]
+
+[ext_resource type="PackedScene" uid="uid://cvg5aj0yet6vf" path="res://Game/socket/socket.tscn" id="2_cggar"]
+
+[node name="SocketFigure" type="Node2D"]
+y_sort_enabled = true
+scale = Vector2(2, 2)
+
+[node name="Sockets" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="socket1" parent="Sockets" instance=ExtResource("2_cggar")]
+position = Vector2(24, -14)
+
+[node name="socket2" parent="Sockets" instance=ExtResource("2_cggar")]
+
+[node name="socket3" parent="Sockets" instance=ExtResource("2_cggar")]
+position = Vector2(24, 14)
+
+[node name="socket4" parent="Sockets" instance=ExtResource("2_cggar")]
+position = Vector2(-24, -14)
+
+[node name="socket5" parent="Sockets" instance=ExtResource("2_cggar")]
+position = Vector2(0, 28)
+
+[node name="socket6" parent="Sockets" instance=ExtResource("2_cggar")]
+position = Vector2(-24, 14)
+
+[node name="socket7" parent="Sockets" instance=ExtResource("2_cggar")]
+position = Vector2(0, -28)
+
+[node name="socket8" parent="Sockets" instance=ExtResource("2_cggar")]
+position = Vector2(-48, 28)
+
+[node name="socket9" parent="Sockets" instance=ExtResource("2_cggar")]
+position = Vector2(-72, 42)
+
+[node name="socket10" parent="Sockets" instance=ExtResource("2_cggar")]
+position = Vector2(-48, 56)
+
+[node name="socket11" parent="Sockets" instance=ExtResource("2_cggar")]
+position = Vector2(-96, 28)
+
+[node name="socket36" parent="Sockets" instance=ExtResource("2_cggar")]
+position = Vector2(-72, 14)
+
+[node name="socket12" parent="Sockets" instance=ExtResource("2_cggar")]
+position = Vector2(-72, 70)
+
+[node name="socket13" parent="Sockets" instance=ExtResource("2_cggar")]
+position = Vector2(-96, 56)
+
+[node name="socket14" parent="Sockets" instance=ExtResource("2_cggar")]
+position = Vector2(-48, 0)
+
+[node name="socket15" parent="Sockets" instance=ExtResource("2_cggar")]
+position = Vector2(96, 28)
+
+[node name="socket16" parent="Sockets" instance=ExtResource("2_cggar")]
+position = Vector2(72, 42)
+
+[node name="socket17" parent="Sockets" instance=ExtResource("2_cggar")]
+position = Vector2(96, 56)
+
+[node name="socket18" parent="Sockets" instance=ExtResource("2_cggar")]
+position = Vector2(48, 28)
+
+[node name="socket19" parent="Sockets" instance=ExtResource("2_cggar")]
+position = Vector2(72, 70)
+
+[node name="socket20" parent="Sockets" instance=ExtResource("2_cggar")]
+position = Vector2(48, 56)
+
+[node name="socket40" parent="Sockets" instance=ExtResource("2_cggar")]
+position = Vector2(-48, 83.5)
+
+[node name="socket41" parent="Sockets" instance=ExtResource("2_cggar")]
+position = Vector2(48, 83.5)
+
+[node name="socket39" parent="Sockets" instance=ExtResource("2_cggar")]
+position = Vector2(24, 42)
+
+[node name="socket21" parent="Sockets" instance=ExtResource("2_cggar")]
+position = Vector2(72, 14)
+
+[node name="socket37" parent="Sockets" instance=ExtResource("2_cggar")]
+position = Vector2(48, 0)
+
+[node name="socket22" parent="Sockets" instance=ExtResource("2_cggar")]
+position = Vector2(24, 69.5)
+
+[node name="socket23" parent="Sockets" instance=ExtResource("2_cggar")]
+position = Vector2(0, 83.5)
+
+[node name="socket24" parent="Sockets" instance=ExtResource("2_cggar")]
+position = Vector2(24, 97.5)
+
+[node name="socket25" parent="Sockets" instance=ExtResource("2_cggar")]
+position = Vector2(-24, 69.5)
+
+[node name="socket26" parent="Sockets" instance=ExtResource("2_cggar")]
+position = Vector2(0, 111.5)
+
+[node name="socket27" parent="Sockets" instance=ExtResource("2_cggar")]
+position = Vector2(-24, 97.5)
+
+[node name="socket29" parent="Sockets" instance=ExtResource("2_cggar")]
+position = Vector2(-72, 98)
+
+[node name="socket30" parent="Sockets" instance=ExtResource("2_cggar")]
+position = Vector2(-96, 84)
+
+[node name="socket31" parent="Sockets" instance=ExtResource("2_cggar")]
+position = Vector2(96, 84)
+
+[node name="socket32" parent="Sockets" instance=ExtResource("2_cggar")]
+position = Vector2(72, 98)
+
+[node name="socket42" parent="Sockets" instance=ExtResource("2_cggar")]
+position = Vector2(-48, 111.5)
+
+[node name="socket43" parent="Sockets" instance=ExtResource("2_cggar")]
+position = Vector2(48, 111.5)
+
+[node name="socket33" parent="Sockets" instance=ExtResource("2_cggar")]
+position = Vector2(24, 125.5)
+
+[node name="socket34" parent="Sockets" instance=ExtResource("2_cggar")]
+position = Vector2(0, 139.5)
+
+[node name="socket35" parent="Sockets" instance=ExtResource("2_cggar")]
+position = Vector2(-24, 125.5)
+
+[node name="socket44" parent="Sockets" instance=ExtResource("2_cggar")]
+position = Vector2(-72, 126)
+
+[node name="socket45" parent="Sockets" instance=ExtResource("2_cggar")]
+position = Vector2(-96, 112)
+
+[node name="socket46" parent="Sockets" instance=ExtResource("2_cggar")]
+position = Vector2(96, 112)
+
+[node name="socket47" parent="Sockets" instance=ExtResource("2_cggar")]
+position = Vector2(72, 126)
+
+[node name="socket48" parent="Sockets" instance=ExtResource("2_cggar")]
+position = Vector2(-48, 139.5)
+
+[node name="socket49" parent="Sockets" instance=ExtResource("2_cggar")]
+position = Vector2(48, 139.5)
+
+[node name="socket50" parent="Sockets" instance=ExtResource("2_cggar")]
+position = Vector2(24, 153.5)
+
+[node name="socket51" parent="Sockets" instance=ExtResource("2_cggar")]
+position = Vector2(0, 167.5)
+
+[node name="socket52" parent="Sockets" instance=ExtResource("2_cggar")]
+position = Vector2(-24, 153.5)
+
+[node name="socket53" parent="Sockets" instance=ExtResource("2_cggar")]
+position = Vector2(-72, 154)
+
+[node name="socket54" parent="Sockets" instance=ExtResource("2_cggar")]
+position = Vector2(-96, 140)
+
+[node name="socket55" parent="Sockets" instance=ExtResource("2_cggar")]
+position = Vector2(96, 140)
+
+[node name="socket56" parent="Sockets" instance=ExtResource("2_cggar")]
+position = Vector2(72, 154)
+
+[node name="socket57" parent="Sockets" instance=ExtResource("2_cggar")]
+position = Vector2(-48, 167.5)
+
+[node name="socket58" parent="Sockets" instance=ExtResource("2_cggar")]
+position = Vector2(48, 167.5)
+
+[node name="socket59" parent="Sockets" instance=ExtResource("2_cggar")]
+position = Vector2(24, 181.5)
+
+[node name="socket60" parent="Sockets" instance=ExtResource("2_cggar")]
+position = Vector2(0, 195.5)
+
+[node name="socket61" parent="Sockets" instance=ExtResource("2_cggar")]
+position = Vector2(-24, 181.5)
+
+[node name="socket28" parent="Sockets" instance=ExtResource("2_cggar")]
+position = Vector2(0, 55.5)
+
+[node name="socket38" parent="Sockets" instance=ExtResource("2_cggar")]
+position = Vector2(-24, 42)

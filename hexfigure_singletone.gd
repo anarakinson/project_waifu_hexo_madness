@@ -2,7 +2,7 @@ extends Node
 
 signal on_picked_up 
 signal on_picked_down 
-
+signal time_to_check_winner
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

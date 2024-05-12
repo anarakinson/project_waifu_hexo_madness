@@ -1,11 +1,15 @@
 [gd_scene load_steps=7 format=3 uid="uid://cvg5aj0yet6vf"]
 
-[ext_resource type="Texture2D" uid="uid://dcq8gk07l6xkq" path="res://assets/fantasyhextiles_v3.png" id="1_1g4b3"]
-[ext_resource type="Script" path="res://Game/socket.gd" id="1_4fcw5"]
+[ext_resource type="Script" path="res://Game/socket/socket.gd" id="1_tum6r"]
+[ext_resource type="Texture2D" uid="uid://dcq8gk07l6xkq" path="res://assets/fantasyhextiles_v3.png" id="2_qi32s"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_le5dx"]
-atlas = ExtResource("1_1g4b3")
+atlas = ExtResource("2_qi32s")
 region = Rect2(0, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dvc3f"]
+atlas = ExtResource("2_qi32s")
+region = Rect2(192, 0, 32, 48)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_yodis"]
 animations = [{
@@ -16,30 +20,49 @@ animations = [{
 "loop": true,
 "name": &"default",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dvc3f")
+}],
+"loop": true,
+"name": &"water",
+"speed": 5.0
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_jtxib"]
 radius = 7.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_6ptb0"]
-radius = 1.0
-
 [node name="socket" type="Node2D"]
-script = ExtResource("1_4fcw5")
+script = ExtResource("1_tum6r")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -9)
 sprite_frames = SubResource("SpriteFrames_yodis")
+animation = &"water"
+autoplay = "water"
 
 [node name="SocketArea" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SocketArea"]
 shape = SubResource("CircleShape2D_jtxib")
 
-[node name="SocketCentre" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="SocketCentre"]
-shape = SubResource("CircleShape2D_6ptb0")
+[node name="Label" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 20
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="area_entered" from="SocketArea" to="." method="_on_area_2d_area_entered"]
 [connection signal="area_exited" from="SocketArea" to="." method="_on_socket_area_area_exited"]
