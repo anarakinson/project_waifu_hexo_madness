@@ -27,31 +27,56 @@ var yet_not_used = range(1, 20)
 const ALREADY_USED_MAX = 19
 
 
-var numbers_graph = [
-	[1], #0
-	[2, 3, 4, 5, 6, 7], #1
-	[9, 10, 11], #2
-	[11, 12, 13], #3
-	[13, 14, 15], #4
-	[15, 16, 17], #5
-	[17, 18, 19], #6
-	[19, 8, 9], #7
+#var numbers_graph = [
+#	[1], #0
+#	[2, 3, 4, 5, 6, 7], #1
+#	[9, 10, 11], #2
+#	[11, 12, 13], #3
+#	[13, 14, 15], #4
+#	[15, 16, 17], #5
+#	[17, 18, 19], #6
+#	[19, 8, 9], #7
+#
+#	[7, 9, 19], #8
+#
+#	[], #9
+#	[2], #10
+#	[], #11
+#	[3], #12
+#	[], #13
+#	[4], #14
+#	[], #15
+#	[5], #16
+#	[], #17
+#	[6], #18
+#
+#	[18, 6, 7, 8], #19
+#]
+var numbers_graph = {
+	0 : [1], #0
+	1 : [2, 3, 4, 5, 6, 7], #1
+	2 : [9, 10, 11], #2
+	3 : [11, 12, 13], #3
+	4 : [13, 14, 15], #4
+	5 : [15, 16, 17], #5
+	6 : [17, 18, 19], #6
+	7 : [19, 8, 9], #7
 	
-	[7, 9, 19], #8
+	8 : [7, 9, 19], #8
 	
-	[], #9
-	[2], #10
-	[], #11
-	[3], #12
-	[], #13
-	[4], #14
-	[], #15
-	[5], #16
-	[], #17
-	[6], #18
+	9 : [], #9
+	10 : [2], #10
+	11 : [], #11
+	12 : [3], #12
+	13 : [], #13
+	14 : [4], #14
+	15 : [], #15
+	16 : [5], #16
+	17 : [], #17
+	18 : [6], #18
 	
-	[18, 6, 7, 8], #19
-]
+	19 : [18, 6, 7, 8], #19
+}
 
 
 func get_near_n(number):
@@ -115,14 +140,14 @@ func generate_hexes():
 				var next_id = rng.randi_range(0, len(nearest)-1)
 				var next_hex_number = nearest[next_id]
 				if next_hex_number in yet_not_used:
-					print(start_number, " - ", next_hex_number, " from ", nearest)
+#					print(start_number, " - ", next_hex_number, " from ", nearest)
 					numbers_array.append(next_hex_number)
 					yet_not_used.erase(next_hex_number)
 					start_number = next_hex_number
 
 			if len(numbers_array) >= lenght or len(yet_not_used) <= 0:
 				break
-			print("hexes numbers: ", start_number, " - ", numbers_array)
+#			print("hexes numbers: ", start_number, " - ", numbers_array)
 		
 		hexes_numbers.append(numbers_array)
 		

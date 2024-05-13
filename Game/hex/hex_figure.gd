@@ -5,11 +5,13 @@ extends Node2D
 @onready var hexes = $Hexes
 @export var figure_number = 0
 
+var rng = RandomNumberGenerator.new()
 
 var start_position = Vector2()
+var current_start_position = Vector2()
 var is_inserted = false
 var is_picked_up = false
-
+var idle_state = true
 
 var figure_centre = Vector2()
 
@@ -92,6 +94,7 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if is_picked_up:
+		idle_state = false
 		hexes.scale = hexes.scale.move_toward(Vector2(1, 1), 4 * delta)
 		for hex in hexes.get_children():
 			if hex.picked_up:
@@ -107,8 +110,13 @@ func _process(delta):
 			insert_all(delta)
 			HexfigureSingletone.emit_signal("time_to_check_winner")
 		else:
-			hexes.scale = hexes.scale.move_toward(Vector2(0.8, 0.8), 4 * delta)
-			hex_figure.position = hex_figure.position.move_toward(start_position, 5000 * delta)
+			hexes.scale = hexes.scale.move_toward(Vector2(0.7, 0.7), 4 * delta)
+			if idle_state:
+				hex_figure.position = hex_figure.position.move_toward(current_start_position, 1 * delta)
+			else:
+				hex_figure.position = hex_figure.position.move_toward(start_position, 5000 * delta)
+				if hex_figure.position == start_position:
+					idle_state = true
 			for hex in hexes.get_children():
 				hex.position = (hex.start_position + hex_figure.position)
 	
@@ -128,3 +136,8 @@ func _on_picked_down():
 	is_picked_up = false
 	hexes.z_index = 0
 		
+
+
+func _on_timer_timeout():
+	current_start_position.x = start_position.x + rng.randi_range(-25, 25)
+	current_start_position.y = start_position.y + rng.randi_range(-25, 25)
