@@ -21,7 +21,8 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if picked_up:
-		global_position = get_global_mouse_position()
+		pass
+#		global_position = get_global_mouse_position()
 #		global_position = global_position.move_toward(get_global_mouse_position(), 10_000 * delta)
 	if Input.is_action_just_released("m1"):
 		mouse_released.emit()
@@ -39,6 +40,7 @@ func insertion(delta):
 func _on_button_pressed():
 	if not picked_up:
 		timer.start(0.15)
+		HexfigureSingletone.emit_signal("on_picked_up") 
 
 
 func _on_timer_timeout():

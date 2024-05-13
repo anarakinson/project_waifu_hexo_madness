@@ -114,7 +114,8 @@ func _process(delta):
 		hexes.scale = hexes.scale.move_toward(Vector2(1, 1), 4 * delta)
 		for hex in hexes.get_children():
 			if hex.picked_up:
-				hex_figure.position = (hex.position - hex.start_position)
+#				hex_figure.position = (hex.position - hex.start_position)
+				hex_figure.position = get_local_mouse_position() - hex.start_position
 				HexfigureSingletone.emit_signal("on_picked_up")
 			hex.position = (hex.start_position + hex_figure.position)
 #			hex.position = hex.position.move_toward(hex.start_position + hex_figure.position, 1_000_000)
