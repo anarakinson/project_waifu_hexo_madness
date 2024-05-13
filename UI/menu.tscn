@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://cch21borkwejm"]
 
 [ext_resource type="Script" path="res://UI/menu.gd" id="1_w4wwh"]
-[ext_resource type="Texture2D" uid="uid://qt7yit3ehb42" path="res://assets/Default_cyberpunk_white_blue_neon_full_size_full_body_backgr_1.jpg" id="2_tr6wj"]
+[ext_resource type="Texture2D" uid="uid://qt7yit3ehb42" path="res://release/assets/Default_cyberpunk_white_blue_neon_full_size_full_body_backgr_1.jpg" id="2_tr6wj"]
 
 [node name="Menu" type="Node2D"]
 script = ExtResource("1_w4wwh")

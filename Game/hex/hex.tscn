@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://cdsbjh5gle7t6"]
 
 [ext_resource type="Script" path="res://Game/hex/hex.gd" id="1_teomv"]
-[ext_resource type="Texture2D" uid="uid://dcq8gk07l6xkq" path="res://assets/fantasyhextiles_v3.png" id="2_qv2oq"]
+[ext_resource type="Texture2D" uid="uid://dcq8gk07l6xkq" path="res://release/assets/fantasyhextiles_v3.png" id="2_qv2oq"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wbr40"]
 atlas = ExtResource("2_qv2oq")

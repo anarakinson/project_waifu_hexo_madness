@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://xmwbu7syawcq" path="res://Game/waifa/waifa.tscn" id="3_5154h"]
 [ext_resource type="PackedScene" uid="uid://jdkfk4bl52vf" path="res://Game/start_zone.tscn" id="4_b0ndu"]
 [ext_resource type="PackedScene" uid="uid://do0yi7pyqmj4l" path="res://Game/socket/socket_figure_3x3.tscn" id="4_n2br6"]
-[ext_resource type="Texture2D" uid="uid://bdbm05fxn4q7q" path="res://assets/photo_2024-05-13_00-36-08.jpg" id="4_sl4dk"]
+[ext_resource type="Texture2D" uid="uid://bdbm05fxn4q7q" path="res://release/assets/photo_2024-05-13_00-36-08.jpg" id="4_sl4dk"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_8ogpq")
