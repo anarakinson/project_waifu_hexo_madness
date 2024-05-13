@@ -5,21 +5,26 @@ var time_to_check = false
 @onready var current_level = $LabelCurrentLevel
 @onready var start_point = $StartZone
 @onready var hexes = $Hexes
+#@onready var sock_figure = $Sockets/SocketFigure
 
 var figure = preload("res://Game/hex/hex_figure_3x3.tscn")
+var rng = RandomNumberGenerator.new()
 
+# game main difficult configurations
 var MAX_HEXFIGURE_NUMBERS = 7
 var MAX_SINGLE_HEXES = 0
 var MIN_FIGURE_SIZE = 2
 var MAX_FIGURE_SIZE = 6
 
-
-
+# variables for make figures
+var number_of_sockets = 19 # 
+#var number_of_sockets = len(sock_figure.sockets.get_children())
 var hexes_numbers = []
-var yet_not_used = range(1, 20)
+var yet_not_used = range(1, number_of_sockets + 1)
 var ALREADY_USED_MAX = len(yet_not_used)
 
 
+# required for finding nearby hexes. idk how to do that smarter way
 var numbers_graph = {
 	0 : [1], #0
 	1 : [2, 3, 4, 5, 6, 7], #1
@@ -45,7 +50,7 @@ var numbers_graph = {
 	19 : [18, 6, 7, 8], #19
 }
 
-
+# calculate nearby hexes
 func get_near_n(number):
 	var nearest = numbers_graph[number]
 	if number == 1:
@@ -76,13 +81,10 @@ func generate_hex_numbers():
 	# reset hexes_numbers
 	hexes_numbers = []
 	yet_not_used = range(1, 20)
-	
-	var rng = RandomNumberGenerator.new()
 
 	var counter = 0
 	# start generating hex figures
 	while true:
-		print("new hex figure")
 		# if all parts of big hex are used
 		if len(yet_not_used) <= 0:
 			break
@@ -93,7 +95,7 @@ func generate_hex_numbers():
 		var start_number = yet_not_used[start_id]
 		yet_not_used.erase(start_number)
 		
-		# create sequence of hexes
+		# create sequence of hexes (fucking govnocode)
 		var numbers_array = []
 		numbers_array.append(start_number)
 		var stopper = 0
@@ -120,10 +122,10 @@ func generate_hex_numbers():
 	
 
 func generate_hexes():
-	# generate numbers
+	# generate numbers until get the correct combination
 	while true:
 		generate_hex_numbers()
-		print(hexes_numbers)
+#		print(hexes_numbers)
 		# check if everything fine
 		var have_single_hexes = 0
 		for hex_number_arr in hexes_numbers:
@@ -135,7 +137,8 @@ func generate_hexes():
 			 or have_single_hexes > MAX_SINGLE_HEXES
 		):
 			break
-	
+
+	# creating figures and add into Hexes
 	var counter = 0
 	var x_shift = 0
 	var y_shift = 0
@@ -147,14 +150,17 @@ func generate_hexes():
 		hexes.add_child(new_figure)
 		new_figure.enumerate_hexes()
 		
+		# set start positions
 		new_figure.generate_figure(hexes_numbers[i])
 		new_figure.position = start_point.position + Vector2(200 * x_shift, 150 * y_shift)
 		new_figure.centralize()
-
+		
+		# update start position for the next hex
 		y_shift += 1
 		if y_shift >= 4:
 			x_shift += 1
 			y_shift = 0
+#		break
 
 
 # Called when the node enters the scene tree for the first time.

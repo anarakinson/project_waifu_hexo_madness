@@ -34,8 +34,8 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="StartZone" parent="." instance=ExtResource("4_b0ndu")]
-position = Vector2(810, 101)
+position = Vector2(487, 106)
 
 [node name="Photo2024-05-1300-36-08" type="Sprite2D" parent="."]
-position = Vector2(-282, 280)
+position = Vector2(-306, 284)
 texture = ExtResource("4_sl4dk")

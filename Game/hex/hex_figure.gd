@@ -7,20 +7,30 @@ extends Node2D
 
 var rng = RandomNumberGenerator.new()
 
+# coefficient to resize figure when idle:
+var idle_size_coeff = 0.65
+
+# need to return to start position when picked down
 var start_position = Vector2()
-var current_start_position = Vector2()
+# check state
 var is_inserted = false
 var is_picked_up = false
+# need to floating when on start position
+var current_start_position = Vector2()
 var idle_state = true
-
+# need to avoid accidental isertion when flying to start position
+var is_insertable = true
+# ...
 var figure_centre = Vector2()
 
 
+# clip specific figure from big template
 func generate_figure(hexes_numbers):
 	for hex in hexes.get_children():
 		if (hex.hex_number not in hexes_numbers):
 			hex.free()
 
+# just enumerate hexes
 func enumerate_hexes():
 	var counter = 0
 	for hex in hexes.get_children():
@@ -29,6 +39,7 @@ func enumerate_hexes():
 		hex.set_text(counter)
 
 
+# find figure centre
 func calculate_size():
 	var fig_top = 10000
 	var fig_bottom = -10000
@@ -44,6 +55,7 @@ func calculate_size():
 	figure_centre = Vector2((fig_right + fig_left) / 2, (fig_bottom + fig_top) / 2)
 
 
+# move new clipped figure to the centre of scene (to the start position) 
 func centralize():
 	calculate_size()
 	var shift = hex_figure.position - figure_centre 
@@ -77,7 +89,7 @@ func check_is_picked_up():
 	return out
 #	return (hex1.picked_up or hex2.picked_up or hex3.picked_up)
 
-
+# insert every single hex of figure into sockets
 func insert_all(delta):
 	for hex in hexes.get_children():
 		hex.insertion(delta)
@@ -93,6 +105,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	### when picked up
 	if is_picked_up:
 		idle_state = false
 		hexes.scale = hexes.scale.move_toward(Vector2(1, 1), 4 * delta)
@@ -102,28 +115,33 @@ func _process(delta):
 				HexfigureSingletone.emit_signal("on_picked_up")
 			hex.position = (hex.start_position + hex_figure.position)
 #			hex.position = hex.position.move_toward(hex.start_position + hex_figure.position, 1_000_000)
-
+	
+	### when picked down and:
 	elif (not is_picked_up and not is_inserted):
-		if (inside_socket() and not inside_hex()):
+		### inserted into sockets
+		if (is_insertable and inside_socket() and not inside_hex()):
 			hexes.scale = hexes.scale.move_toward(Vector2(1, 1), 4 * delta)
 			is_inserted = true
 			insert_all(delta)
 			HexfigureSingletone.emit_signal("time_to_check_winner")
+		### not inserted and:
 		else:
-			hexes.scale = hexes.scale.move_toward(Vector2(0.7, 0.7), 4 * delta)
+			hexes.scale = hexes.scale.move_toward(Vector2(idle_size_coeff, idle_size_coeff), 4 * delta)
+			### already at the start position and idle
 			if idle_state:
 				hex_figure.position = hex_figure.position.move_toward(current_start_position, 1 * delta)
+			### moving to the start position
 			else:
+				is_insertable = false # avoiding accidental insertions
 				hex_figure.position = hex_figure.position.move_toward(start_position, 5000 * delta)
+				# starting to be idle and floating
 				if hex_figure.position == start_position:
 					idle_state = true
+					is_insertable = true
+			# move every single hex
 			for hex in hexes.get_children():
 				hex.position = (hex.start_position + hex_figure.position)
-	
 
-#	print("hex1: ", hex1.inside_socket, " picked_up: ", hex1.picked_up)
-#	print("hex2: ", hex2.inside_socket, " picked_up: ", hex2.picked_up)
-#	print("hex3: ", hex3.inside_socket, " picked_up: ", hex3.picked_up)
 #	print("total: ", inside_socket(), " picked_up: ", is_picked_up)
 
 func _on_picked_up():
@@ -138,6 +156,7 @@ func _on_picked_down():
 		
 
 
+# make figures floating when idle 
 func _on_timer_timeout():
 	current_start_position.x = start_position.x + rng.randi_range(-25, 25)
 	current_start_position.y = start_position.y + rng.randi_range(-25, 25)

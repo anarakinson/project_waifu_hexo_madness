@@ -1,10 +1,12 @@
-[gd_scene load_steps=2 format=3 uid="uid://2lvocjxx1sya"]
+[gd_scene load_steps=3 format=3 uid="uid://2lvocjxx1sya"]
 
+[ext_resource type="Script" path="res://Game/socket/socket_figure.gd" id="1_cwukn"]
 [ext_resource type="PackedScene" uid="uid://cvg5aj0yet6vf" path="res://Game/socket/socket.tscn" id="2_cggar"]
 
 [node name="SocketFigure" type="Node2D"]
 y_sort_enabled = true
 scale = Vector2(2, 2)
+script = ExtResource("1_cwukn")
 
 [node name="Sockets" type="Node2D" parent="."]
 y_sort_enabled = true
