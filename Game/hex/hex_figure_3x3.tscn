@@ -78,6 +78,7 @@ visible = false
 shape = SubResource("CircleShape2D_jbfgk")
 
 [node name="Timer" type="Timer" parent="."]
+process_callback = 0
 wait_time = 2.0
 autostart = true
 

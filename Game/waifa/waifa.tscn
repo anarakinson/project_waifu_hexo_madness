@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://xmwbu7syawcq"]
+
+[ext_resource type="Script" path="res://Game/waifa/waifa.gd" id="1_6i76d"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7fnhu"]
+radius = 41.0
+height = 238.0
+
+[node name="Waifa" type="Node2D"]
+script = ExtResource("1_6i76d")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+
+[node name="Shade" type="Sprite2D" parent="."]
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CapsuleShape2D_7fnhu")

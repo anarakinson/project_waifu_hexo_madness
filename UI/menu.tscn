@@ -1,23 +1,29 @@
-[gd_scene load_steps=2 format=3 uid="uid://cch21borkwejm"]
+[gd_scene load_steps=3 format=3 uid="uid://cch21borkwejm"]
 
 [ext_resource type="Script" path="res://UI/menu.gd" id="1_w4wwh"]
+[ext_resource type="Texture2D" uid="uid://qt7yit3ehb42" path="res://assets/Default_cyberpunk_white_blue_neon_full_size_full_body_backgr_1.jpg" id="2_tr6wj"]
 
 [node name="Menu" type="Node2D"]
 script = ExtResource("1_w4wwh")
 
+[node name="DefaultCyberpunkWhiteBlueNeonFullSizeFullBodyBackgr1" type="Sprite2D" parent="."]
+position = Vector2(577, 308)
+scale = Vector2(1.14941, 1.14941)
+texture = ExtResource("2_tr6wj")
+
 [node name="Start" type="Button" parent="."]
-offset_left = 478.0
-offset_top = 286.0
-offset_right = 703.0
-offset_bottom = 364.0
+offset_left = 104.0
+offset_top = 158.0
+offset_right = 329.0
+offset_bottom = 236.0
 theme_override_font_sizes/font_size = 50
 text = "Start"
 
 [node name="Quit" type="Button" parent="."]
-offset_left = 478.0
-offset_top = 400.0
-offset_right = 703.0
-offset_bottom = 484.0
+offset_left = 104.0
+offset_top = 272.0
+offset_right = 329.0
+offset_bottom = 356.0
 theme_override_font_sizes/font_size = 50
 text = "Quit"
 

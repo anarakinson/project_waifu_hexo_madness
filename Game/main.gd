@@ -5,7 +5,9 @@ var time_to_check = false
 @onready var current_level = $LabelCurrentLevel
 @onready var start_point = $StartZone
 @onready var hexes = $Hexes
-#@onready var sock_figure = $Sockets/SocketFigure
+@onready var sock_figure = $Sockets/SocketFigure
+
+@onready var waifa_main = $Waifa
 
 var figure = preload("res://Game/hex/hex_figure_3x3.tscn")
 var rng = RandomNumberGenerator.new()
@@ -170,6 +172,7 @@ func _ready():
 	HexfigureSingletone.connect("on_picked_down", _on_picked_down)
 	HexfigureSingletone.connect("time_to_check_winner", _time_to_check_winner)
 	generate_hexes()
+	$Background.load_image($Background.image_list[HexfigureSingletone.current_level % $Background.img_list_size])
 	current_level.text = "Level: " + str(HexfigureSingletone.current_level)
 	pass # Replace with function body.
 
@@ -181,8 +184,14 @@ func _process(delta):
 		for hexfig in hexes.get_children():
 			if not hexfig.is_inserted:
 				not_inserted += 1
-		if (not_inserted == 0):
+		
+		# Player win!
+		if (not_inserted <= 0):
 			congrats.visible = true
+			for hex in hexes.get_children():
+				hex.is_explodes = true
+				sock_figure.is_explodes = true
+			waifa_main.reveales()
 			recreate()
 		time_to_check = false
 
@@ -205,7 +214,7 @@ func _time_to_check_winner():
 
 func recreate():
 	HexfigureSingletone.current_level += 1
-	await get_tree().create_timer(1.0).timeout
+	await get_tree().create_timer(2.0).timeout
 	get_tree().reload_current_scene()
 
 

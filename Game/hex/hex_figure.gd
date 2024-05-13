@@ -20,6 +20,8 @@ var current_start_position = Vector2()
 var idle_state = true
 # need to avoid accidental isertion when flying to start position
 var is_insertable = true
+# explodin in the end 
+var is_explodes = false
 # ...
 var figure_centre = Vector2()
 
@@ -101,6 +103,7 @@ func _ready():
 	HexfigureSingletone.connect("on_picked_down", _on_picked_down)
 	# save start position
 	start_position = hex_figure.position
+	_on_timer_timeout()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -116,6 +119,19 @@ func _process(delta):
 			hex.position = (hex.start_position + hex_figure.position)
 #			hex.position = hex.position.move_toward(hex.start_position + hex_figure.position, 1_000_000)
 	
+	### if explodes
+	if is_explodes:
+		for hex in hexes.get_children():
+			var hexnum = hex.hex_number
+			var direction = Vector2()
+			if hexnum % 2 == 0:
+				direction = Vector2((10.5 - hexnum) * 3000, (10.5 - hexnum) * 3000)
+			elif hexnum % 2 != 0:
+				direction = Vector2((10.5 - hexnum) * 3000, (-10.5 + hexnum) * 3000)
+			hex.position = hex.position.move_toward(direction, (550 - hexnum * 10) * delta)
+			hex.rotation += hexnum * delta
+
+
 	### when picked down and:
 	elif (not is_picked_up and not is_inserted):
 		### inserted into sockets
@@ -129,7 +145,7 @@ func _process(delta):
 			hexes.scale = hexes.scale.move_toward(Vector2(idle_size_coeff, idle_size_coeff), 4 * delta)
 			### already at the start position and idle
 			if idle_state:
-				hex_figure.position = hex_figure.position.move_toward(current_start_position, 1 * delta)
+				hex_figure.position = hex_figure.position.move_toward(current_start_position, 2 * delta)
 			### moving to the start position
 			else:
 				is_insertable = false # avoiding accidental insertions
@@ -155,8 +171,11 @@ func _on_picked_down():
 	hexes.z_index = 0
 		
 
-
 # make figures floating when idle 
 func _on_timer_timeout():
 	current_start_position.x = start_position.x + rng.randi_range(-25, 25)
 	current_start_position.y = start_position.y + rng.randi_range(-25, 25)
+
+
+
+	

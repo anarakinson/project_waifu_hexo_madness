@@ -38,7 +38,7 @@ func insertion(delta):
 
 func _on_button_pressed():
 	if not picked_up:
-		timer.start(0.1)
+		timer.start(0.15)
 
 
 func _on_timer_timeout():
@@ -66,7 +66,7 @@ func _on_hex_area_area_entered(area):
 		current_position = area.get_parent().global_position
 	elif area.name == "HexArea":
 		inside_hex = true
-		
+
 
 
 func _on_hex_area_area_exited(area):
@@ -74,3 +74,4 @@ func _on_hex_area_area_exited(area):
 		inside_socket = false
 	elif area.name == "HexArea":
 		inside_hex = false
+
