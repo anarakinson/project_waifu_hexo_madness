@@ -1,9 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://c0v6c0hr14ubu"]
+[gd_scene load_steps=4 format=3 uid="uid://c0v6c0hr14ubu"]
 
 [ext_resource type="Script" path="res://Game/main.gd" id="1_8ogpq"]
 [ext_resource type="PackedScene" uid="uid://jdkfk4bl52vf" path="res://Game/start_zone.tscn" id="4_b0ndu"]
 [ext_resource type="PackedScene" uid="uid://do0yi7pyqmj4l" path="res://Game/socket/socket_figure_3x3.tscn" id="4_n2br6"]
-[ext_resource type="Texture2D" uid="uid://bdbm05fxn4q7q" path="res://assets/photo_2024-05-13_00-36-08.jpg" id="4_sl4dk"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_8ogpq")
@@ -25,17 +24,5 @@ offset_bottom = 362.0
 theme_override_font_sizes/font_size = 50
 text = "!!!CONGRATS!!!"
 
-[node name="LabelCurrentLevel" type="Label" parent="."]
-offset_right = 139.0
-offset_bottom = 45.0
-theme_override_font_sizes/font_size = 30
-text = "Level: 0"
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [node name="StartZone" parent="." instance=ExtResource("4_b0ndu")]
 position = Vector2(810, 101)
-
-[node name="Photo2024-05-1300-36-08" type="Sprite2D" parent="."]
-position = Vector2(-282, 280)
-texture = ExtResource("4_sl4dk")

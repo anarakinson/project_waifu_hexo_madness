@@ -2,6 +2,7 @@ extends Node2D
 
 var time_to_check = false
 @onready var congrats = $Label
+@onready var current_level = $LabelCurrentLevel
 @onready var start_point = $StartZone
 @onready var hexes = $Hexes
 
@@ -17,53 +18,128 @@ var hexes_numbers = [
 #	[28, 29, 30, 31]
 ]
 
-var already_used = []
-var already_used_max = 19
+
+#var yet_not_used = [
+#	1, 2, 3, 4, 5, 6, 7, 8, 9,
+#	10,11,12,13,14,15,16,17,18,19 
+#]
+var yet_not_used = range(1, 20)
+const ALREADY_USED_MAX = 19
+
+
+var numbers_graph = [
+	[1], #0
+	[2, 3, 4, 5, 6, 7], #1
+	[9, 10, 11], #2
+	[11, 12, 13], #3
+	[13, 14, 15], #4
+	[15, 16, 17], #5
+	[17, 18, 19], #6
+	[19, 8, 9], #7
+	
+	[7, 9, 19], #8
+	
+	[], #9
+	[2], #10
+	[], #11
+	[3], #12
+	[], #13
+	[4], #14
+	[], #15
+	[5], #16
+	[], #17
+	[6], #18
+	
+	[18, 6, 7, 8], #19
+]
+
+
+func get_near_n(number):
+	var nearest = numbers_graph[number]
+	if number == 1:
+		pass
+	elif number > 2 and number < 7:
+		nearest += [1]
+		nearest += [number - 1, number + 1]
+	elif number == 2:
+		nearest += [1, number + 1, 7]
+	elif number == 7:
+		nearest += [1, 2, number - 1]
+	elif number > 8 and number < 19:
+		nearest += [number - 1, number + 1]
+		if number % 2 == 0:
+			pass
+		elif number % 2 != 0:
+			nearest += numbers_graph[number + 1]
+			nearest += numbers_graph[number - 1]
+	elif number == 19 or number == 8:
+		pass 
+	
+	return nearest
 
 
 func generate_hexes():
 	var rng = RandomNumberGenerator.new()
-	
-	var counter = 0
-	while true:
-		counter += 1
-		if counter > 5:
-			break
-		var lenght = rng.randi_range(1, 6)
-		var start_number = rng.randi_range(0, 19)
-		var new_figure = figure.instantiate() 
-		hexes.add_child(new_figure)
-		
-	
-		var numbers_array = []
-		while true:
-			var rand_number = rng.randi_range(1, 19)
 
-			if rand_number not in already_used:
-				already_used.append(rand_number)
-				numbers_array.append(rand_number)
-			if len(numbers_array) >= 4 or len(already_used) >= 19:
-				break
-		hexes_numbers.append(numbers_array)
-		if len(already_used) >= 19:
-				break
-
-
-	counter = 0
 	var x_shift = 0
 	var y_shift = 0
-	for hexfig in hexes.get_children():
-		print(hexes_numbers[counter])
-		hexfig.generate_figure(hexes_numbers[counter])
-		hexfig.position = start_point.position + Vector2(200 * x_shift, 150 * y_shift)
-		hexfig.centralize()
-		counter += 1
+	var counter = 0
+	# start generating hex figures
+	while true:
+		print("new hex figure")
+		# if all parts of big hex are used
+		if len(yet_not_used) <= 0:
+			break
+		
+		# generate new figure template
+		var new_figure = figure.instantiate() 
+		hexes.add_child(new_figure)
+		new_figure.enumerate_hexes()
+		
+		# create new lenght and start number
+		var lenght = rng.randi_range(2, 5)
+		var start_id = rng.randi_range(0, len(yet_not_used)-1)
+		var start_number = yet_not_used[start_id]
+		yet_not_used.erase(start_number)
+		
+		# create sequence of hexes
+		var numbers_array = []
+		numbers_array.append(start_number)
+		var stopper = 0
+		while true:
+			stopper += 1
+			if stopper >= 10:
+				break
+			var nearest = get_near_n(start_number)
+			for id in nearest:
+				var next_id = rng.randi_range(0, len(nearest)-1)
+				var next_hex_number = nearest[next_id]
+				if next_hex_number in yet_not_used:
+					print(start_number, " - ", next_hex_number, " from ", nearest)
+					numbers_array.append(next_hex_number)
+					yet_not_used.erase(next_hex_number)
+					start_number = next_hex_number
 
+			if len(numbers_array) >= lenght or len(yet_not_used) <= 0:
+				break
+			print("hexes numbers: ", start_number, " - ", numbers_array)
+		
+		hexes_numbers.append(numbers_array)
+		
+#	counter = 0
+#	for hexfig in hexes.get_children():
+#		print("hexes numbers: ", hexes_numbers[counter])
+		new_figure.generate_figure(hexes_numbers[counter])
+		new_figure.position = start_point.position + Vector2(200 * x_shift, 150 * y_shift)
+		new_figure.centralize()
+
+		counter += 1
 		y_shift += 1
-		if counter >= 4:
+		if y_shift >= 4:
 			x_shift += 1
 			y_shift = 0
-
+	if len(hexes_numbers) > 8:
+		recreate()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -72,6 +148,7 @@ func _ready():
 	HexfigureSingletone.connect("on_picked_down", _on_picked_down)
 	HexfigureSingletone.connect("time_to_check_winner", _time_to_check_winner)
 	generate_hexes()
+	current_level.text = "Level: " + str(HexfigureSingletone.current_level)
 	pass # Replace with function body.
 
 
@@ -84,6 +161,7 @@ func _process(delta):
 				not_inserted += 1
 		if (not_inserted == 0):
 			congrats.visible = true
+			recreate()
 		time_to_check = false
 
 
@@ -100,3 +178,47 @@ func _on_picked_down():
 
 func _time_to_check_winner():
 	time_to_check = true
+
+
+
+func recreate():
+	HexfigureSingletone.current_level += 1
+	await get_tree().create_timer(1.0).timeout
+	get_tree().reload_current_scene()
+
+
+#func get_hexes_numbers(start_number, length):
+#	var out = []
+#	var rng = RandomNumberGenerator.new()
+##	var start_hex = load("res://Game/hex/hex.tscn").instantiate()
+#
+#	var new_figure = figure.instantiate() 
+#	hexes.add_child(new_figure)
+#	for hex in new_figure.hexes.get_children():
+#		print(hex.name, " ", hex.hex_number, " - ")
+#		if hex.hex_number == start_number:
+#			var start_hex = hex
+#			print(out)
+#			return out
+#
+#
+
+#			out.append(start_hex.hex_number)
+#			var areas = start_hex.centre.get_overlapping_areas
+#
+#			print(out)
+#			var counter = 0
+#			while true:
+#				if len(areas) == 0:
+#					return out
+#				counter += 1
+#				if counter >= 20:
+#					break
+#				var rand_number = rng.randi_range(0, len(areas))
+#				var hex_number = areas[rand_number].get_parent().hex_number
+#				if hex_number not in already_used:
+#					out.append(hex_number)
+#					already_used.append(hex_number)
+#				if len(already_used) >= already_used_max or len(out) >= length:
+#					break
+#			return out

@@ -15,13 +15,16 @@ var figure_centre = Vector2()
 
 
 func generate_figure(hexes_numbers):
+	for hex in hexes.get_children():
+		if (hex.hex_number not in hexes_numbers):
+			hex.free()
+
+func enumerate_hexes():
 	var counter = 0
 	for hex in hexes.get_children():
 		counter += 1
 		hex.hex_number = counter
 		hex.set_text(counter)
-		if (counter not in hexes_numbers):
-			hex.free()
 
 
 func calculate_size():

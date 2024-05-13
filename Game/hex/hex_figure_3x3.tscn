@@ -48,7 +48,7 @@ position = Vector2(-24, 14)
 position = Vector2(24, 14)
 
 [node name="Hex12" parent="Hexes" instance=ExtResource("2_0udd0")]
-position = Vector2(48.5, 28)
+position = Vector2(48, 28)
 
 [node name="Hex13" parent="Hexes" instance=ExtResource("2_0udd0")]
 position = Vector2(48.5, 56)

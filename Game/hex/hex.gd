@@ -5,6 +5,8 @@ signal picked_up_changed(picked)
 
 @onready var timer = $Timer 
 @onready var centre = $Centre
+#func _o():
+#	centre.
 
 var picked_up = false 
 var current_position = Vector2()
