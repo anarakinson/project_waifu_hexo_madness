@@ -4,15 +4,13 @@ signal mouse_released
 signal picked_up_changed(picked)
 
 @onready var timer = $Timer 
-@onready var centre = $Centre
-#func _o():
-#	centre.
 
-var picked_up = false 
+
+var start_position = Vector2()
 var current_position = Vector2()
+var picked_up = false 
 var inside_socket = false
 var inside_hex = false
-var start_position = Vector2()
 var hex_number = 0
 
 

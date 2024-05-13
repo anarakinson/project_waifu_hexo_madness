@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://cdsbjh5gle7t6"]
+[gd_scene load_steps=6 format=3 uid="uid://cdsbjh5gle7t6"]
 
 [ext_resource type="Script" path="res://Game/hex/hex.gd" id="1_teomv"]
 [ext_resource type="Texture2D" uid="uid://dcq8gk07l6xkq" path="res://assets/fantasyhextiles_v3.png" id="2_qv2oq"]
@@ -20,9 +20,6 @@ animations = [{
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0ghwt"]
 radius = 7.0
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_5xsr4"]
-radius = 37.054
 
 [node name="Hex" type="Node2D"]
 script = ExtResource("1_teomv")
@@ -69,12 +66,6 @@ theme_override_font_sizes/font_size = 20
 text = "0"
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[node name="Centre" type="Area2D" parent="."]
-visible = false
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Centre"]
-shape = SubResource("CircleShape2D_5xsr4")
 
 [connection signal="mouse_released" from="." to="." method="_on_mouse_released"]
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
