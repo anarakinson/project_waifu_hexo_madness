@@ -26,6 +26,7 @@ var is_explodes = false
 var figure_centre = Vector2()
 
 
+
 # clip specific figure from big template
 func generate_figure(hexes_numbers):
 	for hex in hexes.get_children():
@@ -110,15 +111,16 @@ func _ready():
 func _process(delta):
 	### when picked up
 	if is_picked_up:
+		var movement_shift = Vector2()
 		idle_state = false
 		hexes.scale = hexes.scale.move_toward(Vector2(1, 1), 4 * delta)
 		for hex in hexes.get_children():
 			if hex.picked_up:
-#				hex_figure.position = (hex.position - hex.start_position)
-				hex_figure.position = get_local_mouse_position() - hex.start_position
-				HexfigureSingletone.emit_signal("on_picked_up")
-			hex.position = (hex.start_position + hex_figure.position)
-#			hex.position = hex.position.move_toward(hex.start_position + hex_figure.position, 1_000_000)
+				movement_shift = hex.start_position
+			hex.position = hex.position.move_toward(hex.start_position + hex_figure.position, 10_000 * delta)
+		hex_figure.position = hex_figure.position.move_toward(
+			get_local_mouse_position() - movement_shift, 2_000 * delta
+		)
 	
 	### if explodes
 	if is_explodes:

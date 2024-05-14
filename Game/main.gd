@@ -8,6 +8,7 @@ var time_to_check = false
 @onready var sock_figure = $Sockets/SocketFigure
 
 @onready var waifa_main = $Waifa
+@onready var background = $Background
 
 var figure = preload("res://Game/hex/hex_figure_3x3.tscn")
 var rng = RandomNumberGenerator.new()
@@ -97,7 +98,7 @@ func generate_hex_numbers():
 		var start_number = yet_not_used[start_id]
 		yet_not_used.erase(start_number)
 		
-		# create sequence of hexes (fucking govnocode)
+		# create sequence of hexes (fabulous govnocode)
 		var numbers_array = []
 		numbers_array.append(start_number)
 		var stopper = 0
@@ -118,7 +119,7 @@ func generate_hex_numbers():
 						break
 			if len(numbers_array) >= lenght or len(yet_not_used) <= 0:
 				break
-#			print("hexes numbers: ", start_number, " - ", numbers_array)
+			#print("hexes numbers: ", start_number, " - ", numbers_array)
 		
 		hexes_numbers.append(numbers_array)
 	
@@ -162,7 +163,7 @@ func generate_hexes():
 		if y_shift >= 4:
 			x_shift += 1
 			y_shift = 0
-#		break
+		#break
 
 
 # Called when the node enters the scene tree for the first time.
@@ -172,8 +173,14 @@ func _ready():
 	HexfigureSingletone.connect("on_picked_down", _on_picked_down)
 	HexfigureSingletone.connect("time_to_check_winner", _time_to_check_winner)
 	generate_hexes()
-	$Background.load_image($Background.image_list[HexfigureSingletone.current_level % $Background.img_list_size])
+	var idx = HexfigureSingletone.current_level % background.img_list_size
+	background.load_image(background.image_list[idx])
 	current_level.text = "Level: " + str(HexfigureSingletone.current_level)
+	#for hex in hexes.get_children():
+		#hex.rotation = 33
+		#hex.modulate = Color(0, 200, 0)
+	#sock_figure.rotation = 33
+	#sock_figure.modulate = Color(0, 100, 200)
 	pass # Replace with function body.
 
 
@@ -209,7 +216,6 @@ func _on_picked_down():
 
 func _time_to_check_winner():
 	time_to_check = true
-
 
 
 func recreate():

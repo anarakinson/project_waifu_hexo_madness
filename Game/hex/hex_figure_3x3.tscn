@@ -8,7 +8,6 @@ radius = 42.72
 
 [node name="HexFigure" type="Node2D"]
 y_sort_enabled = true
-position = Vector2(0, -112)
 scale = Vector2(2, 2)
 script = ExtResource("1_3y5ir")
 
@@ -16,60 +15,61 @@ script = ExtResource("1_3y5ir")
 y_sort_enabled = true
 
 [node name="Hex1" parent="Hexes" instance=ExtResource("2_0udd0")]
-position = Vector2(0, 56)
+position = Vector2(0, -0.5)
 
 [node name="Hex2" parent="Hexes" instance=ExtResource("2_0udd0")]
-position = Vector2(0, 28)
+position = Vector2(0, -28)
 
 [node name="Hex3" parent="Hexes" instance=ExtResource("2_0udd0")]
-position = Vector2(24, 42)
+position = Vector2(24, -14)
 
 [node name="Hex4" parent="Hexes" instance=ExtResource("2_0udd0")]
-position = Vector2(24.5, 70)
-
-[node name="Hex5" parent="Hexes" instance=ExtResource("2_0udd0")]
-position = Vector2(0, 84)
-
-[node name="Hex6" parent="Hexes" instance=ExtResource("2_0udd0")]
-position = Vector2(-24, 69.5)
-
-[node name="Hex7" parent="Hexes" instance=ExtResource("2_0udd0")]
-position = Vector2(-24, 42)
-
-[node name="Hex8" parent="Hexes" instance=ExtResource("2_0udd0")]
-position = Vector2(-48, 27.5)
-
-[node name="Hex9" parent="Hexes" instance=ExtResource("2_0udd0")]
-position = Vector2(-24, 14)
-
-[node name="Hex10" parent="Hexes" instance=ExtResource("2_0udd0")]
-
-[node name="Hex11" parent="Hexes" instance=ExtResource("2_0udd0")]
 position = Vector2(24, 14)
 
+[node name="Hex5" parent="Hexes" instance=ExtResource("2_0udd0")]
+position = Vector2(0, 27.5)
+
+[node name="Hex6" parent="Hexes" instance=ExtResource("2_0udd0")]
+position = Vector2(-24, 13.5)
+
+[node name="Hex7" parent="Hexes" instance=ExtResource("2_0udd0")]
+position = Vector2(-24, -14.5)
+
+[node name="Hex8" parent="Hexes" instance=ExtResource("2_0udd0")]
+position = Vector2(-48, -28.5)
+
+[node name="Hex9" parent="Hexes" instance=ExtResource("2_0udd0")]
+position = Vector2(-24, -42)
+
+[node name="Hex10" parent="Hexes" instance=ExtResource("2_0udd0")]
+position = Vector2(0, -56)
+
+[node name="Hex11" parent="Hexes" instance=ExtResource("2_0udd0")]
+position = Vector2(24, -42)
+
 [node name="Hex12" parent="Hexes" instance=ExtResource("2_0udd0")]
-position = Vector2(48, 28)
+position = Vector2(48, -28)
 
 [node name="Hex13" parent="Hexes" instance=ExtResource("2_0udd0")]
-position = Vector2(48.5, 56)
+position = Vector2(48, 0)
 
 [node name="Hex14" parent="Hexes" instance=ExtResource("2_0udd0")]
-position = Vector2(48.5, 84)
+position = Vector2(48, 28)
 
 [node name="Hex15" parent="Hexes" instance=ExtResource("2_0udd0")]
-position = Vector2(24.5, 98)
+position = Vector2(24, 42)
 
 [node name="Hex16" parent="Hexes" instance=ExtResource("2_0udd0")]
-position = Vector2(0, 112)
+position = Vector2(0, 55.5)
 
 [node name="Hex17" parent="Hexes" instance=ExtResource("2_0udd0")]
-position = Vector2(-24, 97.5)
+position = Vector2(-24, 41.5)
 
 [node name="Hex18" parent="Hexes" instance=ExtResource("2_0udd0")]
-position = Vector2(-48, 83.5)
+position = Vector2(-48, 27.5)
 
 [node name="Hex19" parent="Hexes" instance=ExtResource("2_0udd0")]
-position = Vector2(-48, 55.5)
+position = Vector2(-48, -0.5)
 
 [node name="HexFigureArea" type="Area2D" parent="."]
 visible = false

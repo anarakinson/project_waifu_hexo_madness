@@ -23,10 +23,10 @@ func _process(delta):
 
 
 func load_image(img_name):
-	var image = Image.load_from_file("assets/" + img_name)
-#	image.resize(500, 600)
-	var texture = ImageTexture.create_from_image(image)
-	sprite.texture = texture
-	
+#	var image = Image.load_from_file("assets/" + img_name)
+##	image.resize(500, 600)
+#	var texture = ImageTexture.create_from_image(image)
+#	sprite.texture = texture
+	sprite.texture = load("assets/" + img_name)
 	sprite.scale = Vector2(1.2, 1.2)
 	sprite.position = Vector2(570, 300)

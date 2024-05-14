@@ -3,6 +3,7 @@ extends Node2D
 @onready var sprite = $Sprite
 @onready var shade = $Shade
 
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	load_image("assets/pngwing.com.png", sprite)
@@ -23,8 +24,8 @@ func reveales():
 	pass
 
 func load_image(path, spr):
-	var image = Image.load_from_file(path)
-#	image.resize(500, 600)
-	var texture = ImageTexture.create_from_image(image)
-	spr.texture = texture
+#	var image = Image.load_from_file(path)
+#	var texture = ImageTexture.create_from_image(image)
+#	spr.texture = texture
+	spr.texture = load(path)
 	spr.scale = Vector2(0.5, 0.5)
