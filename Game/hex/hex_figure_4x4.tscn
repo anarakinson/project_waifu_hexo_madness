@@ -1,0 +1,139 @@
+[gd_scene load_steps=4 format=3 uid="uid://dhbadfjl65e40"]
+
+[ext_resource type="Script" path="res://Game/hex/hex_figure.gd" id="1_p2l8e"]
+[ext_resource type="PackedScene" uid="uid://cdsbjh5gle7t6" path="res://Game/hex/hex.tscn" id="2_0juqh"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jbfgk"]
+radius = 42.72
+
+[node name="HexFigure" type="Node2D"]
+y_sort_enabled = true
+scale = Vector2(2, 2)
+script = ExtResource("1_p2l8e")
+
+[node name="Hexes" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="Hex1" parent="Hexes" instance=ExtResource("2_0juqh")]
+position = Vector2(0, -0.5)
+
+[node name="Hex2" parent="Hexes" instance=ExtResource("2_0juqh")]
+position = Vector2(0, -28)
+
+[node name="Hex3" parent="Hexes" instance=ExtResource("2_0juqh")]
+position = Vector2(24, -14)
+
+[node name="Hex4" parent="Hexes" instance=ExtResource("2_0juqh")]
+position = Vector2(24, 14)
+
+[node name="Hex5" parent="Hexes" instance=ExtResource("2_0juqh")]
+position = Vector2(0, 27.5)
+
+[node name="Hex6" parent="Hexes" instance=ExtResource("2_0juqh")]
+position = Vector2(-24, 13.5)
+
+[node name="Hex7" parent="Hexes" instance=ExtResource("2_0juqh")]
+position = Vector2(-24, -14.5)
+
+[node name="Hex8" parent="Hexes" instance=ExtResource("2_0juqh")]
+position = Vector2(-48, -28.5)
+
+[node name="Hex9" parent="Hexes" instance=ExtResource("2_0juqh")]
+position = Vector2(-24, -42)
+
+[node name="Hex10" parent="Hexes" instance=ExtResource("2_0juqh")]
+position = Vector2(0, -56)
+
+[node name="Hex11" parent="Hexes" instance=ExtResource("2_0juqh")]
+position = Vector2(24, -42)
+
+[node name="Hex12" parent="Hexes" instance=ExtResource("2_0juqh")]
+position = Vector2(48, -28)
+
+[node name="Hex13" parent="Hexes" instance=ExtResource("2_0juqh")]
+position = Vector2(48, 0)
+
+[node name="Hex14" parent="Hexes" instance=ExtResource("2_0juqh")]
+position = Vector2(48, 28)
+
+[node name="Hex15" parent="Hexes" instance=ExtResource("2_0juqh")]
+position = Vector2(24, 42)
+
+[node name="Hex16" parent="Hexes" instance=ExtResource("2_0juqh")]
+position = Vector2(0, 55.5)
+
+[node name="Hex17" parent="Hexes" instance=ExtResource("2_0juqh")]
+position = Vector2(-24, 41.5)
+
+[node name="Hex18" parent="Hexes" instance=ExtResource("2_0juqh")]
+position = Vector2(-48, 27.5)
+
+[node name="Hex19" parent="Hexes" instance=ExtResource("2_0juqh")]
+position = Vector2(-48, -0.5)
+
+[node name="Hex20" parent="Hexes" instance=ExtResource("2_0juqh")]
+position = Vector2(-72, -14.5)
+
+[node name="Hex21" parent="Hexes" instance=ExtResource("2_0juqh")]
+position = Vector2(-72, 13.5)
+
+[node name="Hex22" parent="Hexes" instance=ExtResource("2_0juqh")]
+position = Vector2(-72, 41.5)
+
+[node name="Hex23" parent="Hexes" instance=ExtResource("2_0juqh")]
+position = Vector2(-48, 55.5)
+
+[node name="Hex24" parent="Hexes" instance=ExtResource("2_0juqh")]
+position = Vector2(-24, 69.5)
+
+[node name="Hex25" parent="Hexes" instance=ExtResource("2_0juqh")]
+position = Vector2(0, 83.5)
+
+[node name="Hex26" parent="Hexes" instance=ExtResource("2_0juqh")]
+position = Vector2(24, 70)
+
+[node name="Hex27" parent="Hexes" instance=ExtResource("2_0juqh")]
+position = Vector2(48, 56)
+
+[node name="Hex28" parent="Hexes" instance=ExtResource("2_0juqh")]
+position = Vector2(72, 42)
+
+[node name="Hex29" parent="Hexes" instance=ExtResource("2_0juqh")]
+position = Vector2(72, 14)
+
+[node name="Hex30" parent="Hexes" instance=ExtResource("2_0juqh")]
+position = Vector2(72, -14)
+
+[node name="Hex31" parent="Hexes" instance=ExtResource("2_0juqh")]
+position = Vector2(-72, 69.5)
+
+[node name="Hex32" parent="Hexes" instance=ExtResource("2_0juqh")]
+position = Vector2(-48, 83.5)
+
+[node name="Hex33" parent="Hexes" instance=ExtResource("2_0juqh")]
+position = Vector2(-24, 97.5)
+
+[node name="Hex34" parent="Hexes" instance=ExtResource("2_0juqh")]
+position = Vector2(0, 111.5)
+
+[node name="Hex35" parent="Hexes" instance=ExtResource("2_0juqh")]
+position = Vector2(24, 98)
+
+[node name="Hex36" parent="Hexes" instance=ExtResource("2_0juqh")]
+position = Vector2(48, 84)
+
+[node name="Hex37" parent="Hexes" instance=ExtResource("2_0juqh")]
+position = Vector2(72, 70)
+
+[node name="HexFigureArea" type="Area2D" parent="."]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HexFigureArea"]
+shape = SubResource("CircleShape2D_jbfgk")
+
+[node name="Timer" type="Timer" parent="."]
+process_callback = 0
+wait_time = 2.0
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

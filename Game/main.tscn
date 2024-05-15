@@ -4,8 +4,8 @@
 [ext_resource type="PackedScene" uid="uid://d3u4dc7f7krif" path="res://Game/waifa/background.tscn" id="2_jgter"]
 [ext_resource type="PackedScene" uid="uid://xmwbu7syawcq" path="res://Game/waifa/waifa.tscn" id="3_5154h"]
 [ext_resource type="PackedScene" uid="uid://jdkfk4bl52vf" path="res://Game/start_zone.tscn" id="4_b0ndu"]
-[ext_resource type="PackedScene" uid="uid://do0yi7pyqmj4l" path="res://Game/socket/socket_figure_3x3.tscn" id="4_n2br6"]
-[ext_resource type="Texture2D" uid="uid://bdbm05fxn4q7q" path="res://release/assets/photo_2024-05-13_00-36-08.jpg" id="4_sl4dk"]
+[ext_resource type="PackedScene" uid="uid://do0yi7pyqmj4l" path="res://Game/socket/socket_figure_4x4.tscn" id="4_n2br6"]
+[ext_resource type="Texture2D" uid="uid://bdbm05fxn4q7q" path="res://assets/photo_2024-05-13_00-36-08.jpg" id="6_bcnxu"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_8ogpq")
@@ -19,7 +19,8 @@ position = Vector2(944, 381)
 y_sort_enabled = true
 
 [node name="SocketFigure" parent="Sockets" instance=ExtResource("4_n2br6")]
-position = Vector2(203, 267)
+modulate = Color(1, 1, 1, 0.862745)
+position = Vector2(205, 249)
 
 [node name="Hexes" type="Node2D" parent="."]
 y_sort_enabled = true
@@ -44,5 +45,7 @@ vertical_alignment = 1
 position = Vector2(486, 97)
 
 [node name="Photo2024-05-1300-36-08" type="Sprite2D" parent="."]
-position = Vector2(-322, 268)
-texture = ExtResource("4_sl4dk")
+position = Vector2(-335, 392)
+texture = ExtResource("6_bcnxu")
+
+[connection signal="recreate" from="." to="." method="_on_recreate"]
