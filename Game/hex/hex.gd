@@ -4,7 +4,7 @@ signal mouse_released
 signal picked_up_changed(picked)
 
 @onready var timer = $Timer 
-
+@onready var hex_label = $Label
 
 var start_position = Vector2()
 var current_position = Vector2()
@@ -29,7 +29,7 @@ func _process(delta):
 
 
 func set_text(text):
-	$Label.text = str(text)
+	hex_label.text = str(text)
 
 
 func insertion(delta):

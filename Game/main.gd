@@ -12,16 +12,17 @@ var time_to_check = false
 @onready var waifa_main = $Waifa
 @onready var background = $Background
 
+var numbers_showed = false
 var first_loop = true
 
 var figure = preload("res://Game/hex/hex_figure_4x4.tscn")
 var rng = RandomNumberGenerator.new()
 
 # game main difficult configurations
-var MAX_HEXFIGURE_NUMBERS = 8
+var MAX_HEXFIGURE_NUMBERS = 11
 var MAX_SINGLE_HEXES = 0
 var MIN_FIGURE_SIZE = 2
-var MAX_FIGURE_SIZE = 8
+var MAX_FIGURE_SIZE = 7
 
 var number_of_sockets
 var yet_not_used
@@ -111,44 +112,49 @@ var delete_not_used = delete_not_used_list[0]
 
 var numbers_graph = {
 	1 : [2, 3, 4, 5, 6, 7], #1
-	2 : [9, 10, 11, 1, 3, 7], #2
-	3 : [11, 12, 13, 1, 2, 4], #3
-	4 : [13, 14, 15, 1, 3, 5], #4
-	5 : [15, 16, 17, 1, 4, 6], #5
-	6 : [17, 18, 19, 1, 5, 7], #6
-	7 : [19, 8, 9, 1, 2, 6], #7
+	2 : [1, 3, 7, 19, 8, 9], #2
+	3 : [1, 2, 4, 9, 10, 11], #3
+	4 : [1, 3, 5, 11, 12, 13], #4
+	5 : [1, 4, 6, 13, 14, 15], #5
+	6 : [1, 5, 7, 15, 16, 17], #6
+	7 : [1, 2, 6, 17, 18, 19], #7
 	
-	8 : [7, 9, 19, 20, 37, 36], #8
-	9 : [8, 10, 2, 7, 35, 36], #9
-	10 : [2, 9, 11, 35, 34, 33], #10
-	11 : [10, 12, 3, 2, 32, 33], #11
-	12 : [3, 11, 13, 32, 31, 30], #12
-	13 : [12, 14, 4, 3, 30, 29], #13
-	14 : [4, 13, 15, 29, 28, 27], #14
-	15 : [14, 16, 5, 4, 26, 27], #15
-	16 : [5, 15, 17, 24, 25, 26], #16
-	17 : [16, 18, 6, 5, 23, 24], #17
-	18 : [6, 17, 19, 21, 22, 23], #18
-	19 : [18, 6, 7, 8, 20, 21], #19
+	8 : [2, 9, 19, 37, 20, 21], #8
+	9 : [2, 3, 8, 10, 21, 22], #9
+	10 : [3, 9, 11, 22, 23, 24], #10
+	11 : [3, 4, 10, 12, 24, 25], #11
+	12 : [4, 11, 13, 25, 26, 27], #12
+	13 : [4, 5, 12, 14, 27, 28], #13
+	14 : [5, 13, 15, 28, 29, 30], #14
+	15 : [5, 6, 14, 16, 30, 31], #15
+	16 : [6, 15, 17, 31, 32, 33], #16
+	17 : [6, 7, 16, 18, 33, 34], #17
+	18 : [7, 17, 19, 34, 35, 36], #18
+	19 : [7, 2, 18, 8, 36, 37], #19
 	
-	20 : [8, 19, 21, 37], #20
-	21 : [18, 19, 22, 20], #21
-	22 : [18, 23, 21], #22
-	23 : [17, 18, 24, 22], #23
-	24 : [16, 17, 25, 23], #24
-	25 : [16, 26, 24], #25
-	26 : [15, 16, 27, 25], #26
-	27 : [14, 15, 28, 26], #27
-	28 : [14, 29, 27], #28
-	29 : [13, 14, 30, 28], #29
-	30 : [12, 13, 29, 31], #30
-	31 : [32, 12, 30], #31
-	32 : [33, 31, 11, 12], #32
-	33 : [34, 32, 10, 11], #33
-	34 : [35, 33, 10], #34
-	35 : [36, 34, 9, 10], #35
-	36 : [37, 35, 8, 9], #36
-	37 : [36, 8, 20], #37
+	20 : [8, 37, 21], #20
+	21 : [8, 9, 20, 22], #21
+	22 : [9, 10, 21, 23], #22
+
+	23 : [10, 22, 24], #23
+	24 : [10, 11, 23, 25], #24
+	25 : [11, 12, 24, 26], #25
+
+	26 : [12, 25, 27], #26
+	27 : [12, 13, 26, 28], #27
+	28 : [13, 14, 27, 29], #28
+
+	29 : [14, 28, 30], #29
+	30 : [14, 15, 29, 31], #30
+	31 : [15, 16, 30, 32], #31
+
+	32 : [16, 31, 33], #32
+	33 : [16, 17, 32, 34], #33
+	34 : [17, 18, 33, 35], #34
+
+	35 : [18, 34, 36], #35
+	36 : [18, 19, 35, 37], #36
+	37 : [19, 8, 36, 20], #37
 }
 
 
@@ -317,13 +323,23 @@ func generate_hexes():
 func set_hexes_on_start_position():
 	var x_shift = 0
 	var y_shift = 0
+	var x_step = 200
+	var y_step = 150
+	if len(hexes.get_children()) > 4:
+		start_point.position.x -= 70
+	if len(hexes.get_children()) > 8:
+		start_point.position.x -= 25
+		x_step = 165
+	if len(hexes.get_children()) > 3:
+		start_point.position.y -= 70
 	for hexfigure in hexes.get_children():
 		# update start position for the next hex
-		hexfigure.position = start_point.position + Vector2(200 * x_shift, 150 * y_shift)
+		hexfigure.position = start_point.position + Vector2(x_step * x_shift, y_step * y_shift)
 		y_shift += 1
 		if y_shift >= 4:
 			x_shift += 1
 			y_shift = 0
+			
 		#break
 
 
@@ -334,7 +350,8 @@ func _ready():
 	HexfigureSingletone.connect("time_to_check_winner", _time_to_check_winner)
 
 	congrats.visible = false
-	var idx = HexfigureSingletone.current_level % background.img_list_size
+	var idx = (HexfigureSingletone.current_level + 
+		HexfigureSingletone.level_settings_modifier) % background.img_list_size
 	background.load_image(background.image_list[idx])
 	current_level.text = "Level: " + str(HexfigureSingletone.current_level)
 	
@@ -347,10 +364,12 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	# on very first loop - create tiles and field
 	if first_loop:
 		first_loop = false
 		generate_everything()
-		
+	
+	# every time when figure inserted check win conditions
 	if time_to_check:
 		time_to_check = false
 		var not_inserted = 0
@@ -360,12 +379,20 @@ func _process(delta):
 		
 		# Player win!
 		if (not_inserted <= 0):
+			# wait a little and make effects
 			await get_tree().create_timer(0.1).timeout
 			congrats.visible = true
 			for hex in hexes.get_children():
 				hex.is_explodes = true
 				sock_figure.is_explodes = true
 			waifa_main.reveales()
+			# add random number to level picture number, when loaded
+			if (HexfigureSingletone.current_level % 5 == 0):
+				HexfigureSingletone.level_settings_modifier = rng.randi_range(0, 10)
+			# change level
+			HexfigureSingletone.current_level += 1
+			# await before change level
+			await get_tree().create_timer(2.0).timeout
 			_on_recreate()
 
 
@@ -385,8 +412,6 @@ func _time_to_check_winner():
 
 
 func _on_recreate():
-	HexfigureSingletone.current_level += 1
-	await get_tree().create_timer(2.0).timeout
 	get_tree().reload_current_scene()
 
 
@@ -410,6 +435,12 @@ func delete_some_hexes(number):
 
 func generate_everything():
 	### SET SOCKET FIGURE
+	
+	if HexfigureSingletone.current_level <= 5:
+		MAX_FIGURE_SIZE = 4
+	elif HexfigureSingletone.current_level <= 15:
+		MAX_FIGURE_SIZE = 5
+	
 	delete_not_used = delete_not_used_list[HexfigureSingletone.current_level % len(delete_not_used_list)]
 	clean_not_used()
 	get_numbers_graph_size()
@@ -421,6 +452,7 @@ func generate_everything():
 		num_of_deleted_hexes = len(hexes_numbers) / 2
 	elif HexfigureSingletone.current_level <= 15:
 		num_of_deleted_hexes = 1
+	
 	delete_some_hexes(num_of_deleted_hexes)
 	set_hexes_on_start_position()
 	#for hex in hexes.get_children():
@@ -431,3 +463,17 @@ func generate_everything():
 	
 	sock_figure.visible = true
 	hexes.visible = true
+
+
+func _on_show_numbers_pressed():
+	print(numbers_showed)
+	numbers_showed = not numbers_showed
+	for hexfig in hexes.get_children():
+		for hex in hexfig.hexes.get_children():
+			hex.hex_label.visible = numbers_showed
+
+
+
+func _on_regenerate_pressed():
+	await get_tree().create_timer(0.5).timeout
+	_on_recreate()

@@ -5,7 +5,7 @@ signal on_picked_down
 signal time_to_check_winner
 
 var current_level = 0
-
+var level_settings_modifier = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

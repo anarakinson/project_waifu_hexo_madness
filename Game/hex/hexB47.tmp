@@ -35,94 +35,94 @@ position = Vector2(-24, 14)
 position = Vector2(-24, -14)
 
 [node name="Hex8" parent="Hexes" instance=ExtResource("2_0juqh")]
-position = Vector2(0, -55.5)
-
-[node name="Hex9" parent="Hexes" instance=ExtResource("2_0juqh")]
-position = Vector2(24, -41.5)
-
-[node name="Hex10" parent="Hexes" instance=ExtResource("2_0juqh")]
-position = Vector2(48, -27.5)
-
-[node name="Hex11" parent="Hexes" instance=ExtResource("2_0juqh")]
-position = Vector2(48, 0.5)
-
-[node name="Hex12" parent="Hexes" instance=ExtResource("2_0juqh")]
-position = Vector2(48, 28.5)
-
-[node name="Hex13" parent="Hexes" instance=ExtResource("2_0juqh")]
-position = Vector2(24, 42.5)
-
-[node name="Hex14" parent="Hexes" instance=ExtResource("2_0juqh")]
-position = Vector2(0, 56)
-
-[node name="Hex15" parent="Hexes" instance=ExtResource("2_0juqh")]
-position = Vector2(-24, 42)
-
-[node name="Hex16" parent="Hexes" instance=ExtResource("2_0juqh")]
-position = Vector2(-48, 28)
-
-[node name="Hex17" parent="Hexes" instance=ExtResource("2_0juqh")]
-position = Vector2(-48, 0)
-
-[node name="Hex18" parent="Hexes" instance=ExtResource("2_0juqh")]
 position = Vector2(-48, -28)
 
-[node name="Hex19" parent="Hexes" instance=ExtResource("2_0juqh")]
+[node name="Hex9" parent="Hexes" instance=ExtResource("2_0juqh")]
 position = Vector2(-24, -41.5)
 
+[node name="Hex10" parent="Hexes" instance=ExtResource("2_0juqh")]
+position = Vector2(0, -55.5)
+
+[node name="Hex11" parent="Hexes" instance=ExtResource("2_0juqh")]
+position = Vector2(24, -41.5)
+
+[node name="Hex12" parent="Hexes" instance=ExtResource("2_0juqh")]
+position = Vector2(48, -27.5)
+
+[node name="Hex13" parent="Hexes" instance=ExtResource("2_0juqh")]
+position = Vector2(48, 0.5)
+
+[node name="Hex14" parent="Hexes" instance=ExtResource("2_0juqh")]
+position = Vector2(48, 28.5)
+
+[node name="Hex15" parent="Hexes" instance=ExtResource("2_0juqh")]
+position = Vector2(24, 42.5)
+
+[node name="Hex16" parent="Hexes" instance=ExtResource("2_0juqh")]
+position = Vector2(0, 56)
+
+[node name="Hex17" parent="Hexes" instance=ExtResource("2_0juqh")]
+position = Vector2(-24, 42)
+
+[node name="Hex18" parent="Hexes" instance=ExtResource("2_0juqh")]
+position = Vector2(-48, 28)
+
+[node name="Hex19" parent="Hexes" instance=ExtResource("2_0juqh")]
+position = Vector2(-48, 0)
+
 [node name="Hex20" parent="Hexes" instance=ExtResource("2_0juqh")]
-position = Vector2(0, -83.5)
+position = Vector2(-72, -14)
 
 [node name="Hex21" parent="Hexes" instance=ExtResource("2_0juqh")]
-position = Vector2(24, -69.5)
+position = Vector2(-72, 14)
 
 [node name="Hex22" parent="Hexes" instance=ExtResource("2_0juqh")]
-position = Vector2(48, -55.5)
+position = Vector2(-72, 42)
 
 [node name="Hex23" parent="Hexes" instance=ExtResource("2_0juqh")]
-position = Vector2(72, -41.5)
+position = Vector2(-48, 56)
 
 [node name="Hex24" parent="Hexes" instance=ExtResource("2_0juqh")]
-position = Vector2(72, -13.5)
+position = Vector2(-24, 70)
 
 [node name="Hex25" parent="Hexes" instance=ExtResource("2_0juqh")]
-position = Vector2(72, 14.5)
+position = Vector2(0, 84)
 
 [node name="Hex26" parent="Hexes" instance=ExtResource("2_0juqh")]
-position = Vector2(72, 42.5)
+position = Vector2(24, 70.5)
 
 [node name="Hex27" parent="Hexes" instance=ExtResource("2_0juqh")]
 position = Vector2(48, 56.5)
 
 [node name="Hex28" parent="Hexes" instance=ExtResource("2_0juqh")]
-position = Vector2(24, 70.5)
+position = Vector2(72, 42.5)
 
 [node name="Hex29" parent="Hexes" instance=ExtResource("2_0juqh")]
-position = Vector2(0, 84)
+position = Vector2(72, 14.5)
 
 [node name="Hex30" parent="Hexes" instance=ExtResource("2_0juqh")]
-position = Vector2(-24, 70)
+position = Vector2(72, -13.5)
 
 [node name="Hex31" parent="Hexes" instance=ExtResource("2_0juqh")]
-position = Vector2(-48, 56)
+position = Vector2(72, -41.5)
 
 [node name="Hex32" parent="Hexes" instance=ExtResource("2_0juqh")]
-position = Vector2(-72, 42)
+position = Vector2(48, -55.5)
 
 [node name="Hex33" parent="Hexes" instance=ExtResource("2_0juqh")]
-position = Vector2(-72, 14)
+position = Vector2(24, -69.5)
 
 [node name="Hex34" parent="Hexes" instance=ExtResource("2_0juqh")]
-position = Vector2(-72, -14)
+position = Vector2(0, -83.5)
 
 [node name="Hex35" parent="Hexes" instance=ExtResource("2_0juqh")]
-position = Vector2(-72, -42)
+position = Vector2(-24, -69.5)
 
 [node name="Hex36" parent="Hexes" instance=ExtResource("2_0juqh")]
 position = Vector2(-48, -55.5)
 
 [node name="Hex37" parent="Hexes" instance=ExtResource("2_0juqh")]
-position = Vector2(-24, -69.5)
+position = Vector2(-72, -42)
 
 [node name="HexFigureArea" type="Area2D" parent="."]
 visible = false

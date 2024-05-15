@@ -138,6 +138,7 @@ func _process(delta):
 
 	### when picked down and:
 	elif (not is_picked_up and not is_inserted):
+		print(is_insertable)
 		### inserted into sockets
 		if (is_insertable and inside_socket() and not inside_hex()):
 			hexes.scale = hexes.scale.move_toward(Vector2(1, 1), 4 * delta)
@@ -153,6 +154,7 @@ func _process(delta):
 			### moving to the start position
 			else:
 				is_insertable = false # avoiding accidental insertions
+				await get_tree().create_timer(0.1)
 				hex_figure.position = hex_figure.position.move_toward(start_position, 5000 * delta)
 				# starting to be idle and floating
 				if hex_figure.position == start_position:
@@ -181,5 +183,5 @@ func _on_timer_timeout():
 	current_start_position.y = start_position.y + rng.randi_range(-25, 25)
 
 
-
-	
+func _on_timer_2_timeout():
+	pass

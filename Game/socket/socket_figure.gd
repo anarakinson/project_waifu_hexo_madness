@@ -4,22 +4,26 @@ extends Node2D
 
 var is_explodes = false
 var explode_counter = -0.3
+var start_position = global_position
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	start_position = global_position
 	enumerate_hexes()
 	pass # Replace with function body.
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	
 	if is_explodes:
 		explode_counter += 1 * delta
 		if explode_counter < 0 :
 			sockets.scale = sockets.scale.move_toward(Vector2(1.1, 1.1), 4 * delta)
 		if explode_counter > 0 :
 			sockets.scale = sockets.scale.move_toward(Vector2(1, 1), 0.3 * delta)
-		
+	
 	pass
 
 
@@ -31,3 +35,5 @@ func enumerate_hexes():
 		counter += 1
 		socket.socket_number = counter
 		socket.set_text(counter)
+
+

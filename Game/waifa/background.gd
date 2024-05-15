@@ -2,6 +2,7 @@ extends Node2D
 
 @onready var sprite = $Sprite2D
 
+var menu_image = "Default_cyberpunk_green_blue_neon_full_size_lanscape_backgro_0.jpg"
 var image_list = [
 	### blue
 	#"Default_cyberpunk_white_blue_neon_full_size_lanscape_backgro_3.jpg",
@@ -11,7 +12,6 @@ var image_list = [
 	#"Default_cyberpunk_white_blue_neon_full_size_lanscape_backgro_2.jpg",
 	### green
 	"Default_cyberpunk_green_blue_neon_full_size_lanscape_backgro_3 (2).jpg",
-	"Default_cyberpunk_green_blue_neon_full_size_lanscape_backgro_0.jpg",
 	"Default_cyberpunk_green_blue_neon_full_size_lanscape_backgro_2 (1).jpg",
 	"Default_cyberpunk_green_blue_neon_full_size_lanscape_backgro_1.jpg",
 	"Default_cyberpunk_green_blue_neon_full_size_lanscape_backgro_3.jpg",

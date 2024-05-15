@@ -32,91 +32,91 @@ position = Vector2(-24, 14)
 position = Vector2(-24, -13.5)
 
 [node name="socket-8" parent="Sockets" instance=ExtResource("1_b5pr5")]
-position = Vector2(-48, -27.5)
-
-[node name="socket-9" parent="Sockets" instance=ExtResource("1_b5pr5")]
-position = Vector2(-24, -41.5)
-
-[node name="socket-10" parent="Sockets" instance=ExtResource("1_b5pr5")]
 position = Vector2(0, -55.5)
 
-[node name="socket-11" parent="Sockets" instance=ExtResource("1_b5pr5")]
+[node name="socket-9" parent="Sockets" instance=ExtResource("1_b5pr5")]
 position = Vector2(24, -41.5)
 
-[node name="socket-12" parent="Sockets" instance=ExtResource("1_b5pr5")]
+[node name="socket-10" parent="Sockets" instance=ExtResource("1_b5pr5")]
 position = Vector2(48, -27.5)
 
-[node name="socket-13" parent="Sockets" instance=ExtResource("1_b5pr5")]
+[node name="socket-11" parent="Sockets" instance=ExtResource("1_b5pr5")]
 position = Vector2(48, 0.5)
 
-[node name="socket-14" parent="Sockets" instance=ExtResource("1_b5pr5")]
+[node name="socket-12" parent="Sockets" instance=ExtResource("1_b5pr5")]
 position = Vector2(48, 28)
 
-[node name="socket-15" parent="Sockets" instance=ExtResource("1_b5pr5")]
+[node name="socket-13" parent="Sockets" instance=ExtResource("1_b5pr5")]
 position = Vector2(24, 42)
 
-[node name="socket-16" parent="Sockets" instance=ExtResource("1_b5pr5")]
+[node name="socket-14" parent="Sockets" instance=ExtResource("1_b5pr5")]
 position = Vector2(0, 56)
 
-[node name="socket-17" parent="Sockets" instance=ExtResource("1_b5pr5")]
+[node name="socket-15" parent="Sockets" instance=ExtResource("1_b5pr5")]
 position = Vector2(-24, 42)
 
-[node name="socket-18" parent="Sockets" instance=ExtResource("1_b5pr5")]
+[node name="socket-16" parent="Sockets" instance=ExtResource("1_b5pr5")]
 position = Vector2(-48, 28)
 
-[node name="socket-19" parent="Sockets" instance=ExtResource("1_b5pr5")]
+[node name="socket-17" parent="Sockets" instance=ExtResource("1_b5pr5")]
 position = Vector2(-48, 0.5)
 
+[node name="socket-18" parent="Sockets" instance=ExtResource("1_b5pr5")]
+position = Vector2(-48, -27.5)
+
+[node name="socket-19" parent="Sockets" instance=ExtResource("1_b5pr5")]
+position = Vector2(-24, -41.5)
+
 [node name="socket-20" parent="Sockets" instance=ExtResource("1_b5pr5")]
-position = Vector2(-72, -13.5)
+position = Vector2(0, -83.5)
 
 [node name="socket-21" parent="Sockets" instance=ExtResource("1_b5pr5")]
-position = Vector2(-72, 14.5)
+position = Vector2(24, -69.5)
 
 [node name="socket-22" parent="Sockets" instance=ExtResource("1_b5pr5")]
-position = Vector2(-72, 42)
+position = Vector2(48, -55.5)
 
 [node name="socket-23" parent="Sockets" instance=ExtResource("1_b5pr5")]
-position = Vector2(-48, 56)
+position = Vector2(72, -41.5)
 
 [node name="socket-24" parent="Sockets" instance=ExtResource("1_b5pr5")]
-position = Vector2(-24, 70)
+position = Vector2(72, -13.5)
 
 [node name="socket-25" parent="Sockets" instance=ExtResource("1_b5pr5")]
-position = Vector2(0, 84)
+position = Vector2(72, 14.5)
 
 [node name="socket-26" parent="Sockets" instance=ExtResource("1_b5pr5")]
-position = Vector2(24, 70)
+position = Vector2(72, 42)
 
 [node name="socket-27" parent="Sockets" instance=ExtResource("1_b5pr5")]
 position = Vector2(48, 56)
 
 [node name="socket-28" parent="Sockets" instance=ExtResource("1_b5pr5")]
-position = Vector2(72, 42)
+position = Vector2(24, 70)
 
 [node name="socket-29" parent="Sockets" instance=ExtResource("1_b5pr5")]
-position = Vector2(72, 14.5)
+position = Vector2(0, 84)
 
 [node name="socket-30" parent="Sockets" instance=ExtResource("1_b5pr5")]
-position = Vector2(72, -13.5)
+position = Vector2(-24, 70)
 
 [node name="socket-31" parent="Sockets" instance=ExtResource("1_b5pr5")]
-position = Vector2(72, -41.5)
+position = Vector2(-48, 56)
 
 [node name="socket-32" parent="Sockets" instance=ExtResource("1_b5pr5")]
-position = Vector2(48, -55.5)
+position = Vector2(-72, 42)
 
 [node name="socket-33" parent="Sockets" instance=ExtResource("1_b5pr5")]
-position = Vector2(24, -69.5)
+position = Vector2(-72, 14.5)
 
 [node name="socket-34" parent="Sockets" instance=ExtResource("1_b5pr5")]
-position = Vector2(0, -83.5)
+position = Vector2(-72, -13.5)
 
 [node name="socket-35" parent="Sockets" instance=ExtResource("1_b5pr5")]
-position = Vector2(-24, -69.5)
+position = Vector2(-72, -41.5)
 
 [node name="socket-36" parent="Sockets" instance=ExtResource("1_b5pr5")]
 position = Vector2(-48, -55.5)
 
 [node name="socket-37" parent="Sockets" instance=ExtResource("1_b5pr5")]
-position = Vector2(-72, -41.5)
+position = Vector2(-24, -69.5)
