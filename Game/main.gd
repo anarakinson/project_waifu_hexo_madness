@@ -12,6 +12,8 @@ var time_to_check = false
 @onready var waifa_main = $Waifa
 @onready var background = $Background
 
+var first_loop = true
+
 var figure = preload("res://Game/hex/hex_figure_4x4.tscn")
 var rng = RandomNumberGenerator.new()
 
@@ -25,12 +27,39 @@ var number_of_sockets
 var yet_not_used
 var hexes_numbers = []
 	
-#var delete_not_used = [7,8,9, 3,11,12, 24,32,33, 26,35,36]
-#var delete_not_used = range(20, 38)
-var delete_not_used = []
+var delete_not_used_list = [
+	range(20, 38),
+	[
+		22, 21, #19,
+		25, 24, #17,
+		28, 27, #15,
+		31, 30, #12,
+		34, 33, #11,
+		37, 36, #9, 
+	],
+	[
+		1, 2, 3, 4, 5, 6, 7,
+	],
+	[
+		20, 21,
+		23, 24,
+		26, 27,
+		29, 30,
+		33, 32,
+		36, 35,
+	],
+	[
+		1, 3, 5, 7, 13, 17, 9
+	],
+	[],
+]
 
-# required for finding nearby hexes. idk how to do that smarter way
-var numbers_graph_base = {
+var delete_not_used = delete_not_used_list[0]
+#var delete_not_used = range(20, 38)
+#var delete_not_used = []
+
+## required for finding nearby hexes. idk how to do that smarter way
+#var numbers_graph = {
 	##0 : [1], #0
 	#1 : [2, 3, 4, 5, 6, 7], #1
 	#2 : [9, 10, 11], #2
@@ -77,8 +106,8 @@ var numbers_graph_base = {
 	#35 : [25, 26], #35
 	#36 : [26, 27], #36
 	#37 : [36, 27, 28], #37
-	
-}
+	#
+#}
 
 var numbers_graph = {
 	1 : [2, 3, 4, 5, 6, 7], #1
@@ -88,44 +117,49 @@ var numbers_graph = {
 	5 : [15, 16, 17, 1, 4, 6], #5
 	6 : [17, 18, 19, 1, 5, 7], #6
 	7 : [19, 8, 9, 1, 2, 6], #7
-	8 : [7, 9, 19], #8
-	9 : [8, 10, 2, 7], #9
-	10 : [2, 9, 11], #10
-	11 : [10, 12, 3, 2], #11
-	12 : [3, 11, 13], #12
-	13 : [12, 14, 4, 3], #13
-	14 : [4, 13, 15], #14
-	15 : [14, 16, 5, 4], #15
-	16 : [5, 15, 17], #16
-	17 : [16, 18, 6, 5], #17
-	18 : [6, 17, 19], #18
-	19 : [18, 6, 7, 8], #19
-	20 : [8, 19, 21], #20
-	21 : [18, 19, 22, 20], #21
-	22 : [18, 31, 23, 21], #22
-	23 : [17, 18, 31, 32, 24, 22], #23
-	24 : [16, 17, 32, 33, 25, 23], #24
-	25 : [16, 33, 34, 35, 26, 24], #25
-	26 : [15, 16, 35, 36, 27, 25], #26
-	27 : [14, 15, 36, 37, 28, 26], #27
-	28 : [14, 37, 29, 27], #28
-	29 : [13, 14, 30, 28], #29
-	30 : [12, 13, 29], #30
-	31 : [22, 23, 32], #31
-	32 : [23, 24, 33, 31], #32
-	33 : [24, 25, 34, 32], #33
-	34 : [25, 35, 33], #34
-	35 : [25, 26, 36, 34], #35
-	36 : [26, 27, 37, 35], #36
-	37 : [36, 27, 28], #37
 	
-
+	8 : [7, 9, 19, 20, 37, 36], #8
+	9 : [8, 10, 2, 7, 35, 36], #9
+	10 : [2, 9, 11, 35, 34, 33], #10
+	11 : [10, 12, 3, 2, 32, 33], #11
+	12 : [3, 11, 13, 32, 31, 30], #12
+	13 : [12, 14, 4, 3, 30, 29], #13
+	14 : [4, 13, 15, 29, 28, 27], #14
+	15 : [14, 16, 5, 4, 26, 27], #15
+	16 : [5, 15, 17, 24, 25, 26], #16
+	17 : [16, 18, 6, 5, 23, 24], #17
+	18 : [6, 17, 19, 21, 22, 23], #18
+	19 : [18, 6, 7, 8, 20, 21], #19
+	
+	20 : [8, 19, 21, 37], #20
+	21 : [18, 19, 22, 20], #21
+	22 : [18, 23, 21], #22
+	23 : [17, 18, 24, 22], #23
+	24 : [16, 17, 25, 23], #24
+	25 : [16, 26, 24], #25
+	26 : [15, 16, 27, 25], #26
+	27 : [14, 15, 28, 26], #27
+	28 : [14, 29, 27], #28
+	29 : [13, 14, 30, 28], #29
+	30 : [12, 13, 29, 31], #30
+	31 : [32, 12, 30], #31
+	32 : [33, 31, 11, 12], #32
+	33 : [34, 32, 10, 11], #33
+	34 : [35, 33, 10], #34
+	35 : [36, 34, 9, 10], #35
+	36 : [37, 35, 8, 9], #36
+	37 : [36, 8, 20], #37
 }
 
 
+# calculate nearby hexes
+func get_near_n(number):
+	return numbers_graph[number]
+
+
 ## calculate nearby hexes
-#func get_near_on_base(number):
-	#var nearest = numbers_graph_base[number]
+#func get_near_n(number):
+	#var nearest = numbers_graph[number]
 	#if number == 1:
 		#pass
 	#elif number > 2 and number < 7:
@@ -140,8 +174,8 @@ var numbers_graph = {
 		#if number % 2 == 0:
 			#pass
 		#elif number % 2 != 0:
-			#nearest += numbers_graph_base[number + 1]
-			#nearest += numbers_graph_base[number - 1]
+			#nearest += numbers_graph[number + 1]
+			#nearest += numbers_graph[number - 1]
 	#elif number == 19:
 		#pass 
 	#elif number == 8:
@@ -167,19 +201,6 @@ var numbers_graph = {
 	#return nearest
 
 
-#func generate_numbers_graph():
-	#numbers_graph = {}
-	#for i in numbers_graph_base.keys():
-		#numbers_graph[i] = get_near_on_base(i)
-	#for i in numbers_graph:
-		#print("	", i, " : ", numbers_graph[i], ", #", i)
-		
-
-func get_near_n(number):
-	return numbers_graph[number]
-#	return get_near_on_base(number)
-
-
 # variables for make figures
 func get_numbers_graph_size():
 	number_of_sockets = len(numbers_graph)
@@ -190,14 +211,14 @@ func get_numbers_graph_size():
 
 func clean_not_used():
 	for num in delete_not_used:
+		numbers_graph.erase(num)
 		for i in numbers_graph.keys():
 			#print(i)
 			if num in numbers_graph[i]:
 				#print(i, " - ", num, " - ", numbers_graph[i])
 				numbers_graph[i].erase(num)
-		numbers_graph.erase(num)
-	for i in numbers_graph:
-		print(i, " - ", numbers_graph[i])
+	#for i in numbers_graph:
+		#print(i, " - ", numbers_graph[i])
 
 	pass
 
@@ -208,8 +229,9 @@ func clean_not_used():
 func generate_hex_numbers():
 	# reset hexes_numbers
 	hexes_numbers = []
-	yet_not_used = range(1, number_of_sockets + 1)
-
+	#yet_not_used = range(1, number_of_sockets + 1)
+	yet_not_used = numbers_graph.keys()
+	
 	var counter = 0
 	# start generating hex figures
 	while true:
@@ -247,7 +269,7 @@ func generate_hex_numbers():
 			#print("hexes numbers: ", start_number, " - ", numbers_array)
 		
 		hexes_numbers.append(numbers_array)
-
+		#break
 
 # delete additional hexes from socket figure
 func update_socket_fig():
@@ -258,7 +280,9 @@ func update_socket_fig():
 
 func generate_hexes():
 	# generate numbers until get the correct combination
+	var fail_counter = 0
 	while true:
+		fail_counter += 1
 		generate_hex_numbers()
 #		print(hexes_numbers)
 		# check if everything fine
@@ -271,6 +295,8 @@ func generate_hexes():
 			len(hexes_numbers) > MAX_HEXFIGURE_NUMBERS
 			 or have_single_hexes > MAX_SINGLE_HEXES
 		):
+			print("SUCCESS after: ", fail_counter, " attempts")
+			#print(hexes_numbers)
 			break
 
 	# creating figures and add into Hexes
@@ -307,39 +333,24 @@ func _ready():
 	HexfigureSingletone.connect("on_picked_down", _on_picked_down)
 	HexfigureSingletone.connect("time_to_check_winner", _time_to_check_winner)
 
-	#print("generate graph")
-	#generate_numbers_graph()
-	print("clean graph")
-	clean_not_used()
-	print("get graph size")
-	get_numbers_graph_size()
-	print("update socket figure")
-	update_socket_fig()
-	print("generate hexes")
-	generate_hexes()
-
 	congrats.visible = false
 	var idx = HexfigureSingletone.current_level % background.img_list_size
 	background.load_image(background.image_list[idx])
 	current_level.text = "Level: " + str(HexfigureSingletone.current_level)
 	
-	var num_of_deleted_hexes = 0
-	if HexfigureSingletone.current_level < 5:
-		num_of_deleted_hexes = len(hexes_numbers) / 2
-	elif HexfigureSingletone.current_level < 15:
-		num_of_deleted_hexes = 1
-	delete_some_hexes(num_of_deleted_hexes)
-	set_hexes_on_start_position()
-	#for hex in hexes.get_children():
-		#hex.rotation = 33
-		#hex.modulate = Color(0, 200, 0)
-	#sock_figure.rotation = 33
-	#sock_figure.modulate = Color(0, 100, 200)
+	# setup before first loop
+	first_loop = true
+	sock_figure.visible = false
+	hexes.visible = false
 	pass # Replace with function body.
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	if first_loop:
+		first_loop = false
+		generate_everything()
+		
 	if time_to_check:
 		time_to_check = false
 		var not_inserted = 0
@@ -396,3 +407,27 @@ func delete_some_hexes(number):
 			sock.socket_area.free()
 			sock.modulate.a8 = 100
 
+
+func generate_everything():
+	### SET SOCKET FIGURE
+	delete_not_used = delete_not_used_list[HexfigureSingletone.current_level % len(delete_not_used_list)]
+	clean_not_used()
+	get_numbers_graph_size()
+	update_socket_fig()
+	generate_hexes()
+	
+	var num_of_deleted_hexes = 0
+	if HexfigureSingletone.current_level <= 5:
+		num_of_deleted_hexes = len(hexes_numbers) / 2
+	elif HexfigureSingletone.current_level <= 15:
+		num_of_deleted_hexes = 1
+	delete_some_hexes(num_of_deleted_hexes)
+	set_hexes_on_start_position()
+	#for hex in hexes.get_children():
+		#hex.rotation = 33
+		#hex.modulate = Color(0, 200, 0)
+	#sock_figure.rotation = 33
+	#sock_figure.modulate = Color(0, 100, 200)
+	
+	sock_figure.visible = true
+	hexes.visible = true

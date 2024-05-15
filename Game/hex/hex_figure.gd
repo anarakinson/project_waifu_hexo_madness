@@ -105,6 +105,7 @@ func _ready():
 	# save start position
 	start_position = hex_figure.position
 	_on_timer_timeout()
+	enumerate_hexes()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

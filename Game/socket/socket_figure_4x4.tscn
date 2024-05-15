@@ -101,22 +101,22 @@ position = Vector2(72, 14.5)
 position = Vector2(72, -13.5)
 
 [node name="socket-31" parent="Sockets" instance=ExtResource("1_b5pr5")]
-position = Vector2(-72, 70)
+position = Vector2(72, -41.5)
 
 [node name="socket-32" parent="Sockets" instance=ExtResource("1_b5pr5")]
-position = Vector2(-48, 84)
+position = Vector2(48, -55.5)
 
 [node name="socket-33" parent="Sockets" instance=ExtResource("1_b5pr5")]
-position = Vector2(-24, 98)
+position = Vector2(24, -69.5)
 
 [node name="socket-34" parent="Sockets" instance=ExtResource("1_b5pr5")]
-position = Vector2(0, 112)
+position = Vector2(0, -83.5)
 
 [node name="socket-35" parent="Sockets" instance=ExtResource("1_b5pr5")]
-position = Vector2(24, 98)
+position = Vector2(-24, -69.5)
 
 [node name="socket-36" parent="Sockets" instance=ExtResource("1_b5pr5")]
-position = Vector2(48, 84)
+position = Vector2(-48, -55.5)
 
 [node name="socket-37" parent="Sockets" instance=ExtResource("1_b5pr5")]
-position = Vector2(72, 70)
+position = Vector2(-72, -41.5)
