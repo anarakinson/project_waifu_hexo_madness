@@ -1,8 +1,10 @@
 extends Node2D
 
 @onready var sprite = $Sprite2D
+var assets_path = "res://assets/"
 
 var menu_image = "Default_cyberpunk_green_blue_neon_full_size_lanscape_backgro_0.jpg"
+var quitscreen_image = "quitscreen.jpg"
 var image_list = [
 	### blue
 	#"Default_cyberpunk_white_blue_neon_full_size_lanscape_backgro_3.jpg",
@@ -38,6 +40,6 @@ func load_image(img_name):
 ##	image.resize(500, 600)
 #	var texture = ImageTexture.create_from_image(image)
 #	sprite.texture = texture
-	sprite.texture = load("assets/" + img_name)
+	sprite.texture = load(assets_path + img_name)
 	sprite.scale = Vector2(1.2, 1.2)
 	sprite.position = Vector2(570, 300)

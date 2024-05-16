@@ -1,0 +1,62 @@
+[gd_scene load_steps=5 format=3 uid="uid://cnb1iq6uisrvt"]
+
+[ext_resource type="Script" path="res://UI/pause_menu.gd" id="1_lupeu"]
+[ext_resource type="Texture2D" uid="uid://c5tqxpospk3vl" path="res://assets/MENU.jpg" id="2_h2fy2"]
+[ext_resource type="Shader" path="res://UI/pause_menu.gdshader" id="2_m8o58"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1pb63"]
+shader = ExtResource("2_m8o58")
+shader_parameter/amount = 2.0
+
+[node name="PauseMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_lupeu")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+material = SubResource("ShaderMaterial_1pb63")
+layout_mode = 0
+offset_left = -467.0
+offset_top = -436.0
+offset_right = 1774.0
+offset_bottom = 1101.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(578, 300)
+texture = ExtResource("2_h2fy2")
+
+[node name="Resume" type="Button" parent="."]
+layout_mode = 2
+offset_left = 487.0
+offset_top = 88.0
+offset_right = 665.0
+offset_bottom = 138.0
+theme_override_font_sizes/font_size = 30
+text = "Resume"
+
+[node name="MainMenu" type="Button" parent="."]
+layout_mode = 2
+offset_left = 490.0
+offset_top = 174.0
+offset_right = 668.0
+offset_bottom = 224.0
+theme_override_font_sizes/font_size = 30
+text = "Main menu"
+
+[node name="Quit" type="Button" parent="."]
+layout_mode = 0
+offset_left = 508.0
+offset_top = 385.0
+offset_right = 649.0
+offset_bottom = 435.0
+theme_override_font_sizes/font_size = 30
+text = "Quit"
+
+[connection signal="pressed" from="Resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="MainMenu" to="." method="_on_main_menu_pressed"]
+[connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]

@@ -18,8 +18,6 @@ var is_picked_up = false
 # need to floating when on start position
 var current_start_position = Vector2()
 var idle_state = true
-# need to avoid accidental isertion when flying to start position
-var is_insertable = true
 # explodin in the end 
 var is_explodes = false
 # ...
@@ -138,9 +136,8 @@ func _process(delta):
 
 	### when picked down and:
 	elif (not is_picked_up and not is_inserted):
-		print(is_insertable)
 		### inserted into sockets
-		if (is_insertable and inside_socket() and not inside_hex()):
+		if (not idle_state and inside_socket() and not inside_hex()):
 			hexes.scale = hexes.scale.move_toward(Vector2(1, 1), 4 * delta)
 			is_inserted = true
 			insert_all(delta)
@@ -153,16 +150,15 @@ func _process(delta):
 				hex_figure.position = hex_figure.position.move_toward(current_start_position, 2 * delta)
 			### moving to the start position
 			else:
-				is_insertable = false # avoiding accidental insertions
-				await get_tree().create_timer(0.1)
-				hex_figure.position = hex_figure.position.move_toward(start_position, 5000 * delta)
+				#hex_figure.position = hex_figure.position.move_toward(start_position, 5000 * delta)
+				hex_figure.position = start_position
 				# starting to be idle and floating
-				if hex_figure.position == start_position:
-					idle_state = true
-					is_insertable = true
+				#if hex_figure.position == start_position:
+				idle_state = true
 			# move every single hex
 			for hex in hexes.get_children():
-				hex.position = (hex.start_position + hex_figure.position)
+				#hex.position = (hex.start_position + hex_figure.position)
+				hex.position = hex.position.move_toward(hex.start_position + hex_figure.position, 5000 * delta)
 
 #	print("total: ", inside_socket(), " picked_up: ", is_picked_up)
 

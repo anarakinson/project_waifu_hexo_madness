@@ -1,14 +1,13 @@
 [gd_scene load_steps=7 format=3 uid="uid://cvg5aj0yet6vf"]
 
 [ext_resource type="Script" path="res://Game/socket/socket.gd" id="1_tum6r"]
-[ext_resource type="Texture2D" uid="uid://dcq8gk07l6xkq" path="res://release/assets/fantasyhextiles_v3.png" id="2_qi32s"]
+[ext_resource type="Texture2D" uid="uid://dcq8gk07l6xkq" path="res://assets/fantasyhextiles_v3.png" id="2_a7lc8"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_le5dx"]
-atlas = ExtResource("2_qi32s")
 region = Rect2(0, 0, 32, 48)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_dvc3f"]
-atlas = ExtResource("2_qi32s")
+[sub_resource type="AtlasTexture" id="AtlasTexture_7gbk1"]
+atlas = ExtResource("2_a7lc8")
 region = Rect2(192, 0, 32, 48)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_yodis"]
@@ -23,7 +22,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_dvc3f")
+"texture": SubResource("AtlasTexture_7gbk1")
 }],
 "loop": true,
 "name": &"water",

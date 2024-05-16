@@ -1,19 +1,16 @@
-[gd_scene load_steps=9 format=3 uid="uid://cdsbjh5gle7t6"]
+[gd_scene load_steps=8 format=3 uid="uid://cdsbjh5gle7t6"]
 
 [ext_resource type="Script" path="res://Game/hex/hex.gd" id="1_teomv"]
-[ext_resource type="Texture2D" uid="uid://dcq8gk07l6xkq" path="res://release/assets/fantasyhextiles_v3.png" id="3_g8xd8"]
-[ext_resource type="Texture2D" uid="uid://dcq8gk07l6xkq" path="res://assets/fantasyhextiles_v3.png" id="3_g47xn"]
+[ext_resource type="Texture2D" uid="uid://dcq8gk07l6xkq" path="res://release_andr/assets/fantasyhextiles_v3.png" id="3_nfnso"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wbr40"]
-atlas = ExtResource("3_g8xd8")
 region = Rect2(160, 96, 32, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dtiwt"]
-atlas = ExtResource("3_g8xd8")
 region = Rect2(32, 0, 32, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xg3ke"]
-atlas = ExtResource("3_g47xn")
+atlas = ExtResource("3_nfnso")
 region = Rect2(0, 0, 32, 48)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_0xeuy"]
@@ -73,12 +70,12 @@ wait_time = 0.5
 one_shot = true
 
 [node name="HexArea" type="Area2D" parent="."]
-visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HexArea"]
 shape = SubResource("CircleShape2D_0ghwt")
 
 [node name="Label" type="Label" parent="."]
+visible = false
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5

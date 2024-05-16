@@ -5,6 +5,7 @@ signal picked_up_changed(picked)
 
 @onready var timer = $Timer 
 @onready var hex_label = $Label
+@onready var collision = $HexArea/CollisionShape2D
 
 var start_position = Vector2()
 var current_position = Vector2()

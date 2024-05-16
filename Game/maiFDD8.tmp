@@ -1,0 +1,77 @@
+[gd_scene load_steps=8 format=3 uid="uid://c0v6c0hr14ubu"]
+
+[ext_resource type="Script" path="res://Game/main.gd" id="1_8ogpq"]
+[ext_resource type="PackedScene" uid="uid://d3u4dc7f7krif" path="res://Game/waifa/background.tscn" id="2_jgter"]
+[ext_resource type="PackedScene" uid="uid://xmwbu7syawcq" path="res://Game/waifa/waifa.tscn" id="3_5154h"]
+[ext_resource type="PackedScene" uid="uid://jdkfk4bl52vf" path="res://Game/start_zone.tscn" id="4_b0ndu"]
+[ext_resource type="PackedScene" uid="uid://do0yi7pyqmj4l" path="res://Game/socket/socket_figure_4x4.tscn" id="4_n2br6"]
+[ext_resource type="Texture2D" uid="uid://bdbm05fxn4q7q" path="res://assets/photo_2024-05-13_00-36-08.jpg" id="6_bcnxu"]
+[ext_resource type="PackedScene" uid="uid://cnb1iq6uisrvt" path="res://UI/pause_menu.tscn" id="7_hpue4"]
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_8ogpq")
+
+[node name="Background" parent="." instance=ExtResource("2_jgter")]
+
+[node name="Waifa" parent="." instance=ExtResource("3_5154h")]
+position = Vector2(944, 381)
+
+[node name="Sockets" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="SocketFigure" parent="Sockets" instance=ExtResource("4_n2br6")]
+modulate = Color(1, 1, 1, 0.862745)
+position = Vector2(205, 249)
+
+[node name="Hexes" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="Label" type="Label" parent="."]
+offset_left = 396.0
+offset_top = 290.0
+offset_right = 746.0
+offset_bottom = 362.0
+theme_override_font_sizes/font_size = 50
+text = "!!!CONGRATS!!!"
+
+[node name="LabelCurrentLevel" type="Label" parent="."]
+offset_right = 139.0
+offset_bottom = 45.0
+theme_override_font_sizes/font_size = 30
+text = "Level: 0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="StartZone" parent="." instance=ExtResource("4_b0ndu")]
+position = Vector2(559, 167)
+
+[node name="Photo2024-05-1300-36-08" type="Sprite2D" parent="."]
+position = Vector2(-498, 402)
+texture = ExtResource("6_bcnxu")
+
+[node name="Show_numbers" type="Button" parent="."]
+offset_left = 1018.0
+offset_top = 15.0
+offset_right = 1108.0
+offset_bottom = 69.0
+text = "show 
+numbers"
+
+[node name="Regenerate" type="Button" parent="."]
+offset_left = 911.0
+offset_top = 14.0
+offset_right = 1008.0
+offset_bottom = 70.0
+text = "Regenerate"
+
+[node name="PauseMenu" parent="." instance=ExtResource("7_hpue4")]
+offset_left = 587.0
+offset_top = 252.0
+offset_right = 587.0
+offset_bottom = 252.0
+
+[connection signal="_on_menu_call" from="." to="." method="_on__on_menu_call"]
+[connection signal="recreate" from="." to="." method="_on_recreate"]
+[connection signal="pressed" from="Show_numbers" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Show_numbers" to="." method="_on_show_numbers_pressed"]
+[connection signal="pressed" from="Regenerate" to="." method="_on_regenerate_pressed"]

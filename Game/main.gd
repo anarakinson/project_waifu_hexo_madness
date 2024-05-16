@@ -1,9 +1,11 @@
 extends Node2D
 
 signal recreate
+signal menu_call
 
 var time_to_check = false
-@onready var congrats = $Label
+@onready var congrats = $Congrats
+@onready var dancing_girl = $Congrats/DancingGirl 
 @onready var current_level = $LabelCurrentLevel
 @onready var start_point = $StartZone
 @onready var hexes = $Hexes
@@ -27,7 +29,68 @@ var MAX_FIGURE_SIZE = 7
 var number_of_sockets
 var yet_not_used
 var hexes_numbers = []
+
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	HexfigureSingletone.connect("on_picked_up", _on_picked_up)
+	HexfigureSingletone.connect("on_picked_down", _on_picked_down)
+	HexfigureSingletone.connect("time_to_check_winner", _time_to_check_winner)
+
+	congrats.visible = false
+	var idx = (HexfigureSingletone.current_level + 
+		HexfigureSingletone.level_settings_modifier) % background.img_list_size
+	background.load_image(background.image_list[idx])
+	current_level.text = "Level: " + str(HexfigureSingletone.current_level)
 	
+	# setup before first loop
+	first_loop = true
+	sock_figure.visible = false
+	hexes.visible = false
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	# on very first loop - create tiles and field
+	if Input.is_action_just_pressed("Menu"):
+		menu_call.emit()
+		
+	if first_loop:
+		first_loop = false
+		generate_everything()
+	
+	# every time when figure inserted check win conditions
+	if time_to_check:
+		time_to_check = false
+		var not_inserted = 0
+		for hexfig in hexes.get_children():
+			if not hexfig.is_inserted:
+				not_inserted += 1
+		
+		# Player win!
+		if (not_inserted <= 0):
+			# wait a little and make effects
+			await get_tree().create_timer(0.1).timeout
+			congrats.visible = true
+			dancing_girl.play("win")
+			for hex in hexes.get_children():
+				hex.is_explodes = true
+				sock_figure.is_explodes = true
+			waifa_main.reveales()
+			# add random number to level picture number, when loaded
+			if (HexfigureSingletone.current_level % 5 == 0):
+				HexfigureSingletone.level_settings_modifier = rng.randi_range(0, 10)
+			# change level
+			HexfigureSingletone.current_level += 1
+			# await before change level
+			await get_tree().create_timer(2.0).timeout
+			_on_recreate()
+
+
+#######################################################
+
 var delete_not_used_list = [
 	range(20, 38),
 	[
@@ -56,8 +119,6 @@ var delete_not_used_list = [
 ]
 
 var delete_not_used = delete_not_used_list[0]
-#var delete_not_used = range(20, 38)
-#var delete_not_used = []
 
 ## required for finding nearby hexes. idk how to do that smarter way
 #var numbers_graph = {
@@ -343,59 +404,6 @@ func set_hexes_on_start_position():
 		#break
 
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	HexfigureSingletone.connect("on_picked_up", _on_picked_up)
-	HexfigureSingletone.connect("on_picked_down", _on_picked_down)
-	HexfigureSingletone.connect("time_to_check_winner", _time_to_check_winner)
-
-	congrats.visible = false
-	var idx = (HexfigureSingletone.current_level + 
-		HexfigureSingletone.level_settings_modifier) % background.img_list_size
-	background.load_image(background.image_list[idx])
-	current_level.text = "Level: " + str(HexfigureSingletone.current_level)
-	
-	# setup before first loop
-	first_loop = true
-	sock_figure.visible = false
-	hexes.visible = false
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	# on very first loop - create tiles and field
-	if first_loop:
-		first_loop = false
-		generate_everything()
-	
-	# every time when figure inserted check win conditions
-	if time_to_check:
-		time_to_check = false
-		var not_inserted = 0
-		for hexfig in hexes.get_children():
-			if not hexfig.is_inserted:
-				not_inserted += 1
-		
-		# Player win!
-		if (not_inserted <= 0):
-			# wait a little and make effects
-			await get_tree().create_timer(0.1).timeout
-			congrats.visible = true
-			for hex in hexes.get_children():
-				hex.is_explodes = true
-				sock_figure.is_explodes = true
-			waifa_main.reveales()
-			# add random number to level picture number, when loaded
-			if (HexfigureSingletone.current_level % 5 == 0):
-				HexfigureSingletone.level_settings_modifier = rng.randi_range(0, 10)
-			# change level
-			HexfigureSingletone.current_level += 1
-			# await before change level
-			await get_tree().create_timer(2.0).timeout
-			_on_recreate()
-
-
 func _on_picked_up():
 #	for hexfig in hexes.get_children():
 #		if hexfig.is_picked_up():
@@ -477,3 +485,11 @@ func _on_show_numbers_pressed():
 func _on_regenerate_pressed():
 	await get_tree().create_timer(0.5).timeout
 	_on_recreate()
+
+
+
+func _on_menu_call():
+	$PauseMenu._paused()
+
+func _on_menu_pressed():
+	_on_menu_call()
