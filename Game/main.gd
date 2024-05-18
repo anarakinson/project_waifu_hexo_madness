@@ -2,8 +2,6 @@ extends Node2D
 
 signal recreate
 signal menu_call
-signal blackout_on
-signal blackout_off
 
 var time_to_check = false
 @onready var congrats = $Congrats
@@ -12,7 +10,6 @@ var time_to_check = false
 @onready var start_point = $StartZone
 @onready var hexes = $Hexes
 @onready var sock_figure = $Sockets/SocketFigure
-@onready var blackout_rect = $Blackout
 
 
 @onready var waifa_main = $Waifa
@@ -63,7 +60,6 @@ func _process(delta):
 		
 	if first_loop:
 		first_loop = false
-		blackout_off.emit()
 		generate_everything()
 	
 	# every time when figure inserted check win conditions
@@ -90,7 +86,7 @@ func _process(delta):
 			# change level
 			HexfigureSingletone.current_level += 1
 			# await before change level
-			await get_tree().create_timer(1.0).timeout
+			await get_tree().create_timer(1.5).timeout
 			_on_recreate()
 
 
@@ -99,12 +95,12 @@ func _process(delta):
 var delete_not_used_list = [
 	range(20, 38),
 	[
-		22, 21, #19,
-		25, 24, #17,
-		28, 27, #15,
-		31, 30, #12,
-		34, 33, #11,
-		37, 36, #9, 
+		22, 21, 
+		25, 24, 
+		28, 27, 
+		31, 30, 
+		34, 33, 
+		37, 36, 
 	],
 	[
 		1, 2, 3, 4, 5, 6, 7,
@@ -326,9 +322,8 @@ func _time_to_check_winner():
 
 
 func _on_recreate():
-	blackout_on.emit()
-	await get_tree().create_timer(1.0).timeout
-	get_tree().reload_current_scene()
+	#get_tree().reload_current_scene()
+	SceneTransition.change_scene_to_file("res://Game/main.tscn") 
 
 
 func delete_some_hexes(number):
@@ -402,10 +397,3 @@ func _on_menu_call():
 func _on_menu_pressed():
 	_on_menu_call()
 
-
-
-func _on_blackout_on():
-	blackout_rect.on()
-
-func _on_blackout_off():
-	blackout_rect.off()

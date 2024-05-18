@@ -18,4 +18,5 @@ offset_left = -175.0
 offset_top = -170.0
 offset_right = 1369.0
 offset_bottom = 855.0
+mouse_filter = 2
 color = Color(0, 0, 0, 1)

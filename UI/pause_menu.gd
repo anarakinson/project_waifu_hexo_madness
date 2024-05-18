@@ -26,7 +26,7 @@ func _paused():
 
 func _on_main_menu_pressed():
 	_paused()
-	get_tree().change_scene_to_file("res://UI/menu.tscn")
+	SceneTransition.change_scene_to_file("res://UI/menu.tscn")
 
 
 func _on_resume_pressed():
@@ -35,4 +35,4 @@ func _on_resume_pressed():
 
 func _on_quit_pressed():
 	_paused()
-	get_tree().change_scene_to_file("res://UI/quit_screen.tscn")
+	SceneTransition.change_scene_to_file("res://UI/quit_screen.tscn")

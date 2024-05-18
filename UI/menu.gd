@@ -40,11 +40,11 @@ func _process(delta):
 
 
 func _on_quit_pressed():
-	get_tree().change_scene_to_file("res://UI/quit_screen.tscn")
+	SceneTransition.change_scene_to_file("res://UI/quit_screen.tscn")
 
 
 func _on_start_pressed():
-	get_tree().change_scene_to_file("res://Game/main.tscn") # Replace with function body.
+	SceneTransition.change_scene_to_file("res://Game/main.tscn") # Replace with function body.
 
 
 

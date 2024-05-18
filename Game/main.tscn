@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://c0v6c0hr14ubu"]
+[gd_scene load_steps=9 format=3 uid="uid://c0v6c0hr14ubu"]
 
 [ext_resource type="Script" path="res://Game/main.gd" id="1_8ogpq"]
 [ext_resource type="PackedScene" uid="uid://d3u4dc7f7krif" path="res://Game/waifa/background.tscn" id="2_jgter"]
@@ -8,17 +8,9 @@
 [ext_resource type="PackedScene" uid="uid://cwecjsoonkif0" path="res://Game/waifa/final_dance.tscn" id="5_odmtm"]
 [ext_resource type="PackedScene" uid="uid://cnb1iq6uisrvt" path="res://UI/pause_menu.tscn" id="7_hpue4"]
 [ext_resource type="Texture2D" uid="uid://bdbm05fxn4q7q" path="res://release_andr/assets/photo_2024-05-13_00-36-08.jpg" id="8_0j323"]
-[ext_resource type="PackedScene" uid="uid://b0r7pliujkfm3" path="res://UI/blackout.tscn" id="9_dpo1i"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_8ogpq")
-
-[node name="ColorRect" type="ColorRect" parent="."]
-offset_left = -93.0
-offset_top = -88.0
-offset_right = 1241.0
-offset_bottom = 758.0
-color = Color(0, 0, 0, 1)
 
 [node name="Background" parent="." instance=ExtResource("2_jgter")]
 
@@ -113,13 +105,10 @@ text = "Todo list:
 6.  Difficulty levels 
 >>7. android and html screen resolution 
 8. android and html releases create and tests
-9. ???
+9. add loading screen
+10. ???
 "
 
-[node name="Blackout" parent="." instance=ExtResource("9_dpo1i")]
-
-[connection signal="blackout_off" from="." to="." method="_on_blackout_off"]
-[connection signal="blackout_on" from="." to="." method="_on_blackout_on"]
 [connection signal="menu_call" from="." to="." method="_on_menu_call"]
 [connection signal="recreate" from="." to="." method="_on_recreate"]
 [connection signal="pressed" from="Buttons/Show_numbers" to="." method="_on_show_numbers_pressed"]
