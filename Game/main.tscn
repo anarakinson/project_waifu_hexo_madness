@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://do0yi7pyqmj4l" path="res://Game/socket/socket_figure_4x4.tscn" id="4_n2br6"]
 [ext_resource type="PackedScene" uid="uid://cwecjsoonkif0" path="res://Game/waifa/final_dance.tscn" id="5_odmtm"]
 [ext_resource type="PackedScene" uid="uid://cnb1iq6uisrvt" path="res://UI/pause_menu.tscn" id="7_hpue4"]
-[ext_resource type="Texture2D" uid="uid://bdbm05fxn4q7q" path="res://release_andr/assets/photo_2024-05-13_00-36-08.jpg" id="8_0j323"]
+[ext_resource type="Texture2D" uid="uid://bdbm05fxn4q7q" path="res://assets/photo_2024-05-13_00-36-08.jpg" id="8_q62oy"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_8ogpq")
@@ -77,10 +77,6 @@ offset_bottom = 81.0
 theme_override_font_sizes/font_size = 20
 text = "Menu"
 
-[node name="Photo2024-05-1300-36-09" type="Sprite2D" parent="."]
-position = Vector2(-348, 307.333)
-texture = ExtResource("8_0j323")
-
 [node name="PauseMenu" parent="." instance=ExtResource("7_hpue4")]
 visible = false
 anchors_preset = 8
@@ -101,13 +97,17 @@ text = "Todo list:
 2. effects on winnig (explosion, sparks, etc)
 3. Achievements, points.
 4. Gallery page (with pictures of achievements)
->>5. Smooth scene reloading
+5. DONE
 6.  Difficulty levels 
 >>7. android and html screen resolution 
 8. android and html releases create and tests
 9. add loading screen
 10. ???
 "
+
+[node name="Photo2024-05-1300-36-08" type="Sprite2D" parent="."]
+position = Vector2(-432, 420)
+texture = ExtResource("8_q62oy")
 
 [connection signal="menu_call" from="." to="." method="_on_menu_call"]
 [connection signal="recreate" from="." to="." method="_on_recreate"]

@@ -9,7 +9,7 @@ func _ready():
 	background.load_image(background.menu_image)
 
 	print(HexfigureSingletone.current_OS)
-	match OS.get_name():
+	match HexfigureSingletone.current_OS:
 		"Windows":
 			print("Windows")
 			#DisplayServer.window_set_size(Vector2(800, 480))
@@ -25,6 +25,7 @@ func _ready():
 			print("BSD")
 		"Android":
 			print("Android")
+			DisplayServer.window_set_size(Vector2(720, 1280))			
 		"iOS":
 			print("iOS")
 		"Web":

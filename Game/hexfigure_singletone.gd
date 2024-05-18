@@ -8,6 +8,8 @@ var current_level = 0
 var level_settings_modifier = 0
 
 var current_OS = OS.get_name()
+#var current_OS = "Android"
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
