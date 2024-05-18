@@ -9,21 +9,24 @@ script = ExtResource("1_w4wwh")
 [node name="Background" parent="." instance=ExtResource("2_0yrpx")]
 position = Vector2(-2, -5)
 
-[node name="Start" type="Button" parent="."]
-offset_left = 104.0
-offset_top = 158.0
-offset_right = 329.0
-offset_bottom = 236.0
+[node name="Buttons" type="Node2D" parent="."]
+position = Vector2(262, 139)
+
+[node name="Start" type="Button" parent="Buttons"]
+offset_left = -97.0
+offset_top = 97.0
+offset_right = 128.0
+offset_bottom = 175.0
 theme_override_font_sizes/font_size = 50
 text = "Start"
 
-[node name="Quit" type="Button" parent="."]
-offset_left = 104.0
-offset_top = 272.0
-offset_right = 329.0
-offset_bottom = 356.0
+[node name="Quit" type="Button" parent="Buttons"]
+offset_left = -97.0
+offset_top = 201.0
+offset_right = 128.0
+offset_bottom = 285.0
 theme_override_font_sizes/font_size = 50
 text = "Quit"
 
-[connection signal="pressed" from="Start" to="." method="_on_start_pressed"]
-[connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="Buttons/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="Buttons/Quit" to="." method="_on_quit_pressed"]

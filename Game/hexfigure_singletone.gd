@@ -7,6 +7,8 @@ signal time_to_check_winner
 var current_level = 0
 var level_settings_modifier = 0
 
+var current_OS = OS.get_name()
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.

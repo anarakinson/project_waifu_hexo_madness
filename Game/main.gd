@@ -2,6 +2,8 @@ extends Node2D
 
 signal recreate
 signal menu_call
+signal blackout_on
+signal blackout_off
 
 var time_to_check = false
 @onready var congrats = $Congrats
@@ -10,6 +12,8 @@ var time_to_check = false
 @onready var start_point = $StartZone
 @onready var hexes = $Hexes
 @onready var sock_figure = $Sockets/SocketFigure
+@onready var blackout_rect = $Blackout
+
 
 @onready var waifa_main = $Waifa
 @onready var background = $Background
@@ -59,6 +63,7 @@ func _process(delta):
 		
 	if first_loop:
 		first_loop = false
+		blackout_off.emit()
 		generate_everything()
 	
 	# every time when figure inserted check win conditions
@@ -85,7 +90,7 @@ func _process(delta):
 			# change level
 			HexfigureSingletone.current_level += 1
 			# await before change level
-			await get_tree().create_timer(2.0).timeout
+			await get_tree().create_timer(1.0).timeout
 			_on_recreate()
 
 
@@ -119,57 +124,6 @@ var delete_not_used_list = [
 ]
 
 var delete_not_used = delete_not_used_list[0]
-
-## required for finding nearby hexes. idk how to do that smarter way
-#var numbers_graph = {
-	##0 : [1], #0
-	#1 : [2, 3, 4, 5, 6, 7], #1
-	#2 : [9, 10, 11], #2
-	#3 : [11, 12, 13], #3
-	#4 : [13, 14, 15], #4
-	#5 : [15, 16, 17], #5
-	#6 : [17, 18, 19], #6
-	#7 : [19, 8, 9], #7
-	#
-	#8 : [7], #8 !!! [7, 9, 19]
-	#9 : [], #9
-	#10 : [2], #10
-	#11 : [], #11
-	#12 : [3], #12
-	#13 : [], #13
-	#14 : [4], #14
-	#15 : [], #15
-	#16 : [5], #16
-	#17 : [], #17
-	#18 : [6], #18
-	#
-	#19 : [18, 6, 7, 8], #19
-#
-	##############
-	##### 4x4 ####
-	##############
-	#
-	#20 : [8, 19, 21], #20
-	#21 : [18, 19], #21
-	#22 : [18, 31], #22
-	#23 : [17, 18, 31, 32], #23
-	#24 : [16, 17, 32, 33], #24
-	#25 : [16, 33, 34, 35], #25
-	#26 : [15, 16, 35, 36], #26
-	#27 : [14, 15, 36, 37], #27
-	#28 : [14, 37], #28
-	#29 : [13, 14], #29
-	#30 : [12, 13, 29], #30
-	#
-	#31 : [22, 23, 32], #31
-	#32 : [23, 24], #32
-	#33 : [24, 25], #33
-	#34 : [25], #34
-	#35 : [25, 26], #35
-	#36 : [26, 27], #36
-	#37 : [36, 27, 28], #37
-	#
-#}
 
 var numbers_graph = {
 	1 : [2, 3, 4, 5, 6, 7], #1
@@ -224,50 +178,6 @@ func get_near_n(number):
 	return numbers_graph[number]
 
 
-## calculate nearby hexes
-#func get_near_n(number):
-	#var nearest = numbers_graph[number]
-	#if number == 1:
-		#pass
-	#elif number > 2 and number < 7:
-		#nearest += [1]
-		#nearest += [number - 1, number + 1]
-	#elif number == 2:
-		#nearest += [1, number + 1, 7]
-	#elif number == 7:
-		#nearest += [1, 2, number - 1]
-	#elif number > 8 and number < 19:
-		#nearest += [number - 1, number + 1]
-		#if number % 2 == 0:
-			#pass
-		#elif number % 2 != 0:
-			#nearest += numbers_graph[number + 1]
-			#nearest += numbers_graph[number - 1]
-	#elif number == 19:
-		#pass 
-	#elif number == 8:
-		#nearest += [9, 19]
-#
-	##############
-	##### 4x4 ####
-	##############
-	#elif number > 20 and number < 30:
-		#nearest += [number + 1, number - 1]
-	#elif number > 31 and number < 37:
-		#nearest += [number + 1, number - 1]
-	#
-	#elif number == 20:
-		#pass
-	#elif number == 30:
-		#pass
-	#elif number == 31:
-		#pass
-	#elif number == 37:
-		#pass
-	#
-	#return nearest
-
-
 # variables for make figures
 func get_numbers_graph_size():
 	number_of_sockets = len(numbers_graph)
@@ -284,10 +194,6 @@ func clean_not_used():
 			if num in numbers_graph[i]:
 				#print(i, " - ", num, " - ", numbers_graph[i])
 				numbers_graph[i].erase(num)
-	#for i in numbers_graph:
-		#print(i, " - ", numbers_graph[i])
-
-	pass
 
 
 
@@ -420,6 +326,8 @@ func _time_to_check_winner():
 
 
 func _on_recreate():
+	blackout_on.emit()
+	await get_tree().create_timer(1.0).timeout
 	get_tree().reload_current_scene()
 
 
@@ -457,7 +365,8 @@ func generate_everything():
 	
 	var num_of_deleted_hexes = 0
 	if HexfigureSingletone.current_level <= 5:
-		num_of_deleted_hexes = len(hexes_numbers) / 2
+		num_of_deleted_hexes = len(hexes_numbers) / 2 - 1
+		num_of_deleted_hexes = 2
 	elif HexfigureSingletone.current_level <= 15:
 		num_of_deleted_hexes = 1
 	
@@ -483,7 +392,6 @@ func _on_show_numbers_pressed():
 
 
 func _on_regenerate_pressed():
-	await get_tree().create_timer(0.5).timeout
 	_on_recreate()
 
 
@@ -493,3 +401,11 @@ func _on_menu_call():
 
 func _on_menu_pressed():
 	_on_menu_call()
+
+
+
+func _on_blackout_on():
+	blackout_rect.on()
+
+func _on_blackout_off():
+	blackout_rect.off()
