@@ -24,7 +24,7 @@ SceneTransition="*res://UI/scene_transition.tscn"
 
 window/size/mode=2
 window/size/resizable=false
-window/stretch/mode="canvas_items"
+window/stretch/mode="viewport"
 window/stretch/aspect="expand"
 
 [input]

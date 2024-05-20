@@ -2,7 +2,7 @@ extends Node2D
 
 
 #@onready var background = $CanvasLayer/Control/Menu/Background
-@onready var background = $Background
+@onready var background = $Background/Background
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

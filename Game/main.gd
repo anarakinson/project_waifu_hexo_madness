@@ -93,7 +93,20 @@ func _process(delta):
 #######################################################
 
 var delete_not_used_list = [
+	range(20, 38) + range(8, 13),
+	range(20, 38) + [
+		1, 3, 5, 7 
+	],
+	range(20, 38) + [
+		8, 10, 12, 14, 16, 18 
+	],
+	range(20, 38) + [
+		9, 11, 13, 15, 17, 19 
+	],
 	range(20, 38),
+	[
+		1, 2, 3, 4, 5, 6, 7,
+	],
 	[
 		22, 21, 
 		25, 24, 
@@ -101,9 +114,6 @@ var delete_not_used_list = [
 		31, 30, 
 		34, 33, 
 		37, 36, 
-	],
-	[
-		1, 2, 3, 4, 5, 6, 7,
 	],
 	[
 		20, 21,
@@ -397,3 +407,10 @@ func _on_menu_call():
 func _on_menu_pressed():
 	_on_menu_call()
 
+
+func _on_skip_level_pressed():
+	# change level
+	HexfigureSingletone.current_level += 1
+	# await before change level
+	#await get_tree().create_timer(0.5).timeout
+	_on_recreate()

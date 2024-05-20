@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3 uid="uid://6q0s338rb5ju"]
+
+[ext_resource type="Script" path="res://UI/Options/settings.gd" id="1_58n6t"]
+[ext_resource type="PackedScene" uid="uid://ddx73ugli655l" path="res://UI/Options/window_mode_button.tscn" id="1_qjdh8"]
+[ext_resource type="PackedScene" uid="uid://dxdtsd1pxq6q6" path="res://UI/Options/resolution_mode_button.tscn" id="2_pxdtb"]
+
+[node name="Settings" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_58n6t")
+
+[node name="WindowModeButton" parent="." instance=ExtResource("1_qjdh8")]
+layout_mode = 1
+offset_left = 20.0
+offset_top = 59.0
+offset_right = 20.0
+offset_bottom = 59.0
+
+[node name="ResolutionModeButton" parent="." instance=ExtResource("2_pxdtb")]
+layout_mode = 1
+offset_left = 20.0
+offset_top = 114.0
+offset_right = 20.0
+offset_bottom = 114.0
+
+[connection signal="just_changed" from="WindowModeButton" to="." method="_on_window_mode_button_just_changed"]
+[connection signal="just_changed" from="ResolutionModeButton" to="." method="_on_resolution_mode_button_just_changed"]

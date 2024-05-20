@@ -1,8 +1,11 @@
 extends Control
 
 
+signal just_changed
+
 @onready var option_button = $HBoxContainer/OptionButton as OptionButton
-@export var default = "800×480"
+var current_res = 2
+
 
 const RESOLUTION_DICT : Dictionary = {
 	"800×480" : Vector2(800, 480),
@@ -18,7 +21,7 @@ const RESOLUTION_DICT : Dictionary = {
 func _ready():
 	add_resolution_size_items()
 	option_button.item_selected.connect(on_resolution_selected)
-	option_button.select(2)
+	option_button.select(current_res)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
