@@ -10,6 +10,8 @@ var level_settings_modifier = 0
 var current_OS = OS.get_name()
 #var current_OS = "Android"
 
+var current_window_mode = 1
+var current_resolution = 2
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

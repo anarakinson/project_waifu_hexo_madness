@@ -1,8 +1,6 @@
 extends Control
 
 
-signal just_changed
-
 @onready var option_button = $HBoxContainer/OptionButton as OptionButton
 var current_res = 2
 
@@ -19,6 +17,7 @@ const RESOLUTION_DICT : Dictionary = {
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	current_res = HexfigureSingletone.current_resolution
 	add_resolution_size_items()
 	option_button.item_selected.connect(on_resolution_selected)
 	option_button.select(current_res)
@@ -34,3 +33,5 @@ func add_resolution_size_items():
 
 func on_resolution_selected(index):
 	DisplayServer.window_set_size(RESOLUTION_DICT.values()[index])
+	HexfigureSingletone.current_resolution = index
+	

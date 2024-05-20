@@ -28,4 +28,3 @@ offset_right = 20.0
 offset_bottom = 114.0
 
 [connection signal="just_changed" from="WindowModeButton" to="." method="_on_window_mode_button_just_changed"]
-[connection signal="just_changed" from="ResolutionModeButton" to="." method="_on_resolution_mode_button_just_changed"]
