@@ -3,6 +3,7 @@ extends Node
 signal on_picked_up 
 signal on_picked_down 
 signal time_to_check_winner
+signal orientation_changed(orientation)
 
 var current_level = 0
 var level_settings_modifier = 0
@@ -13,6 +14,8 @@ var current_OS = OS.get_name()
 var current_window_mode = 1
 var current_resolution = 2
 
+var current_orientation = 0 # 0 - landscape, 1 - portrait
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -20,4 +23,10 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
+	#pass
+	if DisplayServer.screen_get_orientation() == 0:
+		print("landscape")
+	else:
+		print("portrait")
+	
+

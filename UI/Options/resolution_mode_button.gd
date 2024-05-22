@@ -23,10 +23,6 @@ func _ready():
 	option_button.select(current_res)
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-
 func add_resolution_size_items():
 	for resolution_size in RESOLUTION_DICT:
 		option_button.add_item(resolution_size)
@@ -34,4 +30,4 @@ func add_resolution_size_items():
 func on_resolution_selected(index):
 	DisplayServer.window_set_size(RESOLUTION_DICT.values()[index])
 	HexfigureSingletone.current_resolution = index
-	
+

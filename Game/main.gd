@@ -10,6 +10,7 @@ var time_to_check = false
 @onready var start_point = $StartZone
 @onready var hexes = $Hexes
 @onready var sock_figure = $Sockets/SocketFigure
+@onready var sockets_position = $Sockets/SocketsPosition
 
 
 @onready var waifa_main = $Waifa
@@ -47,8 +48,8 @@ func _ready():
 	
 	# setup before first loop
 	first_loop = true
-	sock_figure.visible = false
-	hexes.visible = false
+	#sock_figure.visible = false
+	#hexes.visible = false
 	pass # Replace with function body.
 
 
@@ -79,6 +80,7 @@ func _process(delta):
 			for hex in hexes.get_children():
 				hex.is_explodes = true
 				sock_figure.is_explodes = true
+				sock_figure.visible = false
 			waifa_main.reveales()
 			# add random number to level picture number, when loaded
 			if (HexfigureSingletone.current_level % 5 == 0):
@@ -362,6 +364,7 @@ func generate_everything():
 	elif HexfigureSingletone.current_level <= 15:
 		MAX_FIGURE_SIZE = 5
 	
+	#sock_figure.position = sockets_position.position
 	delete_not_used = delete_not_used_list[HexfigureSingletone.current_level % len(delete_not_used_list)]
 	clean_not_used()
 	get_numbers_graph_size()
@@ -414,3 +417,4 @@ func _on_skip_level_pressed():
 	# await before change level
 	#await get_tree().create_timer(0.5).timeout
 	_on_recreate()
+

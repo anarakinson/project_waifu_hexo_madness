@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://do0yi7pyqmj4l" path="res://Game/socket/socket_figure_4x4.tscn" id="4_n2br6"]
 [ext_resource type="PackedScene" uid="uid://cwecjsoonkif0" path="res://Game/waifa/final_dance.tscn" id="5_odmtm"]
 [ext_resource type="PackedScene" uid="uid://cnb1iq6uisrvt" path="res://UI/pause_menu.tscn" id="7_hpue4"]
-[ext_resource type="Texture2D" uid="uid://bdbm05fxn4q7q" path="res://release_andr/assets/photo_2024-05-13_00-36-08.jpg" id="8_q62oy"]
+[ext_resource type="Texture2D" uid="uid://bdbm05fxn4q7q" path="res://assets/photo_2024-05-13_00-36-08.jpg" id="8_q62oy"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_8ogpq")
@@ -15,14 +15,17 @@ script = ExtResource("1_8ogpq")
 [node name="Background" parent="." instance=ExtResource("2_jgter")]
 
 [node name="Waifa" parent="." instance=ExtResource("3_5154h")]
-position = Vector2(927, 405)
+position = Vector2(223, 372)
 
 [node name="Sockets" type="Node2D" parent="."]
 y_sort_enabled = true
 
 [node name="SocketFigure" parent="Sockets" instance=ExtResource("4_n2br6")]
 modulate = Color(1, 1, 1, 0.862745)
-position = Vector2(240, 332)
+position = Vector2(261, 334)
+
+[node name="SocketsPosition" parent="Sockets" instance=ExtResource("4_b0ndu")]
+position = Vector2(-325, 100)
 
 [node name="Hexes" type="Node2D" parent="."]
 y_sort_enabled = true
@@ -42,45 +45,47 @@ visible = false
 position = Vector2(168, 221)
 
 [node name="LabelCurrentLevel" type="Label" parent="."]
-offset_right = 139.0
-offset_bottom = 45.0
+offset_left = 873.0
+offset_top = 10.0
+offset_right = 1012.0
+offset_bottom = 55.0
 theme_override_font_sizes/font_size = 30
 text = "Level: 0"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="StartZone" parent="." instance=ExtResource("4_b0ndu")]
-position = Vector2(579, 184)
+position = Vector2(702, 145)
 
 [node name="Buttons" type="Node2D" parent="."]
 
 [node name="Show_numbers" type="Button" parent="Buttons"]
-offset_left = 820.0
+offset_left = 137.0
 offset_top = 28.0
-offset_right = 910.0
+offset_right = 227.0
 offset_bottom = 82.0
 text = "show 
 numbers"
 
 [node name="Regenerate" type="Button" parent="Buttons"]
-offset_left = 920.0
+offset_left = 237.0
 offset_top = 29.0
-offset_right = 1017.0
+offset_right = 334.0
 offset_bottom = 82.0
 text = "Regenerate"
 
 [node name="Menu" type="Button" parent="Buttons"]
-offset_left = 1030.0
+offset_left = 347.0
 offset_top = 28.0
-offset_right = 1125.0
+offset_right = 442.0
 offset_bottom = 81.0
 theme_override_font_sizes/font_size = 20
 text = "Menu"
 
 [node name="SkipLevel" type="Button" parent="Buttons"]
-offset_left = 713.0
+offset_left = 30.0
 offset_top = 29.0
-offset_right = 810.0
+offset_right = 127.0
 offset_bottom = 83.0
 text = "Skip 
 level"

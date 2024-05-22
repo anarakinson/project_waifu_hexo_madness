@@ -8,38 +8,42 @@ script = ExtResource("1_w4wwh")
 
 [node name="Background" type="Control" parent="."]
 layout_mode = 3
-anchors_preset = 0
-offset_right = 1149.0
-offset_bottom = 645.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
 [node name="Background" parent="Background" instance=ExtResource("2_0yrpx")]
-position = Vector2(-2, -5)
 
 [node name="Buttons" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
-offset_right = 1154.0
+offset_left = 54.0
+offset_right = 424.0
 offset_bottom = 654.0
 size_flags_horizontal = 0
 size_flags_vertical = 4
 
 [node name="Start" type="Button" parent="Buttons"]
 layout_mode = 0
-offset_left = 165.0
-offset_top = 236.0
-offset_right = 390.0
-offset_bottom = 314.0
+offset_left = 74.0
+offset_top = 230.0
+offset_right = 299.0
+offset_bottom = 308.0
 theme_override_font_sizes/font_size = 50
 text = "Start"
 
 [node name="Quit" type="Button" parent="Buttons"]
 layout_mode = 0
-offset_left = 165.0
-offset_top = 340.0
-offset_right = 390.0
-offset_bottom = 424.0
+offset_left = 74.0
+offset_top = 334.0
+offset_right = 299.0
+offset_bottom = 418.0
 theme_override_font_sizes/font_size = 50
 text = "Quit"
 

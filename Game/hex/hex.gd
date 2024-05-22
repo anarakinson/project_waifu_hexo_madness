@@ -40,7 +40,7 @@ func insertion(delta):
 
 func _on_button_pressed():
 	if not picked_up:
-		timer.start(0.15)
+		timer.start(0.2)
 		HexfigureSingletone.emit_signal("on_picked_up") 
 
 

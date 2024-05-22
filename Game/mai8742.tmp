@@ -1,0 +1,130 @@
+[gd_scene load_steps=9 format=3 uid="uid://c0v6c0hr14ubu"]
+
+[ext_resource type="Script" path="res://Game/main.gd" id="1_8ogpq"]
+[ext_resource type="PackedScene" uid="uid://d3u4dc7f7krif" path="res://Game/waifa/background.tscn" id="2_jgter"]
+[ext_resource type="PackedScene" uid="uid://xmwbu7syawcq" path="res://Game/waifa/waifa.tscn" id="3_5154h"]
+[ext_resource type="PackedScene" uid="uid://jdkfk4bl52vf" path="res://Game/start_zone.tscn" id="4_b0ndu"]
+[ext_resource type="PackedScene" uid="uid://do0yi7pyqmj4l" path="res://Game/socket/socket_figure_4x4.tscn" id="4_n2br6"]
+[ext_resource type="PackedScene" uid="uid://cwecjsoonkif0" path="res://Game/waifa/final_dance.tscn" id="5_odmtm"]
+[ext_resource type="PackedScene" uid="uid://cnb1iq6uisrvt" path="res://UI/pause_menu.tscn" id="7_hpue4"]
+[ext_resource type="Texture2D" uid="uid://bdbm05fxn4q7q" path="res://release_andr/assets/photo_2024-05-13_00-36-08.jpg" id="8_q62oy"]
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_8ogpq")
+
+[node name="Background" parent="." instance=ExtResource("2_jgter")]
+
+[node name="Waifa" parent="." instance=ExtResource("3_5154h")]
+position = Vector2(927, 405)
+
+[node name="Sockets" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="SocketFigure" parent="Sockets" instance=ExtResource("4_n2br6")]
+modulate = Color(1, 1, 1, 0.862745)
+position = Vector2(496, -312)
+
+[node name="SocketsPosition" parent="Sockets" instance=ExtResource("4_b0ndu")]
+position = Vector2(239, 312)
+
+[node name="Hexes" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="Congrats" type="Label" parent="."]
+offset_left = 452.0
+offset_top = 267.0
+offset_right = 802.0
+offset_bottom = 339.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_outline_size = 5
+theme_override_font_sizes/font_size = 50
+text = "!!!CONGRATS!!!"
+
+[node name="DancingGirl" parent="Congrats" instance=ExtResource("5_odmtm")]
+visible = false
+position = Vector2(168, 221)
+
+[node name="LabelCurrentLevel" type="Label" parent="."]
+offset_right = 139.0
+offset_bottom = 45.0
+theme_override_font_sizes/font_size = 30
+text = "Level: 0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="StartZone" parent="." instance=ExtResource("4_b0ndu")]
+position = Vector2(579, 184)
+
+[node name="Buttons" type="Node2D" parent="."]
+
+[node name="Show_numbers" type="Button" parent="Buttons"]
+offset_left = 820.0
+offset_top = 28.0
+offset_right = 910.0
+offset_bottom = 82.0
+text = "show 
+numbers"
+
+[node name="Regenerate" type="Button" parent="Buttons"]
+offset_left = 920.0
+offset_top = 29.0
+offset_right = 1017.0
+offset_bottom = 82.0
+text = "Regenerate"
+
+[node name="Menu" type="Button" parent="Buttons"]
+offset_left = 1030.0
+offset_top = 28.0
+offset_right = 1125.0
+offset_bottom = 81.0
+theme_override_font_sizes/font_size = 20
+text = "Menu"
+
+[node name="SkipLevel" type="Button" parent="Buttons"]
+offset_left = 713.0
+offset_top = 29.0
+offset_right = 810.0
+offset_bottom = 83.0
+text = "Skip 
+level"
+
+[node name="PauseMenu" parent="." instance=ExtResource("7_hpue4")]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="."]
+offset_left = 1451.0
+offset_top = 47.0
+offset_right = 2127.0
+offset_bottom = 641.0
+theme_override_font_sizes/font_size = 30
+text = "Todo list:
+1. Music and sounds
+2. effects on winnig (explosion, sparks, etc)
+3. Achievements, points.
+4. Gallery page (with pictures of achievements)
+5. DONE
+6.  Difficulty levels 
+>>7. android and html screen resolution 
+8. android and html releases create and tests
+9. add loading screen
+10. ???
+"
+
+[node name="Photo2024-05-1300-36-08" type="Sprite2D" parent="."]
+position = Vector2(-535, 421)
+texture = ExtResource("8_q62oy")
+
+[connection signal="menu_call" from="." to="." method="_on_menu_call"]
+[connection signal="recreate" from="." to="." method="_on_recreate"]
+[connection signal="pressed" from="Buttons/Show_numbers" to="." method="_on_show_numbers_pressed"]
+[connection signal="pressed" from="Buttons/Show_numbers" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Buttons/Regenerate" to="." method="_on_regenerate_pressed"]
+[connection signal="pressed" from="Buttons/Menu" to="." method="_on_menu_pressed"]
+[connection signal="pressed" from="Buttons/SkipLevel" to="." method="_on_skip_level_pressed"]
+[connection signal="pressed" from="Buttons/SkipLevel" to="." method="_on_button_pressed"]
