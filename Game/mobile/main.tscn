@@ -1,0 +1,69 @@
+[gd_scene load_steps=2 format=3 uid="uid://flh2ekxphgqk"]
+
+[ext_resource type="PackedScene" uid="uid://c0v6c0hr14ubu" path="res://Game/default_scenes/main.tscn" id="1_3ljlg"]
+
+[node name="Main" instance=ExtResource("1_3ljlg")]
+
+[node name="Waifa" parent="." index="1"]
+position = Vector2(315, 602)
+scale = Vector2(2, 2)
+
+[node name="SocketFigure" parent="Sockets" index="0"]
+position = Vector2(318, 424)
+
+[node name="Congrats" parent="." index="4"]
+offset_left = 120.0
+offset_top = 420.0
+offset_right = 470.0
+offset_bottom = 492.0
+
+[node name="LabelCurrentLevel" parent="." index="5"]
+offset_left = -304.0
+offset_top = 73.0
+offset_right = -165.0
+offset_bottom = 118.0
+
+[node name="StartZone" parent="." index="6"]
+position = Vector2(118, 801)
+
+[node name="Show_numbers" parent="Buttons" index="0"]
+offset_left = 177.0
+offset_top = 29.0
+offset_right = 267.0
+offset_bottom = 83.0
+scale = Vector2(1.5, 1.5)
+
+[node name="Regenerate" parent="Buttons" index="1"]
+offset_left = 328.0
+offset_top = 29.0
+offset_right = 425.0
+offset_bottom = 82.0
+scale = Vector2(1.5, 1.5)
+
+[node name="Menu" parent="Buttons" index="2"]
+offset_left = 933.0
+offset_top = 35.0
+offset_right = 1028.0
+offset_bottom = 88.0
+scale = Vector2(1.5, 1.5)
+
+[node name="SkipLevel" parent="Buttons" index="3"]
+offset_left = 18.0
+offset_top = 27.0
+offset_right = 115.0
+offset_bottom = 81.0
+scale = Vector2(1.5, 1.5)
+
+[node name="Map" parent="Buttons" index="4"]
+offset_left = 491.0
+offset_top = 25.0
+offset_right = 584.0
+offset_bottom = 80.0
+scale = Vector2(1.5, 1.5)
+
+[node name="TestWithConfigs" parent="Buttons" index="5"]
+offset_left = 30.0
+offset_top = 133.0
+offset_right = 93.0
+offset_bottom = 210.0
+scale = Vector2(1.3, 1.3)

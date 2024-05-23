@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://c03gyxmqad1ac"]
+
+[ext_resource type="PackedScene" uid="uid://cch21borkwejm" path="res://UI/default_scenes/menu.tscn" id="1_7tm33"]
+
+[node name="Menu" instance=ExtResource("1_7tm33")]
+
+[node name="Buttons" parent="." index="1"]
+offset_left = 157.0
+offset_top = 196.0
+offset_right = 527.0
+offset_bottom = 850.0

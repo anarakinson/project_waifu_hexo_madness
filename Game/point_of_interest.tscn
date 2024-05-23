@@ -1,0 +1,71 @@
+[gd_scene load_steps=9 format=3 uid="uid://c1vvywc77g8lj"]
+
+[ext_resource type="Script" path="res://Game/point_of_interest.gd" id="1_mf7dh"]
+[ext_resource type="Texture2D" uid="uid://dxtfadcxirptk" path="res://assets/spr_coin_roj.png" id="1_ubgvy"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7waoj"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_68x42"]
+atlas = ExtResource("1_ubgvy")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g6ou0"]
+atlas = ExtResource("1_ubgvy")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_78f1o"]
+atlas = ExtResource("1_ubgvy")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vij8b"]
+atlas = ExtResource("1_ubgvy")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xkcx0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_68x42")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g6ou0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_78f1o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vij8b")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="PointOfInterest" type="Area2D"]
+script = ExtResource("1_mf7dh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_7waoj")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(2.38419e-07, -1)
+scale = Vector2(1.9375, 1.9375)
+sprite_frames = SubResource("SpriteFrames_xkcx0")
+autoplay = "default"
+
+[node name="Label" type="Label" parent="."]
+offset_left = -20.0
+offset_top = -33.0
+offset_right = 21.0
+offset_bottom = -10.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+text = "Level"
+
+[node name="Button" type="Button" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = -11.0
+offset_top = -16.0
+offset_right = 11.0
+offset_bottom = 16.0
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

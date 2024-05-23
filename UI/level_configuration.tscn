@@ -1,0 +1,95 @@
+[gd_scene load_steps=2 format=3 uid="uid://ms1hnuyk3oyv"]
+
+[ext_resource type="Script" path="res://UI/level_configuration.gd" id="1_ng8ru"]
+
+[node name="LevelConfiguration" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ng8ru")
+
+[node name="MaxHexes" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 24.0
+offset_right = 378.0
+offset_bottom = 64.0
+scale = Vector2(2.2, 2.2)
+
+[node name="Label" type="Label" parent="MaxHexes"]
+layout_mode = 2
+text = "Max number of hexes: "
+
+[node name="VSeparator" type="VSeparator" parent="MaxHexes"]
+layout_mode = 2
+
+[node name="OptionButton" type="OptionButton" parent="MaxHexes"]
+layout_mode = 2
+
+[node name="MinHexes" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 124.0
+offset_right = 378.0
+offset_bottom = 164.0
+scale = Vector2(2.2, 2.2)
+
+[node name="Label" type="Label" parent="MinHexes"]
+layout_mode = 2
+text = "Min number of hexes: "
+
+[node name="VSeparator" type="VSeparator" parent="MinHexes"]
+layout_mode = 2
+
+[node name="OptionButton" type="OptionButton" parent="MinHexes"]
+layout_mode = 2
+
+[node name="MaxFigures" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 224.0
+offset_right = 378.0
+offset_bottom = 264.0
+scale = Vector2(2.2, 2.2)
+
+[node name="Label" type="Label" parent="MaxFigures"]
+layout_mode = 2
+text = "Max number of figures: "
+
+[node name="VSeparator" type="VSeparator" parent="MaxFigures"]
+layout_mode = 2
+
+[node name="OptionButton" type="OptionButton" parent="MaxFigures"]
+layout_mode = 2
+
+[node name="SingleHexes" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 324.0
+offset_right = 378.0
+offset_bottom = 364.0
+scale = Vector2(2.2, 2.2)
+
+[node name="Label" type="Label" parent="SingleHexes"]
+layout_mode = 2
+text = "Single-hexes figures: "
+
+[node name="VSeparator" type="VSeparator" parent="SingleHexes"]
+layout_mode = 2
+
+[node name="OptionButton" type="OptionButton" parent="SingleHexes"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 148.0
+offset_top = 829.0
+offset_right = 485.0
+offset_bottom = 920.0
+theme_override_font_sizes/font_size = 60
+text = "To the map"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

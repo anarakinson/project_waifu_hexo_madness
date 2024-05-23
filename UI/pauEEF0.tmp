@@ -1,0 +1,67 @@
+[gd_scene load_steps=5 format=3 uid="uid://cnb1iq6uisrvt"]
+
+[ext_resource type="Script" path="res://UI/pause_menu.gd" id="1_lupeu"]
+[ext_resource type="Texture2D" uid="uid://c5tqxpospk3vl" path="res://assets/MENU.jpg" id="2_h2fy2"]
+[ext_resource type="Shader" path="res://UI/pause_menu.gdshader" id="2_m8o58"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1pb63"]
+shader = ExtResource("2_m8o58")
+shader_parameter/amount = 2.0
+
+[node name="PauseMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_lupeu")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+material = SubResource("ShaderMaterial_1pb63")
+layout_mode = 0
+offset_left = -467.0
+offset_top = -436.0
+offset_right = 1774.0
+offset_bottom = 1101.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(578, 300)
+texture = ExtResource("2_h2fy2")
+
+[node name="Resume" type="Button" parent="Sprite2D"]
+offset_left = -91.0
+offset_top = -212.0
+offset_right = 87.0
+offset_bottom = -162.0
+theme_override_font_sizes/font_size = 30
+text = "Resume"
+
+[node name="MainMenu" type="Button" parent="Sprite2D"]
+offset_left = -88.0
+offset_top = -126.0
+offset_right = 90.0
+offset_bottom = -76.0
+theme_override_font_sizes/font_size = 30
+text = "Main menu"
+
+[node name="Quit" type="Button" parent="Sprite2D"]
+offset_left = -70.0
+offset_top = 85.0
+offset_right = 71.0
+offset_bottom = 135.0
+theme_override_font_sizes/font_size = 30
+text = "Quit"
+
+[node name="Settings" type="Button" parent="Sprite2D"]
+offset_left = -70.0
+offset_top = -10.0
+offset_right = 65.0
+offset_bottom = 34.0
+theme_override_font_sizes/font_size = 30
+text = "Settings"
+
+[connection signal="pressed" from="Sprite2D/Resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="Sprite2D/MainMenu" to="." method="_on_main_menu_pressed"]
+[connection signal="pressed" from="Sprite2D/Quit" to="." method="_on_quit_pressed"]

@@ -23,10 +23,10 @@ var figure = preload("res://Game/hex/hex_figure_4x4.tscn")
 var rng = RandomNumberGenerator.new()
 
 # game main difficult configurations
-var MAX_HEXFIGURE_NUMBERS = 11
-var MAX_SINGLE_HEXES = 0
-var MIN_FIGURE_SIZE = 2
-var MAX_FIGURE_SIZE = 7
+var MAX_HEXFIGURE_NUMBERS = HexfigureSingletone.MAX_HEXFIGURE_NUMBERS
+var MAX_SINGLE_HEXES = HexfigureSingletone.MAX_SINGLE_HEXES
+var MIN_FIGURE_SIZE = HexfigureSingletone.MIN_FIGURE_SIZE
+var MAX_FIGURE_SIZE = HexfigureSingletone.MAX_FIGURE_SIZE
 
 var number_of_sockets
 var yet_not_used
@@ -73,23 +73,27 @@ func _process(delta):
 		
 		# Player win!
 		if (not_inserted <= 0):
-			# wait a little and make effects
-			await get_tree().create_timer(0.1).timeout
-			congrats.visible = true
-			dancing_girl.play("win")
-			for hex in hexes.get_children():
-				hex.is_explodes = true
-				sock_figure.is_explodes = true
-				sock_figure.visible = false
-			waifa_main.reveales()
-			# add random number to level picture number, when loaded
-			if (HexfigureSingletone.current_level % 5 == 0):
-				HexfigureSingletone.level_settings_modifier = rng.randi_range(0, 10)
-			# change level
-			HexfigureSingletone.current_level += 1
-			# await before change level
-			await get_tree().create_timer(1.5).timeout
-			_on_recreate()
+			victory_condition()
+
+
+func victory_condition():
+	# wait a little and make effects
+	await get_tree().create_timer(0.1).timeout
+	congrats.visible = true
+	dancing_girl.play("win")
+	for hex in hexes.get_children():
+		hex.is_explodes = true
+		sock_figure.is_explodes = true
+		sock_figure.visible = false
+	waifa_main.reveales()
+	# add random number to level picture number, when loaded
+	if (HexfigureSingletone.current_level % 5 == 0):
+		HexfigureSingletone.level_settings_modifier = rng.randi_range(0, 10)
+	# change level
+	HexfigureSingletone.current_level += 1
+	# await before change level
+	await get_tree().create_timer(1.5).timeout
+	_on_recreate()
 
 
 #######################################################
@@ -213,7 +217,6 @@ func generate_hex_numbers():
 	#yet_not_used = range(1, number_of_sockets + 1)
 	yet_not_used = numbers_graph.keys()
 	
-	var counter = 0
 	# start generating hex figures
 	while true:
 		# if all parts of big hex are used
@@ -252,6 +255,7 @@ func generate_hex_numbers():
 		hexes_numbers.append(numbers_array)
 		#break
 
+
 # delete additional hexes from socket figure
 func update_socket_fig():
 	for sock in sock_figure.sockets.get_children():
@@ -274,8 +278,9 @@ func generate_hexes():
 		# if something wrong - recreate scene
 		if not (
 			len(hexes_numbers) > MAX_HEXFIGURE_NUMBERS
-			 or have_single_hexes > MAX_SINGLE_HEXES
-		):
+			or have_single_hexes > MAX_SINGLE_HEXES
+			
+		) or fail_counter > 100_000:
 			print("SUCCESS after: ", fail_counter, " attempts")
 			#print(hexes_numbers)
 			break
@@ -300,16 +305,22 @@ func set_hexes_on_start_position():
 	var y_shift = 0
 	var x_step = 200
 	var y_step = 150
-	if len(hexes.get_children()) > 4:
+	if len(hexes.get_children()) < 4:
 		start_point.position.x -= 70
 	if len(hexes.get_children()) > 8:
 		start_point.position.x -= 25
 		x_step = 165
 	if len(hexes.get_children()) > 3:
-		start_point.position.y -= 70
+		start_point.position.y -= 90
 	for hexfigure in hexes.get_children():
 		# update start position for the next hex
-		hexfigure.position = start_point.position + Vector2(x_step * x_shift, y_step * y_shift)
+		if (HexfigureSingletone.current_OS == "Android" or 
+			HexfigureSingletone.current_OS == "iOS"):
+			hexfigure.position = (start_point.position + 
+									Vector2(y_step * y_shift, x_step * x_shift))
+		else:
+			hexfigure.position = (start_point.position + 
+									Vector2(x_step * x_shift, y_step * y_shift))
 		y_shift += 1
 		if y_shift >= 4:
 			x_shift += 1
@@ -335,7 +346,7 @@ func _time_to_check_winner():
 
 func _on_recreate():
 	#get_tree().reload_current_scene()
-	SceneTransition.change_scene_to_file("res://Game/main.tscn") 
+	SceneTransition.change_scene_to_file(HexfigureSingletone.main_scene) 
 
 
 func delete_some_hexes(number):
@@ -380,11 +391,11 @@ func generate_everything():
 	
 	delete_some_hexes(num_of_deleted_hexes)
 	set_hexes_on_start_position()
-	#for hex in hexes.get_children():
-		#hex.rotation = 33
-		#hex.modulate = Color(0, 200, 0)
-	#sock_figure.rotation = 33
-	#sock_figure.modulate = Color(0, 100, 200)
+	
+	if (HexfigureSingletone.current_OS == "Android" or HexfigureSingletone.current_OS == "iOS"):
+		for hex in hexes.get_children():
+			hex.scale *= 1.5
+		sock_figure.scale *= 1.5
 	
 	sock_figure.visible = true
 	hexes.visible = true
@@ -418,3 +429,11 @@ func _on_skip_level_pressed():
 	#await get_tree().create_timer(0.5).timeout
 	_on_recreate()
 
+
+
+func _on_map_pressed():
+	SceneTransition.change_scene_to_file(HexfigureSingletone.map_scene) 
+
+
+func _on_test_with_configs_pressed():
+	SceneTransition.change_scene_to_file(HexfigureSingletone.test_config_scene) 

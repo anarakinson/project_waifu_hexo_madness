@@ -8,8 +8,8 @@ extends Node2D
 func _ready():
 	load_image("assets/pngwing.com.png", sprite)
 	load_image("assets/pngwing.com.png", shade)
-	sprite.flip_h = true 
-	shade.flip_h = true 
+	#sprite.flip_h = true 
+	#shade.flip_h = true 
 	shade.modulate = Color(0,0,0)
 	pass # Replace with function body.
 

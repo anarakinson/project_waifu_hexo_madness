@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="waifu_hexo_madness"
-run/main_scene="res://UI/menu.tscn"
+run/main_scene="res://UI/logo_load.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
 config/icon="res://icon.svg"
 
@@ -22,10 +22,13 @@ SceneTransition="*res://UI/scene_transition.tscn"
 
 [display]
 
+window/size/viewport_width=648
+window/size/viewport_height=1152
 window/size/mode=2
 window/size/resizable=false
 window/stretch/mode="viewport"
 window/stretch/aspect="expand"
+window/handheld/orientation=1
 
 [input]
 

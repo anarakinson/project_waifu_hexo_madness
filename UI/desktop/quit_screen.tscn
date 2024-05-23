@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://b6cuvne1ekdj1"]
+
+[ext_resource type="PackedScene" uid="uid://b073xpup3rre3" path="res://UI/default_scenes/quit_screen.tscn" id="1_hmpy1"]
+
+[node name="QuitScreen" instance=ExtResource("1_hmpy1")]

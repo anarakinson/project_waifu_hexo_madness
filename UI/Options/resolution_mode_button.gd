@@ -10,9 +10,9 @@ const RESOLUTION_DICT : Dictionary = {
 	"1152×648" : Vector2(1152, 648),
 	"1280×720" : Vector2(1280, 720),
 	"1920×1080" : Vector2(1920, 1080),
-	"480×800" : Vector2(480, 800),
-	"720×1280" : Vector2(720, 1280), # This is a common baseline resolution for mobile, 
-	"1080×1920" : Vector2(1080, 1920), # for crisper visuals at the cost of larger file sizes.
+	#"480×800" : Vector2(480, 800),
+	#"720×1280" : Vector2(720, 1280), # This is a common baseline resolution for mobile, 
+	#"1080×1920" : Vector2(1080, 1920), # for crisper visuals at the cost of larger file sizes.
 }
 
 # Called when the node enters the scene tree for the first time.
@@ -28,6 +28,9 @@ func add_resolution_size_items():
 		option_button.add_item(resolution_size)
 
 func on_resolution_selected(index):
-	DisplayServer.window_set_size(RESOLUTION_DICT.values()[index])
+	var resolution = RESOLUTION_DICT.values()[index]
+	#get_viewport().set_size_override_stretch(true) # Enable stretch for custom size.
+	#get_viewport().set_size_override(true, resolution) # Custom size for 2D.
+	DisplayServer.window_set_size(resolution)
 	HexfigureSingletone.current_resolution = index
 

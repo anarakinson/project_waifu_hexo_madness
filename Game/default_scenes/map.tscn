@@ -1,0 +1,33 @@
+[gd_scene load_steps=3 format=3 uid="uid://chtng7wt06pcc"]
+
+[ext_resource type="PackedScene" uid="uid://d3u4dc7f7krif" path="res://Game/waifa/background.tscn" id="1_q8pg2"]
+[ext_resource type="PackedScene" uid="uid://c1vvywc77g8lj" path="res://Game/point_of_interest.tscn" id="2_kd0am"]
+
+[node name="Map" type="Node2D"]
+
+[node name="Background" parent="." instance=ExtResource("1_q8pg2")]
+
+[node name="PointsOfInterest" type="Node2D" parent="."]
+
+[node name="PointOfInterest" parent="PointsOfInterest" instance=ExtResource("2_kd0am")]
+position = Vector2(466, 953)
+scale = Vector2(4, 4)
+point_name = "Junkyard"
+
+[node name="PointOfInterest2" parent="PointsOfInterest" instance=ExtResource("2_kd0am")]
+position = Vector2(397, 542)
+scale = Vector2(4, 4)
+point_name = "City mall"
+
+[node name="PointOfInterest3" parent="PointsOfInterest" instance=ExtResource("2_kd0am")]
+position = Vector2(164, 646)
+scale = Vector2(4, 4)
+point_name = "School"
+
+[node name="Label" type="Label" parent="."]
+offset_left = 152.0
+offset_top = 64.0
+offset_right = 518.0
+offset_bottom = 147.0
+theme_override_font_sizes/font_size = 60
+text = "Choose level"

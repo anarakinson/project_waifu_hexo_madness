@@ -22,7 +22,7 @@ var idle_state = true
 var is_explodes = false
 # ...
 var figure_centre = Vector2()
-
+var chosen_size_coeff = 1
 
 
 # clip specific figure from big template
@@ -105,14 +105,13 @@ func _ready():
 	_on_timer_timeout()
 	enumerate_hexes()
 
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	### when picked up
 	if is_picked_up:
 		var movement_shift = Vector2()
 		idle_state = false
-		hexes.scale = hexes.scale.move_toward(Vector2(1, 1), 4 * delta)
+		hexes.scale = hexes.scale.move_toward(Vector2(chosen_size_coeff, chosen_size_coeff), 4 * delta)
 		for hex in hexes.get_children():
 			if hex.picked_up:
 				movement_shift = hex.start_position
@@ -138,7 +137,7 @@ func _process(delta):
 	elif (not is_picked_up and not is_inserted):
 		### inserted into sockets
 		if (not idle_state and inside_socket() and not inside_hex()):
-			hexes.scale = hexes.scale.move_toward(Vector2(1, 1), 4 * delta)
+			hexes.scale = hexes.scale.move_toward(Vector2(chosen_size_coeff, chosen_size_coeff), 4 * delta)
 			is_inserted = true
 			insert_all(delta)
 			HexfigureSingletone.emit_signal("time_to_check_winner")

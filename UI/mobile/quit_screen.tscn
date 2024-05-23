@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://cykko35j2f78r"]
+
+[ext_resource type="PackedScene" uid="uid://b073xpup3rre3" path="res://UI/default_scenes/quit_screen.tscn" id="1_b82ac"]
+
+[node name="QuitScreen" instance=ExtResource("1_b82ac")]
+
+[node name="DancingGirl" parent="." index="1"]
+position = Vector2(323, 787)
+scale = Vector2(1.56875, 1.56875)
+
+[node name="Label" parent="." index="2"]
+offset_left = 193.0
+offset_top = 226.0
+offset_right = 515.0
+offset_bottom = 322.0

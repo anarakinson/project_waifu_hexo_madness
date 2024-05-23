@@ -13,11 +13,13 @@ var picked_up = false
 var inside_socket = false
 var inside_hex = false
 var hex_number = 0
-
+var picked_up_timeout = 0.2
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	start_position = position
+	if (HexfigureSingletone.current_OS == "Android" or HexfigureSingletone.current_OS == "iOS"):
+		picked_up_timeout = 0.001
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -40,7 +42,7 @@ func insertion(delta):
 
 func _on_button_pressed():
 	if not picked_up:
-		timer.start(0.2)
+		timer.start(picked_up_timeout)
 		HexfigureSingletone.emit_signal("on_picked_up") 
 
 

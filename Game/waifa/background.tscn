@@ -1,8 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://d3u4dc7f7krif"]
+[gd_scene load_steps=3 format=3 uid="uid://d3u4dc7f7krif"]
 
 [ext_resource type="Script" path="res://Game/waifa/background.gd" id="1_vh1it"]
+[ext_resource type="Texture2D" uid="uid://d1wtln6o1077g" path="res://assets/mobile/map.jpg" id="2_bw66i"]
 
 [node name="Background" type="Node2D"]
 script = ExtResource("1_vh1it")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-136, -33)
+scale = Vector2(1.2, 1.2)
+texture = ExtResource("2_bw66i")
+centered = false
