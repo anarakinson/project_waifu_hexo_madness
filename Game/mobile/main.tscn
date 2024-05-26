@@ -17,53 +17,73 @@ offset_top = 420.0
 offset_right = 470.0
 offset_bottom = 492.0
 
+[node name="DancingGirl" parent="Congrats" index="0"]
+frame_progress = 0.0166253
+
 [node name="LabelCurrentLevel" parent="." index="5"]
-offset_left = -304.0
-offset_top = 73.0
-offset_right = -165.0
-offset_bottom = 118.0
+offset_left = 467.0
+offset_top = 107.0
+offset_right = 606.0
+offset_bottom = 152.0
 
 [node name="StartZone" parent="." index="6"]
 position = Vector2(118, 801)
 
-[node name="Show_numbers" parent="Buttons" index="0"]
-offset_left = 177.0
-offset_top = 29.0
-offset_right = 267.0
-offset_bottom = 83.0
+[node name="Buttons" parent="." index="7"]
 scale = Vector2(1.5, 1.5)
 
-[node name="Regenerate" parent="Buttons" index="1"]
-offset_left = 328.0
-offset_top = 29.0
-offset_right = 425.0
-offset_bottom = 82.0
-scale = Vector2(1.5, 1.5)
+[node name="Map" parent="Buttons" index="1"]
+offset_left = 326.0
+offset_top = 12.0
+offset_right = 419.0
+offset_bottom = 67.0
 
-[node name="Menu" parent="Buttons" index="2"]
-offset_left = 933.0
-offset_top = 35.0
-offset_right = 1028.0
-offset_bottom = 88.0
-scale = Vector2(1.5, 1.5)
+[node name="Hint" parent="Buttons" index="2"]
+offset_left = 230.667
+offset_top = 11.3333
+offset_right = 306.667
+offset_bottom = 66.3333
 
-[node name="SkipLevel" parent="Buttons" index="3"]
-offset_left = 18.0
+[node name="SideMenu" parent="Buttons" index="3"]
+offset_left = 43.0
 offset_top = 27.0
-offset_right = 115.0
-offset_bottom = 81.0
+offset_right = 138.0
+offset_bottom = 91.0
+text = "Open
+Menu"
+
+[node name="SideMenuPanel" parent="." index="8"]
+visible = true
+
+[node name="Buttons" parent="SideMenuPanel" index="3"]
 scale = Vector2(1.5, 1.5)
 
-[node name="Map" parent="Buttons" index="4"]
-offset_left = 491.0
-offset_top = 25.0
-offset_right = 584.0
-offset_bottom = 80.0
-scale = Vector2(1.5, 1.5)
+[node name="Show_numbers" parent="SideMenuPanel/Buttons" index="0"]
+offset_left = 26.6667
+offset_top = 334.667
+offset_right = 116.667
+offset_bottom = 388.667
 
-[node name="TestWithConfigs" parent="Buttons" index="5"]
-offset_left = 30.0
-offset_top = 133.0
-offset_right = 93.0
-offset_bottom = 210.0
-scale = Vector2(1.3, 1.3)
+[node name="Regenerate" parent="SideMenuPanel/Buttons" index="1"]
+offset_left = 18.6667
+offset_top = 226.667
+offset_right = 115.667
+offset_bottom = 279.667
+
+[node name="SkipLevel" parent="SideMenuPanel/Buttons" index="2"]
+offset_left = 13.3333
+offset_top = 134.0
+offset_right = 110.333
+offset_bottom = 188.0
+
+[node name="TestWithConfigs" parent="SideMenuPanel/Buttons" index="3"]
+offset_left = 36.6667
+offset_top = 395.333
+offset_right = 99.6667
+offset_bottom = 472.333
+
+[node name="Gallery" parent="SideMenuPanel/Buttons" index="4"]
+offset_left = 36.0
+offset_top = 288.0
+offset_right = 107.0
+offset_bottom = 324.0

@@ -85,11 +85,49 @@ layout_mode = 2
 
 [node name="Button" type="Button" parent="."]
 layout_mode = 0
-offset_left = 148.0
-offset_top = 829.0
-offset_right = 485.0
-offset_bottom = 920.0
+offset_left = 263.0
+offset_top = 992.0
+offset_right = 600.0
+offset_bottom = 1083.0
 theme_override_font_sizes/font_size = 60
 text = "To the map"
 
+[node name="PicturePath" type="Button" parent="."]
+layout_mode = 0
+offset_left = 99.0
+offset_top = 606.0
+offset_right = 209.0
+offset_bottom = 637.0
+theme_override_font_sizes/font_size = 40
+text = "System Info"
+
+[node name="PicturePathLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 684.0
+offset_right = 147.0
+offset_bottom = 753.0
+theme_override_font_sizes/font_size = 15
+text = "PATH:
+"
+
+[node name="Permissions" type="Label" parent="."]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 742.0
+offset_right = 156.0
+offset_bottom = 811.0
+theme_override_font_sizes/font_size = 15
+text = "P:"
+
+[node name="SysInfo" type="Label" parent="."]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 829.0
+offset_right = 151.0
+offset_bottom = 898.0
+theme_override_font_sizes/font_size = 15
+text = "SystemInfo: "
+
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="PicturePath" to="." method="_on_picture_path_pressed"]

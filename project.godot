@@ -12,6 +12,7 @@ config_version=5
 
 config/name="waifu_hexo_madness"
 run/main_scene="res://UI/logo_load.tscn"
+config/quit_on_go_back=false
 config/features=PackedStringArray("4.2", "GL Compatibility")
 config/icon="res://icon.svg"
 

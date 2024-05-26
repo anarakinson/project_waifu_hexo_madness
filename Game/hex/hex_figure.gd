@@ -24,6 +24,8 @@ var is_explodes = false
 var figure_centre = Vector2()
 var chosen_size_coeff = 1
 
+#var at_right_place = false
+
 
 # clip specific figure from big template
 func generate_figure(hexes_numbers):
@@ -94,6 +96,7 @@ func check_is_picked_up():
 func insert_all(delta):
 	for hex in hexes.get_children():
 		hex.insertion(delta)
+	Input.vibrate_handheld(100)
 
 
 # Called when the node enters the scene tree for the first time.

@@ -17,4 +17,5 @@ func _process(delta):
 
 func _on_button_pressed():
 	HexfigureSingletone.current_location = point_name
+	print(HexfigureSingletone.current_location)
 	SceneTransition.change_scene_to_file(HexfigureSingletone.main_scene) 

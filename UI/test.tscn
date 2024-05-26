@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://bnwxovbmsnvci"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Button" type="Button" parent="."]
+offset_left = 134.0
+offset_top = 159.0
+offset_right = 204.0
+offset_bottom = 190.0
+text = "button2"
+
+[node name="Button2" type="Button" parent="."]
+offset_left = 262.0
+offset_top = 161.0
+offset_right = 332.0
+offset_bottom = 192.0
+text = "button1"

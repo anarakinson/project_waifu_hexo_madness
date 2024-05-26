@@ -54,3 +54,26 @@ func on_single_hexes_selected(index):
 
 func _on_button_pressed():
 	SceneTransition.change_scene_to_file(HexfigureSingletone.map_scene) 
+
+
+
+func show_picture_tree():
+	var path = OS.get_system_dir(OS.SYSTEM_DIR_PICTURES)
+	print(path)
+	$PicturePathLabel.text = "Pictures path: " + path
+	
+	$SysInfo.text = "SystemInfo: "
+	$SysInfo.text += "\n  Model: " + OS.get_model_name() + \
+		"\n  Processor: " + OS.get_processor_name() + \
+		"\n  proc count: " + str(OS.get_processor_count())
+	$SysInfo.text += "\n  Memory: "
+	var meminfo = OS.get_memory_info()
+	for x in meminfo:
+		$SysInfo.text += "\n    " + str(x) + " : " + str(meminfo[x])
+	#$PicturePathLabel.text += "\n" + OS.get_user_data_dir()
+
+func _on_picture_path_pressed():
+	show_picture_tree()
+	$Permissions.text = "Permissions: "
+	for p in OS.get_granted_permissions():
+		$Permissions.text += "\n  " + p

@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://c0v6c0hr14ubu"]
+[gd_scene load_steps=10 format=3 uid="uid://c0v6c0hr14ubu"]
 
 [ext_resource type="Script" path="res://Game/main.gd" id="1_8ogpq"]
 [ext_resource type="PackedScene" uid="uid://d3u4dc7f7krif" path="res://Game/waifa/background.tscn" id="2_jgter"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://cwecjsoonkif0" path="res://Game/waifa/final_dance.tscn" id="5_odmtm"]
 [ext_resource type="PackedScene" uid="uid://cnb1iq6uisrvt" path="res://UI/pause_menu.tscn" id="7_hpue4"]
 [ext_resource type="Texture2D" uid="uid://bdbm05fxn4q7q" path="res://assets/photo_2024-05-13_00-36-08.jpg" id="8_q62oy"]
+[ext_resource type="PackedScene" uid="uid://c7leedh8vbmw1" path="res://UI/side_menu_panel.tscn" id="9_ee674"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_8ogpq")
@@ -59,53 +60,89 @@ position = Vector2(650, 155)
 
 [node name="Buttons" type="Node2D" parent="."]
 
-[node name="Show_numbers" type="Button" parent="Buttons"]
-offset_left = 822.0
-offset_top = 18.0
-offset_right = 912.0
-offset_bottom = 72.0
-text = "show 
-numbers"
-
-[node name="Regenerate" type="Button" parent="Buttons"]
-offset_left = 922.0
-offset_top = 19.0
-offset_right = 1019.0
-offset_bottom = 72.0
-text = "Regenerate"
-
 [node name="Menu" type="Button" parent="Buttons"]
 offset_left = 1032.0
 offset_top = 18.0
 offset_right = 1127.0
 offset_bottom = 71.0
+focus_mode = 0
 theme_override_font_sizes/font_size = 20
 text = "Menu"
-
-[node name="SkipLevel" type="Button" parent="Buttons"]
-offset_left = 715.0
-offset_top = 19.0
-offset_right = 812.0
-offset_bottom = 73.0
-text = "Skip 
-level"
 
 [node name="Map" type="Button" parent="Buttons"]
 offset_left = 617.0
 offset_top = 21.0
 offset_right = 710.0
 offset_bottom = 76.0
+focus_mode = 0
 theme_override_font_sizes/font_size = 20
 text = "Map"
 
-[node name="TestWithConfigs" type="Button" parent="Buttons"]
-offset_left = 531.0
-offset_top = 21.0
-offset_right = 594.0
-offset_bottom = 98.0
+[node name="Hint" type="Button" parent="Buttons"]
+offset_left = 529.0
+offset_top = 22.0
+offset_right = 605.0
+offset_bottom = 77.0
+focus_mode = 0
+theme_override_font_sizes/font_size = 20
+text = "Hint"
+
+[node name="SideMenu" type="Button" parent="Buttons"]
+offset_left = 887.0
+offset_top = 117.0
+offset_right = 1003.0
+offset_bottom = 153.0
+theme_override_font_sizes/font_size = 20
+text = "OpenMenu"
+
+[node name="SideMenuPanel" parent="." instance=ExtResource("9_ee674")]
+visible = false
+
+[node name="Buttons" type="Node2D" parent="SideMenuPanel"]
+
+[node name="Show_numbers" type="Button" parent="SideMenuPanel/Buttons"]
+offset_left = 822.0
+offset_top = 18.0
+offset_right = 912.0
+offset_bottom = 72.0
+focus_mode = 0
+text = "show 
+numbers"
+
+[node name="Regenerate" type="Button" parent="SideMenuPanel/Buttons"]
+offset_left = 922.0
+offset_top = 19.0
+offset_right = 1019.0
+offset_bottom = 72.0
+focus_mode = 0
+text = "Regenerate"
+
+[node name="SkipLevel" type="Button" parent="SideMenuPanel/Buttons"]
+offset_left = 715.0
+offset_top = 19.0
+offset_right = 812.0
+offset_bottom = 73.0
+focus_mode = 0
+text = "Skip 
+level"
+
+[node name="TestWithConfigs" type="Button" parent="SideMenuPanel/Buttons"]
+offset_left = 1060.0
+offset_top = 85.0
+offset_right = 1123.0
+offset_bottom = 162.0
+focus_mode = 0
 text = "Test 
 with
 configs"
+
+[node name="Gallery" type="Button" parent="SideMenuPanel/Buttons"]
+offset_left = 947.0
+offset_top = 95.0
+offset_right = 1018.0
+offset_bottom = 131.0
+theme_override_font_sizes/font_size = 20
+text = "Galery"
 
 [node name="PauseMenu" parent="." instance=ExtResource("7_hpue4")]
 visible = false
@@ -141,11 +178,12 @@ texture = ExtResource("8_q62oy")
 
 [connection signal="menu_call" from="." to="." method="_on_menu_call"]
 [connection signal="recreate" from="." to="." method="_on_recreate"]
-[connection signal="pressed" from="Buttons/Show_numbers" to="." method="_on_show_numbers_pressed"]
-[connection signal="pressed" from="Buttons/Show_numbers" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="Buttons/Regenerate" to="." method="_on_regenerate_pressed"]
 [connection signal="pressed" from="Buttons/Menu" to="." method="_on_menu_pressed"]
-[connection signal="pressed" from="Buttons/SkipLevel" to="." method="_on_skip_level_pressed"]
-[connection signal="pressed" from="Buttons/SkipLevel" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="Buttons/Map" to="." method="_on_map_pressed"]
-[connection signal="pressed" from="Buttons/TestWithConfigs" to="." method="_on_test_with_configs_pressed"]
+[connection signal="pressed" from="Buttons/Hint" to="." method="_on_hint_pressed"]
+[connection signal="pressed" from="Buttons/SideMenu" to="." method="_on_side_menu_pressed"]
+[connection signal="pressed" from="SideMenuPanel/Buttons/Show_numbers" to="." method="_on_show_numbers_pressed"]
+[connection signal="pressed" from="SideMenuPanel/Buttons/Regenerate" to="." method="_on_regenerate_pressed"]
+[connection signal="pressed" from="SideMenuPanel/Buttons/SkipLevel" to="." method="_on_skip_level_pressed"]
+[connection signal="pressed" from="SideMenuPanel/Buttons/TestWithConfigs" to="." method="_on_test_with_configs_pressed"]
+[connection signal="pressed" from="SideMenuPanel/Buttons/Gallery" to="." method="_on_gallery_pressed"]

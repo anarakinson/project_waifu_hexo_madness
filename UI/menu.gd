@@ -24,3 +24,13 @@ func _on_quit_pressed():
 func _on_start_pressed():
 	SceneTransition.change_scene_to_file(HexfigureSingletone.map_scene) 
 
+
+func _on_button_pressed():
+	HexfigureSingletone.load_game()
+	SceneTransition.change_scene_to_file(HexfigureSingletone.map_scene) 
+	
+
+func _notification(what):
+	if what == NOTIFICATION_WM_GO_BACK_REQUEST:
+		SceneTransition.change_scene_to_file(HexfigureSingletone.quit_scene) 
+		

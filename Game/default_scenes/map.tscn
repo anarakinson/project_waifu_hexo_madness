@@ -1,9 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://chtng7wt06pcc"]
+[gd_scene load_steps=4 format=3 uid="uid://chtng7wt06pcc"]
 
+[ext_resource type="Script" path="res://Game/map.gd" id="1_33i6r"]
 [ext_resource type="PackedScene" uid="uid://d3u4dc7f7krif" path="res://Game/waifa/background.tscn" id="1_q8pg2"]
 [ext_resource type="PackedScene" uid="uid://c1vvywc77g8lj" path="res://Game/point_of_interest.tscn" id="2_kd0am"]
 
 [node name="Map" type="Node2D"]
+script = ExtResource("1_33i6r")
 
 [node name="Background" parent="." instance=ExtResource("1_q8pg2")]
 
@@ -31,3 +33,15 @@ offset_right = 518.0
 offset_bottom = 147.0
 theme_override_font_sizes/font_size = 60
 text = "Choose level"
+
+[node name="Gallery" type="Button" parent="."]
+offset_left = 472.0
+offset_top = 4.0
+offset_right = 581.0
+offset_bottom = 54.0
+scale = Vector2(1.5, 1.5)
+theme_override_font_sizes/font_size = 20
+text = "Gallery"
+
+[connection signal="pressed" from="Gallery" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Gallery" to="." method="_on_gallery_pressed"]

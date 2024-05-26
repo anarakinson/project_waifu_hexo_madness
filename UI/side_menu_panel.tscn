@@ -1,0 +1,42 @@
+[gd_scene load_steps=3 format=3 uid="uid://c7leedh8vbmw1"]
+
+[ext_resource type="Script" path="res://UI/side_menu_panel.gd" id="1_evaem"]
+[ext_resource type="Texture2D" uid="uid://bpugbrgs74yv7" path="res://assets/side_menu_panel.jpg" id="2_5ghby"]
+
+[node name="SideMenuPanel" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_evaem")
+
+[node name="MenuPanel" type="Sprite2D" parent="."]
+position = Vector2(59, 576.157)
+scale = Vector2(2.04265, 2.15271)
+texture = ExtResource("2_5ghby")
+
+[node name="CloseMenu" type="Button" parent="."]
+offset_left = 256.0
+offset_top = 28.0
+offset_right = 372.0
+offset_bottom = 64.0
+scale = Vector2(1.5, 1.5)
+theme_override_font_sizes/font_size = 20
+text = "CloseMenu
+"
+
+[node name="OpenMenu" type="Button" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 701.0
+offset_top = 16.0
+offset_right = 817.0
+offset_bottom = 52.0
+scale = Vector2(1.5, 1.5)
+theme_override_font_sizes/font_size = 20
+text = "OpenMenu"
+
+[connection signal="pressed" from="CloseMenu" to="." method="_on_close_menu_pressed"]
+[connection signal="pressed" from="OpenMenu" to="." method="_on_open_menu_pressed"]

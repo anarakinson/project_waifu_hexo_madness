@@ -6,18 +6,19 @@ signal menu_call
 var time_to_check = false
 @onready var congrats = $Congrats
 @onready var dancing_girl = $Congrats/DancingGirl 
-@onready var current_level = $LabelCurrentLevel
+@onready var current_level_label = $LabelCurrentLevel
 @onready var start_point = $StartZone
 @onready var hexes = $Hexes
 @onready var sock_figure = $Sockets/SocketFigure
 @onready var sockets_position = $Sockets/SocketsPosition
-
+@onready var side_menu_panel = $SideMenuPanel
 
 @onready var waifa_main = $Waifa
 @onready var background = $Background
 
 var numbers_showed = false
 var first_loop = true
+var hint_active = false
 
 var figure = preload("res://Game/hex/hex_figure_4x4.tscn")
 var rng = RandomNumberGenerator.new()
@@ -33,6 +34,12 @@ var yet_not_used
 var hexes_numbers = []
 
 
+var save_path = HexfigureSingletone.save_path
+
+var current_location = HexfigureSingletone.current_location
+var current_level = HexfigureSingletone.location_map[current_location]
+var level_settings_modifier = HexfigureSingletone.level_settings_modifier
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -41,10 +48,11 @@ func _ready():
 	HexfigureSingletone.connect("time_to_check_winner", _time_to_check_winner)
 
 	congrats.visible = false
-	var idx = (HexfigureSingletone.current_level + 
-		HexfigureSingletone.level_settings_modifier) % background.img_list_size
+	var idx = (current_level + 
+		level_settings_modifier) % background.img_list_size
 	background.load_image(background.image_list[idx])
-	current_level.text = "Level: " + str(HexfigureSingletone.current_level)
+	current_level_label.text = (current_location + 
+								"\nLevel: " + str(current_level))
 	
 	# setup before first loop
 	first_loop = true
@@ -79,6 +87,7 @@ func _process(delta):
 func victory_condition():
 	# wait a little and make effects
 	await get_tree().create_timer(0.1).timeout
+	Input.vibrate_handheld(300)
 	congrats.visible = true
 	dancing_girl.play("win")
 	for hex in hexes.get_children():
@@ -87,10 +96,11 @@ func victory_condition():
 		sock_figure.visible = false
 	waifa_main.reveales()
 	# add random number to level picture number, when loaded
-	if (HexfigureSingletone.current_level % 5 == 0):
-		HexfigureSingletone.level_settings_modifier = rng.randi_range(0, 10)
+	if (current_level % 5 == 0):
+		set_level_settings_modifier(rng.randi_range(0, 10))
 	# change level
 	HexfigureSingletone.current_level += 1
+	HexfigureSingletone.location_map[current_location] += 1
 	# await before change level
 	await get_tree().create_timer(1.5).timeout
 	_on_recreate()
@@ -346,6 +356,7 @@ func _time_to_check_winner():
 
 func _on_recreate():
 	#get_tree().reload_current_scene()
+	HexfigureSingletone.save_game()
 	SceneTransition.change_scene_to_file(HexfigureSingletone.main_scene) 
 
 
@@ -370,23 +381,23 @@ func delete_some_hexes(number):
 func generate_everything():
 	### SET SOCKET FIGURE
 	
-	if HexfigureSingletone.current_level <= 5:
+	if current_level <= 5:
 		MAX_FIGURE_SIZE = 4
-	elif HexfigureSingletone.current_level <= 15:
+	elif current_level <= 15:
 		MAX_FIGURE_SIZE = 5
 	
 	#sock_figure.position = sockets_position.position
-	delete_not_used = delete_not_used_list[HexfigureSingletone.current_level % len(delete_not_used_list)]
+	delete_not_used = delete_not_used_list[current_level % len(delete_not_used_list)]
 	clean_not_used()
 	get_numbers_graph_size()
 	update_socket_fig()
 	generate_hexes()
 	
 	var num_of_deleted_hexes = 0
-	if HexfigureSingletone.current_level <= 5:
+	if current_level <= 5:
 		num_of_deleted_hexes = len(hexes_numbers) / 2 - 1
 		num_of_deleted_hexes = 2
-	elif HexfigureSingletone.current_level <= 15:
+	elif current_level <= 15:
 		num_of_deleted_hexes = 1
 	
 	delete_some_hexes(num_of_deleted_hexes)
@@ -399,6 +410,10 @@ func generate_everything():
 	
 	sock_figure.visible = true
 	hexes.visible = true
+
+
+func set_level_settings_modifier(number):
+	HexfigureSingletone.level_settings_modifier = number
 
 
 func _on_show_numbers_pressed():
@@ -425,6 +440,7 @@ func _on_menu_pressed():
 func _on_skip_level_pressed():
 	# change level
 	HexfigureSingletone.current_level += 1
+	HexfigureSingletone.location_map[current_location] += 1
 	# await before change level
 	#await get_tree().create_timer(0.5).timeout
 	_on_recreate()
@@ -437,3 +453,57 @@ func _on_map_pressed():
 
 func _on_test_with_configs_pressed():
 	SceneTransition.change_scene_to_file(HexfigureSingletone.test_config_scene) 
+
+
+func _on_gallery_pressed():
+	SceneTransition.change_scene_to_file(HexfigureSingletone.gallery_scene) 
+
+
+func _notification(what):
+	if what == NOTIFICATION_WM_GO_BACK_REQUEST:
+		SceneTransition.change_scene_to_file(HexfigureSingletone.map_scene) 
+
+
+func _on_side_menu_pressed():
+	side_menu_panel.is_opened = true
+
+
+
+func _on_hint_pressed():
+	if hint_active == false:
+		hint_active = true
+		var hexes_children : Array[Node]
+		var idx : int
+		var stopper = 0
+		while stopper < 10:
+			stopper += 1
+			hexes_children = hexes.get_children()
+			idx = rng.randi_range(0, len(hexes_children)-1)
+			if not hexes_children[idx].is_inserted:
+				break
+		#hexes_children[idx].scale += Vector2(0.6, 0.6)
+		var default_color = hexes_children[idx].modulate
+		hexes_children[idx].modulate = Color(255, 0, 0, 200)
+		await get_tree().create_timer(0.3).timeout
+		#hexes_children[idx].scale -= Vector2(0.6, 0.6)
+		hexes_children[idx].modulate = default_color
+		
+		var numbers = []
+		for hex in hexes_children[idx].hexes.get_children():
+			numbers.append(hex.hex_number)
+		for sock in sock_figure.sockets.get_children():
+			if sock.socket_number in numbers:
+				default_color = sock.modulate
+				sock.modulate = Color(255, 0, 0, 200)
+				sock.z_index = 2
+		await get_tree().create_timer(0.2).timeout
+		for sock in sock_figure.sockets.get_children():
+			if sock.socket_number in numbers:
+				sock.modulate = default_color
+				sock.z_index = 0
+		
+		hint_active = false
+
+
+
+

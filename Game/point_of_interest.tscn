@@ -67,5 +67,6 @@ offset_left = -11.0
 offset_top = -16.0
 offset_right = 11.0
 offset_bottom = 16.0
+focus_mode = 0
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

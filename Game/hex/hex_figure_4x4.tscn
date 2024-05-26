@@ -127,6 +127,7 @@ position = Vector2(-24, -69.5)
 [node name="HexFigureArea" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HexFigureArea"]
+visible = false
 shape = SubResource("CircleShape2D_jbfgk")
 
 [node name="Timer" type="Timer" parent="."]

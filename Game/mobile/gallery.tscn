@@ -1,0 +1,46 @@
+[gd_scene load_steps=2 format=3 uid="uid://cuu1q83c6s31r"]
+
+[ext_resource type="PackedScene" uid="uid://c0tr1j2q7f2wl" path="res://Game/default_scenes/gallery.tscn" id="1_qcvqn"]
+
+[node name="Gallery" instance=ExtResource("1_qcvqn")]
+
+[node name="Map" parent="Buttons" index="0"]
+offset_left = 256.0
+offset_top = 38.0
+offset_right = 358.0
+offset_bottom = 106.0
+scale = Vector2(1.5, 1.5)
+
+[node name="Next" parent="Buttons" index="1"]
+offset_left = 454.0
+offset_top = 66.0
+offset_right = 509.0
+offset_bottom = 102.0
+scale = Vector2(1.5, 1.5)
+
+[node name="Previous" parent="Buttons" index="2"]
+offset_left = 100.0
+offset_top = 63.0
+offset_right = 175.0
+offset_bottom = 94.0
+scale = Vector2(1.5, 1.5)
+
+[node name="Unlock" parent="Buttons" index="3"]
+offset_left = 233.0
+offset_top = 1041.0
+offset_right = 295.0
+offset_bottom = 1072.0
+scale = Vector2(1.5, 1.5)
+
+[node name="SaveImg" parent="Buttons" index="4"]
+offset_left = 392.0
+offset_top = 1043.0
+offset_right = 445.0
+offset_bottom = 1079.0
+scale = Vector2(1.5, 1.5)
+
+[node name="PicNumber" parent="." index="3"]
+offset_left = 80.0
+offset_top = 1058.0
+offset_right = 199.0
+offset_bottom = 1086.0

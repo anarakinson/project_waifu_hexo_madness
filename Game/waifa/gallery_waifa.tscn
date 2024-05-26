@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://25v0wvta218p"]
+
+[ext_resource type="Texture2D" uid="uid://bn7e2fjk231f5" path="res://assets/girls/cyberpunk_maiden_1.jpg" id="1_n1xy4"]
+[ext_resource type="Script" path="res://Game/waifa/gallery_waifa.gd" id="1_xwgql"]
+[ext_resource type="Texture2D" uid="uid://u7behbp205uo" path="res://assets/pngegg.png" id="2_t6lq5"]
+
+[node name="GalleryWaifa" type="Node2D"]
+script = ExtResource("1_xwgql")
+
+[node name="Waifa" type="Sprite2D" parent="."]
+texture = ExtResource("1_n1xy4")
+
+[node name="Back" type="Sprite2D" parent="."]
+texture = ExtResource("1_n1xy4")
+
+[node name="Frame" type="Sprite2D" parent="."]
+position = Vector2(11.3265, -6.60708)
+rotation = 1.5708
+scale = Vector2(0.760659, 1.11796)
+texture = ExtResource("2_t6lq5")

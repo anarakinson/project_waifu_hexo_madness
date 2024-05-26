@@ -5,22 +5,35 @@ signal on_picked_down
 signal time_to_check_winner
 signal orientation_changed(orientation)
 
-var current_location = ""
-var current_level = 0
-var level_settings_modifier = 0
+var current_location : String = "Junkyard"
+var current_level : int = 0
+var level_settings_modifier : int = 0
+
+var location_map : Dictionary = {
+	"City mall" : 0,
+	"Junkyard" : 0,
+	"School" : 0,
+}
+
+var available_pictures = [
+	
+]
+
 
 #var current_OS = OS.get_name()
-var current_OS = "Android"
+var current_OS : String = "Android"
 
-var current_window_mode = 1
-var current_resolution = 2
+var current_window_mode : int = 1
+var current_resolution : int = 2
 
 var current_orientation = 0 # 0 - landscape, 1 - portrait
 
+var save_path = "user://saves/variable.save"
 
 var menu_scene = "res://UI/desktop/menu.tscn"
 var main_scene = "res://Game/desktop/main.tscn"
 var map_scene = "res://Game/desktop/map.tscn"
+var gallery_scene = "res://Game/desktop/gallery.tscn"
 var quit_scene = "res://UI/desktop/quit_screen.tscn"
 var test_config_scene = "res://UI/level_configuration.tscn"
 
@@ -36,6 +49,14 @@ var MAX_FIGURE_SIZE = 7
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	#ask permissions for mobile
+	OS.request_permissions()
+	# make save directorie
+	var dir = DirAccess.open("user://")
+	dir.make_dir("saves")
+	DirAccess.make_dir_absolute("user://saves")
+	
+	
 	print(current_OS)
 	match current_OS:
 		"Windows", "macOS", "Linux", "FreeBSD", "NetBSD", "OpenBSD", "BSD":
@@ -45,6 +66,7 @@ func _ready():
 			menu_scene = "res://UI/mobile/menu.tscn"
 			main_scene = "res://Game/mobile/main.tscn"
 			map_scene = "res://Game/mobile/map.tscn"
+			gallery_scene = "res://Game/mobile/gallery.tscn"
 			quit_scene = "res://UI/mobile/quit_screen.tscn"
 			
 			assets_path = "res://assets/mobile/"
@@ -89,4 +111,28 @@ func _process(delta):
 	#else:
 		#print("portrait")
 	
+
+
+func save_game():
+	var file = FileAccess.open(save_path, FileAccess.WRITE)
+	#file.store_var(current_level)
+	#file.store_var(current_location)
+	#file.store_var(level_settings_modifier)
+	file.store_var(location_map)
+	file.store_var(available_pictures)
+
+
+func load_game():
+	if FileAccess.file_exists(save_path):
+		var file = FileAccess.open(save_path, FileAccess.READ)
+		#current_level = file.get_var()
+		#current_location = file.get_var()
+		#level_settings_modifier = file.get_var()
+		location_map = file.get_var()
+		available_pictures = file.get_var()
+	else:
+		pass
+		#current_level = 0
+		#current_location = ""
+		#level_settings_modifier = 0
 
