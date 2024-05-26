@@ -96,7 +96,7 @@ func check_is_picked_up():
 func insert_all(delta):
 	for hex in hexes.get_children():
 		hex.insertion(delta)
-	Input.vibrate_handheld(100)
+	Input.vibrate_handheld(50)
 
 
 # Called when the node enters the scene tree for the first time.

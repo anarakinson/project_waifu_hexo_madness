@@ -87,7 +87,6 @@ func _process(delta):
 func victory_condition():
 	# wait a little and make effects
 	await get_tree().create_timer(0.1).timeout
-	Input.vibrate_handheld(300)
 	congrats.visible = true
 	dancing_girl.play("win")
 	for hex in hexes.get_children():
@@ -102,6 +101,8 @@ func victory_condition():
 	HexfigureSingletone.current_level += 1
 	HexfigureSingletone.location_map[current_location] += 1
 	# await before change level
+	# rhytmic vibration
+	rhytmic_vibration()
 	await get_tree().create_timer(1.5).timeout
 	_on_recreate()
 
@@ -472,20 +473,17 @@ func _on_side_menu_pressed():
 func _on_hint_pressed():
 	if hint_active == false:
 		hint_active = true
-		var hexes_children : Array[Node]
-		var idx : int
-		var stopper = 0
-		while stopper < 10:
-			stopper += 1
-			hexes_children = hexes.get_children()
-			idx = rng.randi_range(0, len(hexes_children)-1)
-			if not hexes_children[idx].is_inserted:
-				break
-		#hexes_children[idx].scale += Vector2(0.6, 0.6)
+		var hexes_children : Array
+		for child in hexes.get_children():
+			if not child.is_inserted:
+				hexes_children.append(child)
+		if len(hexes_children) <= 0:
+			return
+		# get random index
+		var idx = rng.randi_range(0, len(hexes_children)-1)
 		var default_color = hexes_children[idx].modulate
 		hexes_children[idx].modulate = Color(255, 0, 0, 200)
 		await get_tree().create_timer(0.3).timeout
-		#hexes_children[idx].scale -= Vector2(0.6, 0.6)
 		hexes_children[idx].modulate = default_color
 		
 		var numbers = []
@@ -505,5 +503,12 @@ func _on_hint_pressed():
 		hint_active = false
 
 
+
+func rhytmic_vibration():
+	Input.vibrate_handheld(150)
+	await get_tree().create_timer(0.3).timeout
+	Input.vibrate_handheld(150)
+	await get_tree().create_timer(0.3).timeout
+	Input.vibrate_handheld(300)
 
 

@@ -77,3 +77,9 @@ func _on_picture_path_pressed():
 	$Permissions.text = "Permissions: "
 	for p in OS.get_granted_permissions():
 		$Permissions.text += "\n  " + p
+
+
+func _notification(what):
+	if what == NOTIFICATION_WM_GO_BACK_REQUEST:
+		SceneTransition.change_scene_to_file(HexfigureSingletone.quit_scene) 
+		

@@ -58,3 +58,4 @@ func update_waifu():
 	else:
 		unlock_button.disabled = false
 		save_button.disabled = true
+
