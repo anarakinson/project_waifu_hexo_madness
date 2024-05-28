@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://c0v6c0hr14ubu"]
+[gd_scene load_steps=14 format=3 uid="uid://c0v6c0hr14ubu"]
 
 [ext_resource type="Script" path="res://Game/main.gd" id="1_8ogpq"]
 [ext_resource type="PackedScene" uid="uid://d3u4dc7f7krif" path="res://Game/waifa/background.tscn" id="2_jgter"]
@@ -9,6 +9,10 @@
 [ext_resource type="PackedScene" uid="uid://cnb1iq6uisrvt" path="res://UI/pause_menu.tscn" id="7_hpue4"]
 [ext_resource type="Texture2D" uid="uid://bdbm05fxn4q7q" path="res://assets/photo_2024-05-13_00-36-08.jpg" id="8_q62oy"]
 [ext_resource type="PackedScene" uid="uid://c7leedh8vbmw1" path="res://UI/side_menu_panel.tscn" id="9_ee674"]
+[ext_resource type="Script" path="res://Game/MainSceneCamera.gd" id="10_83j73"]
+[ext_resource type="PackedScene" uid="uid://dk4v07dptvbar" path="res://Game/explosion.tscn" id="11_puj4n"]
+[ext_resource type="PackedScene" uid="uid://cehiaud3mys32" path="res://Game/explosion_v2.tscn" id="12_h6aqs"]
+[ext_resource type="PackedScene" uid="uid://bo2wcj7cpqwb0" path="res://Game/money.tscn" id="13_4yi3i"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_8ogpq")
@@ -175,6 +179,19 @@ text = "Todo list:
 [node name="Photo2024-05-1300-36-08" type="Sprite2D" parent="."]
 position = Vector2(-535, 421)
 texture = ExtResource("8_q62oy")
+
+[node name="MainSceneCamera" type="Camera2D" parent="."]
+anchor_mode = 0
+script = ExtResource("10_83j73")
+
+[node name="Explosion" parent="." instance=ExtResource("11_puj4n")]
+position = Vector2(247, 328)
+
+[node name="Explosion2" parent="." instance=ExtResource("12_h6aqs")]
+position = Vector2(333, 1153)
+
+[node name="Money" parent="." instance=ExtResource("13_4yi3i")]
+position = Vector2(315, 53)
 
 [connection signal="menu_call" from="." to="." method="_on_menu_call"]
 [connection signal="recreate" from="." to="." method="_on_recreate"]

@@ -12,6 +12,8 @@ var time_to_check = false
 @onready var sock_figure = $Sockets/SocketFigure
 @onready var sockets_position = $Sockets/SocketsPosition
 @onready var side_menu_panel = $SideMenuPanel
+@onready var main_scene_camera = $MainSceneCamera
+
 
 @onready var waifa_main = $Waifa
 @onready var background = $Background
@@ -48,6 +50,7 @@ func _ready():
 	HexfigureSingletone.connect("time_to_check_winner", _time_to_check_winner)
 
 	congrats.visible = false
+	side_menu_panel.visible = true
 	var idx = (current_level + 
 		level_settings_modifier) % background.img_list_size
 	background.load_image(background.image_list[idx])
@@ -100,6 +103,9 @@ func victory_condition():
 	# change level
 	HexfigureSingletone.current_level += 1
 	HexfigureSingletone.location_map[current_location] += 1
+	HexfigureSingletone.players_money += 100
+	HexfigureSingletone.emit_signal("update_money_counter")
+	
 	# await before change level
 	# rhytmic vibration
 	rhytmic_vibration()
@@ -427,6 +433,8 @@ func _on_show_numbers_pressed():
 
 
 func _on_regenerate_pressed():
+	if not player_money_check(100):
+		return
 	_on_recreate()
 
 
@@ -472,6 +480,9 @@ func _on_side_menu_pressed():
 
 func _on_hint_pressed():
 	if hint_active == false:
+		if not player_money_check(50):
+			return
+		
 		hint_active = true
 		var hexes_children : Array
 		for child in hexes.get_children():
@@ -505,6 +516,9 @@ func _on_hint_pressed():
 
 
 func rhytmic_vibration():
+	main_scene_camera.apply_shake(30)
+	$Explosion.explode()
+	$Explosion2.emitting(true)
 	Input.vibrate_handheld(150)
 	await get_tree().create_timer(0.3).timeout
 	Input.vibrate_handheld(150)
@@ -512,3 +526,12 @@ func rhytmic_vibration():
 	Input.vibrate_handheld(300)
 
 
+func player_money_check(value : int):
+	if HexfigureSingletone.players_money < value:
+		$Money.bump()
+		print("not enough money")
+		return false
+	HexfigureSingletone.players_money -= value
+	HexfigureSingletone.emit_signal("update_money_counter")
+	HexfigureSingletone.save_game()
+	return true

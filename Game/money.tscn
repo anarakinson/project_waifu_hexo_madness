@@ -1,0 +1,95 @@
+[gd_scene load_steps=9 format=3 uid="uid://bo2wcj7cpqwb0"]
+
+[ext_resource type="Texture2D" uid="uid://bw101o0cowl4m" path="res://assets/MonedaD.png" id="1_0jaqg"]
+
+[sub_resource type="GDScript" id="GDScript_x8x61"]
+script/source = "extends Node2D
+
+var is_bumping = false
+var initial_scale = Vector2()
+var scaling_coeff = Vector2(1.5, 1.5)
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	initial_scale = scale
+	HexfigureSingletone.connect(\"update_money_counter\", _on_update_money_counter)
+	$Label.text = \"Money: \" + str(HexfigureSingletone.players_money)
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	if is_bumping:
+		scale = scale.move_toward(initial_scale * scaling_coeff, 15.5 * delta)
+		await get_tree().create_timer(0.3).timeout
+		scale = scale.move_toward(initial_scale, 10. * delta)
+		is_bumping = false
+
+
+func update_label():
+	$Label.text = \"Money: \" + str(HexfigureSingletone.players_money)
+
+func _on_update_money_counter():
+	update_label()
+
+func bump():
+	is_bumping = true
+"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7fhra"]
+atlas = ExtResource("1_0jaqg")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u0h21"]
+atlas = ExtResource("1_0jaqg")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b1wem"]
+atlas = ExtResource("1_0jaqg")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bxdl7"]
+atlas = ExtResource("1_0jaqg")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_63ndq"]
+atlas = ExtResource("1_0jaqg")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_iwjwu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7fhra")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u0h21")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b1wem")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bxdl7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_63ndq")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Money" type="Node2D"]
+script = SubResource("GDScript_x8x61")
+
+[node name="CoinSprite" type="AnimatedSprite2D" parent="."]
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_iwjwu")
+autoplay = "default"
+
+[node name="Label" type="Label" parent="."]
+offset_left = 20.0
+offset_top = -11.0
+offset_right = 60.0
+offset_bottom = 12.0
+text = "Money: "

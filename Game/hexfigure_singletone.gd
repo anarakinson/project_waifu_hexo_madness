@@ -4,6 +4,7 @@ signal on_picked_up
 signal on_picked_down 
 signal time_to_check_winner
 signal orientation_changed(orientation)
+signal update_money_counter
 
 var current_location : String = "Junkyard"
 var current_level : int = 0
@@ -18,6 +19,8 @@ var location_map : Dictionary = {
 var available_pictures = [
 	
 ]
+
+var players_money = 120
 
 
 #var current_OS = OS.get_name()
@@ -44,7 +47,6 @@ var MAX_HEXFIGURE_NUMBERS = 11
 var MAX_SINGLE_HEXES = 0
 var MIN_FIGURE_SIZE = 2
 var MAX_FIGURE_SIZE = 7
-
 
 
 # Called when the node enters the scene tree for the first time.
@@ -120,6 +122,8 @@ func save_game():
 	#file.store_var(level_settings_modifier)
 	file.store_var(location_map)
 	file.store_var(available_pictures)
+	file.store_var(players_money)
+	
 
 
 func load_game():
@@ -130,6 +134,7 @@ func load_game():
 		#level_settings_modifier = file.get_var()
 		location_map = file.get_var()
 		available_pictures = file.get_var()
+		players_money = file.get_var()
 	else:
 		pass
 		#current_level = 0

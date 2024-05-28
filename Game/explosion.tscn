@@ -1,0 +1,115 @@
+[gd_scene load_steps=10 format=3 uid="uid://dk4v07dptvbar"]
+
+[ext_resource type="Script" path="res://Game/explosion.gd" id="1_37tgo"]
+[ext_resource type="Texture2D" uid="uid://c0ug5vij7or5i" path="res://assets/star.png" id="2_8ciuq"]
+
+[sub_resource type="Curve" id="Curve_rlqv8"]
+min_value = -360.0
+max_value = 360.0
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_1sl44"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_h74rm"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="Curve" id="Curve_r2vx6"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_os28h"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="Curve" id="Curve_aowlo"]
+_data = [Vector2(0.00869565, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_vodvk"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[node name="Explosion" type="Node2D"]
+script = ExtResource("1_37tgo")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+modulate = Color(2, 2, 2, 1)
+self_modulate = Color(1.772, 0, 1, 0.929)
+emitting = false
+amount = 80
+one_shot = true
+explosiveness = 1.0
+texture = ExtResource("2_8ciuq")
+emission_shape = 1
+emission_sphere_radius = 64.0
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 350.0
+initial_velocity_max = 1200.0
+angular_velocity_min = -300.0
+angular_velocity_max = 300.0
+angular_velocity_curve = SubResource("Curve_rlqv8")
+radial_accel_min = 40.0
+radial_accel_max = 40.0
+damping_min = 300.0
+damping_max = 400.0
+scale_amount_min = 0.02
+scale_amount_max = 0.02
+scale_amount_curve = SubResource("Curve_1sl44")
+color = Color(1, 0.329412, 1, 0.945098)
+color_ramp = SubResource("Gradient_h74rm")
+
+[node name="CPUParticles2D2" type="CPUParticles2D" parent="."]
+modulate = Color(2, 2, 2, 1)
+emitting = false
+amount = 80
+lifetime = 1.4
+one_shot = true
+explosiveness = 0.9
+texture = ExtResource("2_8ciuq")
+emission_shape = 1
+emission_sphere_radius = 64.0
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 350.0
+initial_velocity_max = 1200.0
+angular_velocity_min = -300.0
+angular_velocity_max = 300.0
+angular_velocity_curve = SubResource("Curve_rlqv8")
+radial_accel_min = 40.0
+radial_accel_max = 40.0
+damping_min = 300.0
+damping_max = 400.0
+scale_amount_min = 0.02
+scale_amount_max = 0.02
+scale_amount_curve = SubResource("Curve_r2vx6")
+color = Color(0.380392, 1, 1, 0.901961)
+color_ramp = SubResource("Gradient_os28h")
+
+[node name="CPUParticles2D3" type="CPUParticles2D" parent="."]
+modulate = Color(2, 2, 2, 1)
+emitting = false
+amount = 80
+lifetime = 1.4
+one_shot = true
+explosiveness = 1.0
+texture = ExtResource("2_8ciuq")
+emission_shape = 1
+emission_sphere_radius = 64.0
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 350.0
+initial_velocity_max = 1200.0
+angular_velocity_min = -300.0
+angular_velocity_max = 300.0
+angular_velocity_curve = SubResource("Curve_rlqv8")
+radial_accel_min = 40.0
+radial_accel_max = 40.0
+damping_min = 300.0
+damping_max = 400.0
+scale_amount_min = 0.02
+scale_amount_max = 0.02
+scale_amount_curve = SubResource("Curve_aowlo")
+color = Color(1.20392, 1, 0, 0.898039)
+color_ramp = SubResource("Gradient_vodvk")
