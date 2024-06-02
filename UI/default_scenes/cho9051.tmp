@@ -1,0 +1,56 @@
+[gd_scene load_steps=3 format=3 uid="uid://bi77sv6vft0qq"]
+
+[ext_resource type="Script" path="res://UI/choosing_player.gd" id="1_u4r50"]
+[ext_resource type="PackedScene" uid="uid://d3u4dc7f7krif" path="res://Game/waifa/background.tscn" id="2_3d56d"]
+
+[node name="ChoosingPlayer" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_u4r50")
+
+[node name="Background" parent="." instance=ExtResource("2_3d56d")]
+
+[node name="NewGameSlot1" type="Button" parent="."]
+layout_mode = 0
+offset_left = 103.0
+offset_top = 106.0
+offset_right = 549.0
+offset_bottom = 289.0
+theme_override_font_sizes/font_size = 50
+text = "New game"
+
+[node name="NewGameSlot2" type="Button" parent="."]
+layout_mode = 0
+offset_left = 103.0
+offset_top = 342.0
+offset_right = 549.0
+offset_bottom = 525.0
+theme_override_font_sizes/font_size = 50
+text = "New game"
+
+[node name="NewGameSlot3" type="Button" parent="."]
+layout_mode = 0
+offset_left = 103.0
+offset_top = 573.0
+offset_right = 549.0
+offset_bottom = 756.0
+theme_override_font_sizes/font_size = 50
+text = "New game"
+
+[node name="MainMenu" type="Button" parent="."]
+layout_mode = 0
+offset_left = 220.0
+offset_top = 945.0
+offset_right = 444.0
+offset_bottom = 1008.0
+theme_override_font_sizes/font_size = 40
+text = "Main Menu"
+
+[connection signal="pressed" from="NewGameSlot1" to="." method="_on_new_game_slot_1_pressed"]
+[connection signal="pressed" from="NewGameSlot2" to="." method="_on_new_game_slot_2_pressed"]
+[connection signal="pressed" from="NewGameSlot3" to="." method="_on_new_game_slot_3_pressed"]
+[connection signal="pressed" from="MainMenu" to="." method="_on_main_menu_pressed"]

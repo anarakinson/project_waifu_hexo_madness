@@ -6,6 +6,7 @@ signal menu_call
 var time_to_check = false
 @onready var congrats = $Congrats
 @onready var dancing_girl = $Congrats/DancingGirl 
+@onready var current_location_label = $LabelCurrentLocation
 @onready var current_level_label = $LabelCurrentLevel
 @onready var start_point = $StartZone
 @onready var hexes = $Hexes
@@ -13,11 +14,14 @@ var time_to_check = false
 @onready var sockets_position = $Sockets/SocketsPosition
 @onready var side_menu_panel = $SideMenuPanel
 @onready var main_scene_camera = $MainSceneCamera
-
+@onready var blocking_screen = $BlockingScreen
+@onready var timer_label = $Label2
 
 @onready var waifa_main = $Waifa
 @onready var background = $Background
 
+var time_to_show : float = 0
+var best_time : String = ""
 var numbers_showed = false
 var first_loop = true
 var hint_active = false
@@ -31,9 +35,11 @@ var MAX_SINGLE_HEXES = HexfigureSingletone.MAX_SINGLE_HEXES
 var MIN_FIGURE_SIZE = HexfigureSingletone.MIN_FIGURE_SIZE
 var MAX_FIGURE_SIZE = HexfigureSingletone.MAX_FIGURE_SIZE
 
-var number_of_sockets
+#var number_of_sockets
 var yet_not_used
 var hexes_numbers = []
+var num_of_deleted_hexes = 0
+
 
 
 var save_path = HexfigureSingletone.save_path
@@ -49,14 +55,16 @@ func _ready():
 	HexfigureSingletone.connect("on_picked_down", _on_picked_down)
 	HexfigureSingletone.connect("time_to_check_winner", _time_to_check_winner)
 
+	blocking_screen.visible = false
 	congrats.visible = false
 	side_menu_panel.visible = true
 	var idx = (current_level + 
 		level_settings_modifier) % background.img_list_size
 	background.load_image(background.image_list[idx])
-	current_level_label.text = (current_location + 
-								"\nLevel: " + str(current_level))
 	
+	current_location_label.text = current_location
+	current_level_label.text = "Level: " + str(current_level)
+
 	# setup before first loop
 	first_loop = true
 	#sock_figure.visible = false
@@ -66,6 +74,8 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	best_time = update_timer(delta)
+	timer_label.text = best_time
 	# on very first loop - create tiles and field
 	if Input.is_action_just_pressed("Menu"):
 		menu_call.emit()
@@ -84,12 +94,16 @@ func _process(delta):
 		
 		# Player win!
 		if (not_inserted <= 0):
+			$Congrats.text += "\n" + best_time
 			victory_condition()
 
 
 func victory_condition():
+	# save level statistics to TXT
+	save_statistics()
 	# wait a little and make effects
 	await get_tree().create_timer(0.1).timeout
+	blocking_screen.visible = true
 	congrats.visible = true
 	dancing_girl.play("win")
 	for hex in hexes.get_children():
@@ -105,7 +119,7 @@ func victory_condition():
 	HexfigureSingletone.location_map[current_location] += 1
 	HexfigureSingletone.players_money += 100
 	HexfigureSingletone.emit_signal("update_money_counter")
-	
+
 	# await before change level
 	# rhytmic vibration
 	rhytmic_vibration()
@@ -115,8 +129,19 @@ func victory_condition():
 
 #######################################################
 
+func update_timer(delta):
+	time_to_show += delta
+	var msec = fmod(time_to_show, 1) * 100
+	var seconds = fmod(time_to_show, 60)
+	var minutes = fmod(time_to_show, 3600) / 60
+	return ("%02d" % minutes) + (":%02d." % seconds) + ("%03d" % msec)
+
+#######################################################
+
 var delete_not_used_list = [
-	range(20, 38) + range(8, 13),
+	#range(20, 38) + range(8, 13),
+	range(20, 38) + range(10, 19),
+	range(20, 38) + [10, 11, 12, 16, 17, 18],
 	range(20, 38) + [
 		1, 3, 5, 7 
 	],
@@ -209,9 +234,6 @@ func get_near_n(number):
 
 # variables for make figures
 func get_numbers_graph_size():
-	number_of_sockets = len(numbers_graph)
-	#var number_of_sockets = 37 # 4x4
-	#var number_of_sockets = len(sock_figure.sockets.get_children())
 	yet_not_used = numbers_graph.keys()
 
 
@@ -400,7 +422,6 @@ func generate_everything():
 	update_socket_fig()
 	generate_hexes()
 	
-	var num_of_deleted_hexes = 0
 	if current_level <= 5:
 		num_of_deleted_hexes = len(hexes_numbers) / 2 - 1
 		num_of_deleted_hexes = 2
@@ -413,7 +434,7 @@ func generate_everything():
 	if (HexfigureSingletone.current_OS == "Android" or HexfigureSingletone.current_OS == "iOS"):
 		for hex in hexes.get_children():
 			hex.scale *= 1.5
-		sock_figure.scale *= 1.5
+		#sock_figure.scale *= 1.5
 	
 	sock_figure.visible = true
 	hexes.visible = true
@@ -529,9 +550,42 @@ func rhytmic_vibration():
 func player_money_check(value : int):
 	if HexfigureSingletone.players_money < value:
 		$Money.bump()
-		print("not enough money")
 		return false
 	HexfigureSingletone.players_money -= value
 	HexfigureSingletone.emit_signal("update_money_counter")
 	HexfigureSingletone.save_game()
 	return true
+
+
+
+
+func save_statistics():
+	
+	var sys_path = OS.get_system_dir(OS.SYSTEM_DIR_DESKTOP)
+	var filepath = sys_path + "/WaifuHexoMadness " + HexfigureSingletone.player_name + " - statistics.txt"
+	var file
+	if not FileAccess.file_exists(filepath):
+		file = FileAccess.open(filepath, FileAccess.WRITE)
+	else:
+		file = FileAccess.open(filepath, FileAccess.READ_WRITE)
+		file.seek_end()
+	file.store_string("location: ")
+	file.store_line(HexfigureSingletone.current_location)
+	file.store_string("level: ")
+	file.store_line(str(HexfigureSingletone.current_level))
+	file.store_string("money: ")
+	file.store_line(str(HexfigureSingletone.players_money))
+	file.store_string("number of figures: ")
+	file.store_line(str(len(hexes_numbers) - num_of_deleted_hexes))
+	file.store_string("number of blocked on field figures: ")
+	file.store_line(str(num_of_deleted_hexes))
+	file.store_string("number of hexes in field: ")
+	file.store_line(str(len(numbers_graph.keys())))
+	file.store_string("max number of hexes in figure: ")
+	file.store_line(str(MAX_FIGURE_SIZE))
+	file.store_string("time: ")
+	file.store_line(str(best_time))
+
+	file.store_line("\n...\n")
+	file.close()
+

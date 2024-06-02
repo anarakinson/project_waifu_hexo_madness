@@ -56,7 +56,9 @@ func previous():
 
 
 func unlock():
-	back.modulate.a8 = 0
+	var tween = get_tree().create_tween()
+	tween.tween_property(back, "modulate:a", 0, 0.3)
+	#back.modulate.a8 = 0
 
 
 func save_image():
@@ -68,4 +70,6 @@ func save_image():
 	var img = waifa.texture.get_image()
 	#img.save_png(sys_path + "/Waifu_Hexo_Madness/" + waifa_pictures[current_pic] + ".png")
 	img.save_png(sys_path + "/Waifu_Hexo_Madness/" + waifa_pictures[current_pic] + ".png")
-	
+
+
+

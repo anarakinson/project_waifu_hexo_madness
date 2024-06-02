@@ -50,6 +50,7 @@ theme_override_font_sizes/font_size = 50
 text = "Quit"
 
 [node name="Button" type="Button" parent="Buttons"]
+visible = false
 layout_mode = 0
 offset_left = 74.0
 offset_top = 129.0

@@ -59,6 +59,14 @@ text = "Level: 0"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="LabelCurrentLocation" type="Label" parent="."]
+offset_left = 19.0
+offset_top = 64.0
+offset_right = 182.0
+offset_bottom = 92.0
+theme_override_font_sizes/font_size = 20
+text = "Current Location"
+
 [node name="StartZone" parent="." instance=ExtResource("4_b0ndu")]
 position = Vector2(650, 155)
 
@@ -72,15 +80,6 @@ offset_bottom = 71.0
 focus_mode = 0
 theme_override_font_sizes/font_size = 20
 text = "Menu"
-
-[node name="Map" type="Button" parent="Buttons"]
-offset_left = 617.0
-offset_top = 21.0
-offset_right = 710.0
-offset_bottom = 76.0
-focus_mode = 0
-theme_override_font_sizes/font_size = 20
-text = "Map"
 
 [node name="Hint" type="Button" parent="Buttons"]
 offset_left = 529.0
@@ -99,10 +98,27 @@ offset_bottom = 153.0
 theme_override_font_sizes/font_size = 20
 text = "OpenMenu"
 
+[node name="Regenerate" type="Button" parent="Buttons"]
+offset_left = 922.0
+offset_top = 19.0
+offset_right = 1019.0
+offset_bottom = 72.0
+focus_mode = 0
+text = "Regenerate"
+
 [node name="SideMenuPanel" parent="." instance=ExtResource("9_ee674")]
 visible = false
 
 [node name="Buttons" type="Node2D" parent="SideMenuPanel"]
+
+[node name="Map" type="Button" parent="SideMenuPanel/Buttons"]
+offset_left = 617.0
+offset_top = 21.0
+offset_right = 710.0
+offset_bottom = 76.0
+focus_mode = 0
+theme_override_font_sizes/font_size = 20
+text = "Map"
 
 [node name="Show_numbers" type="Button" parent="SideMenuPanel/Buttons"]
 offset_left = 822.0
@@ -112,14 +128,6 @@ offset_bottom = 72.0
 focus_mode = 0
 text = "show 
 numbers"
-
-[node name="Regenerate" type="Button" parent="SideMenuPanel/Buttons"]
-offset_left = 922.0
-offset_top = 19.0
-offset_right = 1019.0
-offset_bottom = 72.0
-focus_mode = 0
-text = "Regenerate"
 
 [node name="SkipLevel" type="Button" parent="SideMenuPanel/Buttons"]
 offset_left = 715.0
@@ -193,14 +201,30 @@ position = Vector2(333, 1153)
 [node name="Money" parent="." instance=ExtResource("13_4yi3i")]
 position = Vector2(315, 53)
 
+[node name="BlockingScreen" type="ColorRect" parent="."]
+visible = false
+modulate = Color(1, 1, 1, 0)
+offset_left = -170.0
+offset_top = -166.0
+offset_right = 1814.0
+offset_bottom = 1275.0
+
+[node name="Label2" type="Label" parent="."]
+offset_left = 851.0
+offset_top = 43.0
+offset_right = 942.0
+offset_bottom = 71.0
+theme_override_font_sizes/font_size = 20
+text = "00:00:000"
+
 [connection signal="menu_call" from="." to="." method="_on_menu_call"]
 [connection signal="recreate" from="." to="." method="_on_recreate"]
 [connection signal="pressed" from="Buttons/Menu" to="." method="_on_menu_pressed"]
-[connection signal="pressed" from="Buttons/Map" to="." method="_on_map_pressed"]
 [connection signal="pressed" from="Buttons/Hint" to="." method="_on_hint_pressed"]
 [connection signal="pressed" from="Buttons/SideMenu" to="." method="_on_side_menu_pressed"]
+[connection signal="pressed" from="Buttons/Regenerate" to="." method="_on_regenerate_pressed"]
+[connection signal="pressed" from="SideMenuPanel/Buttons/Map" to="." method="_on_map_pressed"]
 [connection signal="pressed" from="SideMenuPanel/Buttons/Show_numbers" to="." method="_on_show_numbers_pressed"]
-[connection signal="pressed" from="SideMenuPanel/Buttons/Regenerate" to="." method="_on_regenerate_pressed"]
 [connection signal="pressed" from="SideMenuPanel/Buttons/SkipLevel" to="." method="_on_skip_level_pressed"]
 [connection signal="pressed" from="SideMenuPanel/Buttons/TestWithConfigs" to="." method="_on_test_with_configs_pressed"]
 [connection signal="pressed" from="SideMenuPanel/Buttons/Gallery" to="." method="_on_gallery_pressed"]

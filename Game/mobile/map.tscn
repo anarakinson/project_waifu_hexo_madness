@@ -3,3 +3,6 @@
 [ext_resource type="PackedScene" uid="uid://chtng7wt06pcc" path="res://Game/default_scenes/map.tscn" id="1_ymd1p"]
 
 [node name="Map" instance=ExtResource("1_ymd1p")]
+
+[node name="Money" parent="." index="4"]
+scale = Vector2(1.5, 1.5)

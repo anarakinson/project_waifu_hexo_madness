@@ -5,6 +5,8 @@ extends Control
 @onready var max_figures_button = $MaxFigures/OptionButton
 @onready var single_hexes_button = $SingleHexes/OptionButton
 
+var gold_amount_value = HexfigureSingletone.players_money
+
 
 const VALUES_ARRAY : Array[String] = [
 	"0", "1", "2", "3", "4", "5", 
@@ -14,6 +16,9 @@ const VALUES_ARRAY : Array[String] = [
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	$Gold/LineEdit.placeholder_text = str(gold_amount_value)
+	$Gold/AcceptButton.disabled = true
+		
 	$MaxHexes/Label.text += str(HexfigureSingletone.MAX_FIGURE_SIZE)
 	$MinHexes/Label.text += str(HexfigureSingletone.MIN_FIGURE_SIZE)
 	$MaxFigures/Label.text += str(HexfigureSingletone.MAX_HEXFIGURE_NUMBERS)
@@ -83,3 +88,16 @@ func _notification(what):
 	if what == NOTIFICATION_WM_GO_BACK_REQUEST:
 		SceneTransition.change_scene_to_file(HexfigureSingletone.quit_scene) 
 		
+
+
+func _on_accept_button_pressed():
+	$Gold/LineEdit.placeholder_text = str(gold_amount_value)
+	HexfigureSingletone.players_money = gold_amount_value
+
+
+func _on_line_edit_text_changed(new_text):
+	if new_text.is_valid_float():
+		gold_amount_value = int(new_text)
+		$Gold/AcceptButton.disabled = false
+	else: 
+		$Gold/AcceptButton.disabled = true

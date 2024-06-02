@@ -1,0 +1,107 @@
+[gd_scene load_steps=2 format=3 uid="uid://flh2ekxphgqk"]
+
+[ext_resource type="PackedScene" uid="uid://c0v6c0hr14ubu" path="res://Game/default_scenes/main.tscn" id="1_3ljlg"]
+
+[node name="Main" instance=ExtResource("1_3ljlg")]
+
+[node name="Waifa" parent="." index="1"]
+position = Vector2(315, 602)
+scale = Vector2(2, 2)
+
+[node name="SocketFigure" parent="Sockets" index="0"]
+position = Vector2(318, 424)
+
+[node name="Congrats" parent="." index="4"]
+offset_left = 120.0
+offset_top = 420.0
+offset_right = 470.0
+offset_bottom = 492.0
+
+[node name="DancingGirl" parent="Congrats" index="0"]
+frame_progress = 0.0166253
+
+[node name="LabelCurrentLevel" parent="." index="5"]
+offset_left = 467.0
+offset_top = 107.0
+offset_right = 606.0
+offset_bottom = 152.0
+
+[node name="StartZone" parent="." index="6"]
+position = Vector2(118, 801)
+
+[node name="Buttons" parent="." index="7"]
+scale = Vector2(1.5, 1.5)
+
+[node name="Map" parent="Buttons" index="1"]
+offset_left = 326.0
+offset_top = 12.0
+offset_right = 419.0
+offset_bottom = 67.0
+
+[node name="Hint" parent="Buttons" index="2"]
+offset_left = 230.667
+offset_top = 11.3333
+offset_right = 306.667
+offset_bottom = 66.3333
+
+[node name="SideMenu" parent="Buttons" index="3"]
+offset_left = 23.3333
+offset_top = 12.6667
+offset_right = 118.333
+offset_bottom = 76.6667
+text = "Open
+Menu"
+
+[node name="SideMenuPanel" parent="." index="8"]
+top_level = true
+
+[node name="Buttons" parent="SideMenuPanel" index="3"]
+scale = Vector2(1.5, 1.5)
+
+[node name="Show_numbers" parent="SideMenuPanel/Buttons" index="0"]
+offset_left = 26.6667
+offset_top = 334.667
+offset_right = 116.667
+offset_bottom = 388.667
+
+[node name="Regenerate" parent="SideMenuPanel/Buttons" index="1"]
+offset_left = 18.6667
+offset_top = 226.667
+offset_right = 115.667
+offset_bottom = 279.667
+
+[node name="SkipLevel" parent="SideMenuPanel/Buttons" index="2"]
+offset_left = 13.3333
+offset_top = 134.0
+offset_right = 110.333
+offset_bottom = 188.0
+
+[node name="TestWithConfigs" parent="SideMenuPanel/Buttons" index="3"]
+offset_left = 36.6667
+offset_top = 395.333
+offset_right = 99.6667
+offset_bottom = 472.333
+
+[node name="Gallery" parent="SideMenuPanel/Buttons" index="4"]
+offset_left = 36.0
+offset_top = 288.0
+offset_right = 107.0
+offset_bottom = 324.0
+
+[node name="Explosion" parent="." index="13"]
+position = Vector2(319, 418)
+scale = Vector2(1.5, 1.5)
+
+[node name="Explosion2" parent="." index="14"]
+position = Vector2(333, 1203)
+scale = Vector2(3, 3)
+
+[node name="Money" parent="." index="15"]
+position = Vector2(65, 157)
+scale = Vector2(1.5, 1.5)
+
+[node name="Label2" parent="." index="17"]
+offset_left = 223.0
+offset_top = 22.0
+offset_right = 314.0
+offset_bottom = 50.0

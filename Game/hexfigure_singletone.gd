@@ -20,7 +20,8 @@ var available_pictures = [
 	
 ]
 
-var players_money = 120
+var players_money = 120 #_000_000
+var player_name = "Nonename"
 
 
 #var current_OS = OS.get_name()
@@ -35,6 +36,7 @@ var save_path = "user://saves/variable.save"
 
 var menu_scene = "res://UI/desktop/menu.tscn"
 var main_scene = "res://Game/desktop/main.tscn"
+var choose_player_scene = "res://UI/desctop/choosing_player.tscn"
 var map_scene = "res://Game/desktop/map.tscn"
 var gallery_scene = "res://Game/desktop/gallery.tscn"
 var quit_scene = "res://UI/desktop/quit_screen.tscn"
@@ -47,6 +49,8 @@ var MAX_HEXFIGURE_NUMBERS = 11
 var MAX_SINGLE_HEXES = 0
 var MIN_FIGURE_SIZE = 2
 var MAX_FIGURE_SIZE = 7
+
+
 
 
 # Called when the node enters the scene tree for the first time.
@@ -67,6 +71,7 @@ func _ready():
 		"Android", "iOS":
 			menu_scene = "res://UI/mobile/menu.tscn"
 			main_scene = "res://Game/mobile/main.tscn"
+			choose_player_scene = "res://UI/mobile/choosing_player.tscn"
 			map_scene = "res://Game/mobile/map.tscn"
 			gallery_scene = "res://Game/mobile/gallery.tscn"
 			quit_scene = "res://UI/mobile/quit_screen.tscn"
@@ -123,7 +128,8 @@ func save_game():
 	file.store_var(location_map)
 	file.store_var(available_pictures)
 	file.store_var(players_money)
-	
+	file.store_var(player_name)
+	file.close()
 
 
 func load_game():
@@ -135,6 +141,8 @@ func load_game():
 		location_map = file.get_var()
 		available_pictures = file.get_var()
 		players_money = file.get_var()
+		player_name = file.get_var()
+		file.close()
 	else:
 		pass
 		#current_level = 0

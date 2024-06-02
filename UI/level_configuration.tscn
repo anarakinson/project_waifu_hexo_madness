@@ -83,6 +83,29 @@ layout_mode = 2
 [node name="OptionButton" type="OptionButton" parent="SingleHexes"]
 layout_mode = 2
 
+[node name="Gold" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 26.0
+offset_top = 434.0
+offset_right = 380.0
+offset_bottom = 474.0
+scale = Vector2(2.2, 2.2)
+
+[node name="Label" type="Label" parent="Gold"]
+layout_mode = 2
+text = "Gold amount: "
+
+[node name="VSeparator" type="VSeparator" parent="Gold"]
+layout_mode = 2
+
+[node name="LineEdit" type="LineEdit" parent="Gold"]
+layout_mode = 2
+placeholder_text = "120"
+
+[node name="AcceptButton" type="Button" parent="Gold"]
+layout_mode = 2
+text = "Accept"
+
 [node name="Button" type="Button" parent="."]
 layout_mode = 0
 offset_left = 263.0
@@ -129,5 +152,7 @@ offset_bottom = 898.0
 theme_override_font_sizes/font_size = 15
 text = "SystemInfo: "
 
+[connection signal="text_changed" from="Gold/LineEdit" to="." method="_on_line_edit_text_changed"]
+[connection signal="pressed" from="Gold/AcceptButton" to="." method="_on_accept_button_pressed"]
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="PicturePath" to="." method="_on_picture_path_pressed"]

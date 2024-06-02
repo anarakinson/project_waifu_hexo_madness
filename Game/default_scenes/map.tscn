@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://chtng7wt06pcc"]
+[gd_scene load_steps=5 format=3 uid="uid://chtng7wt06pcc"]
 
 [ext_resource type="Script" path="res://Game/map.gd" id="1_33i6r"]
 [ext_resource type="PackedScene" uid="uid://d3u4dc7f7krif" path="res://Game/waifa/background.tscn" id="1_q8pg2"]
 [ext_resource type="PackedScene" uid="uid://c1vvywc77g8lj" path="res://Game/point_of_interest.tscn" id="2_kd0am"]
+[ext_resource type="PackedScene" uid="uid://bo2wcj7cpqwb0" path="res://Game/money.tscn" id="4_baay3"]
 
 [node name="Map" type="Node2D"]
 script = ExtResource("1_33i6r")
@@ -43,5 +44,8 @@ scale = Vector2(1.5, 1.5)
 theme_override_font_sizes/font_size = 20
 text = "Gallery"
 
-[connection signal="pressed" from="Gallery" to="." method="_on_button_pressed"]
+[node name="Money" parent="." instance=ExtResource("4_baay3")]
+position = Vector2(64, 47)
+
 [connection signal="pressed" from="Gallery" to="." method="_on_gallery_pressed"]
+[connection signal="pressed" from="Gallery" to="." method="_on_button_pressed"]

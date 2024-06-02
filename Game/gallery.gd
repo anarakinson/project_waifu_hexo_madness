@@ -41,9 +41,14 @@ func _on_previous_pressed():
 	
 
 func _on_unlock_pressed():
-	HexfigureSingletone.available_pictures.append(gallery_waifa.current_pic)
-	update_waifu()
-	HexfigureSingletone.save_game()
+	if HexfigureSingletone.players_money >= 100:
+		HexfigureSingletone.available_pictures.append(gallery_waifa.current_pic)
+		update_waifu()
+		HexfigureSingletone.players_money -= 100
+		HexfigureSingletone.update_money_counter.emit()
+		HexfigureSingletone.save_game()
+	else:
+		$Money.bump()
 
 
 func _on_save_img_pressed():
