@@ -16,11 +16,18 @@ var location_map : Dictionary = {
 	"School" : 0,
 }
 
-var available_pictures = [
-	
-]
+var available_pictures = {
+	"Waifa1" : [],
+	"Waifa2" : [],
+	"Waifa3" : [],
+	"Waifa4" : [],
+	"Waifa5" : [],
+	"Waifa6" : [],
+	"Waifa7" : [],
+	"Waifa8" : [],
+}
 
-var players_money = 120 #_000_000
+var players_money = 500 #_000_000
 var player_name = "Nonename"
 
 
@@ -41,6 +48,9 @@ var map_scene = "res://Game/desktop/map.tscn"
 var gallery_scene = "res://Game/desktop/gallery.tscn"
 var quit_scene = "res://UI/desktop/quit_screen.tscn"
 var test_config_scene = "res://UI/level_configuration.tscn"
+
+var ads_scene = "res://addons/admob/sample/Main.tscn"
+#var ads_scene = "res://addons/admob/test/Example.tscn"
 
 var assets_path = "res://assets/desktop/"
 

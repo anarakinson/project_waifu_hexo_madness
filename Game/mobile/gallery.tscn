@@ -1,50 +1,19 @@
-[gd_scene load_steps=2 format=3 uid="uid://cuu1q83c6s31r"]
+[gd_scene load_steps=3 format=3 uid="uid://cuu1q83c6s31r"]
 
-[ext_resource type="PackedScene" uid="uid://c0tr1j2q7f2wl" path="res://Game/default_scenes/gallery.tscn" id="1_qcvqn"]
+[ext_resource type="PackedScene" uid="uid://btysc62yreaw6" path="res://Game/default_scenes/gallery.tscn" id="1_qcvqn"]
+[ext_resource type="PackedScene" uid="uid://dqq3a5ixis2dk" path="res://Game/mobile/waifa_choosing.tscn" id="2_3dpgg"]
 
 [node name="Gallery" instance=ExtResource("1_qcvqn")]
 
-[node name="Map" parent="Buttons" index="0"]
-offset_left = 256.0
-offset_top = 68.0
-offset_right = 358.0
-offset_bottom = 136.0
+[node name="Money" parent="." index="2"]
+position = Vector2(50, 49)
 scale = Vector2(1.5, 1.5)
 
-[node name="Next" parent="Buttons" index="1"]
-offset_left = 454.0
-offset_top = 125.0
-offset_right = 509.0
-offset_bottom = 161.0
-scale = Vector2(1.5, 1.5)
+[node name="WaifaChoosing" parent="." index="4" instance=ExtResource("2_3dpgg")]
+visible = false
 
-[node name="Previous" parent="Buttons" index="2"]
-offset_left = 100.0
-offset_top = 122.0
-offset_right = 175.0
-offset_bottom = 153.0
-scale = Vector2(1.5, 1.5)
-
-[node name="Unlock" parent="Buttons" index="3"]
-offset_left = 233.0
-offset_top = 1041.0
-offset_right = 295.0
-offset_bottom = 1072.0
-scale = Vector2(1.5, 1.5)
-
-[node name="SaveImg" parent="Buttons" index="4"]
-offset_left = 392.0
-offset_top = 1043.0
-offset_right = 445.0
-offset_bottom = 1079.0
-scale = Vector2(1.5, 1.5)
-
-[node name="PicNumber" parent="." index="3"]
-offset_left = 80.0
-offset_top = 1058.0
-offset_right = 199.0
-offset_bottom = 1086.0
-
-[node name="Money" parent="." index="4"]
-position = Vector2(63, 53)
-scale = Vector2(1.5, 1.5)
+[connection signal="pressed" from="Buttons/ButtonWaifa1" to="." method="_on_button_waifa_1_pressed"]
+[connection signal="pressed" from="Buttons/ButtonWaifa2" to="." method="_on_button_waifa_2_pressed"]
+[connection signal="pressed" from="Buttons/ButtonWaifa3" to="." method="_on_button_waifa_3_pressed"]
+[connection signal="hide_button_pressed" from="WaifaChoosing" to="." method="_on_waifa_choosing_hide_button_pressed"]
+[connection signal="not_enough_money" from="WaifaChoosing" to="." method="_on_waifa_choosing_not_enough_money"]

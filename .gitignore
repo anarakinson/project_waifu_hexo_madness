@@ -1,3 +1,4 @@
+
 # Godot 4+ specific ignores
 .godot/
 
@@ -13,3 +14,11 @@ export_presets.cfg
 .mono/
 data_*/
 mono_crash.*.json
+
+# release
+*.apk
+
+android/
+addons/
+release/ 
+release_andr/

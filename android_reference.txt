@@ -1,0 +1,14 @@
+sdk path:
+C:\Users\main\AppData\Local\Android\Sdk
+
+jdk path: 
+C:\Program Files\Java\jdk-22\bin
+
+in the "Program Files/java/jdk-????/bin" run command as administrator
+keystore generation command:
+./keytool.exe -genkey -v -keystore debug.keystore -storepass password -alias androiddebugkey -keypass android -keyalg RSA -keysize 2048 -validity 10000 -dname "C=US, O=Android, CN=Android Debug"
+
+
+
+generate keys fo yandex direct
+.\keytool.exe -list -v -keystore .\debug.keystore -alias androiddebugkey -keypass android

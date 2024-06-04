@@ -1,5 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://pq1d7ndk5tso"]
+[gd_scene load_steps=3 format=3 uid="uid://pq1d7ndk5tso"]
 
-[ext_resource type="PackedScene" uid="uid://c0tr1j2q7f2wl" path="res://Game/default_scenes/gallery.tscn" id="1_ow473"]
+[ext_resource type="PackedScene" uid="uid://btysc62yreaw6" path="res://Game/default_scenes/gallery.tscn" id="1_4anro"]
+[ext_resource type="PackedScene" uid="uid://bmnxckyt1fmr2" path="res://Game/desktop/waifa_choosing.tscn" id="2_2lr7h"]
 
-[node name="Gallery" instance=ExtResource("1_ow473")]
+[node name="Gallery" instance=ExtResource("1_4anro")]
+
+[node name="WaifaChoosing" parent="." index="4" instance=ExtResource("2_2lr7h")]
+visible = false

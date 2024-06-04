@@ -6,6 +6,7 @@ extends Node2D
 
 var gallery_prefix = "res://assets/girls/"
 var unavailable_picture = "back_of_a_card.jpg"
+var waifa_picture = "cyberpunk_maiden_1"
 var waifa_pictures = [
 	"cyberpunk_maiden_1",
 	"cyberpunk_maiden_2",
@@ -20,7 +21,8 @@ var waifa_pictures = [
 ]
 var current_pic = 0
 
-var available_pictures = HexfigureSingletone.available_pictures
+var current_waifa = "Waifa1"
+var available_pictures = HexfigureSingletone.available_pictures[current_waifa]
 
 
 
@@ -60,6 +62,17 @@ func unlock():
 	tween.tween_property(back, "modulate:a", 0, 0.3)
 	#back.modulate.a8 = 0
 
+func lock():
+	back.modulate.a8 = 255
+	
+func refresh():
+	waifa.texture = load(gallery_prefix + waifa_pictures[current_pic] + ".jpg")
+	if current_pic in available_pictures:
+		back.modulate.a8 = 0
+	else:
+		back.modulate.a8 = 255
+
+
 
 func save_image():
 	var sys_path = OS.get_system_dir(OS.SYSTEM_DIR_PICTURES)
@@ -68,8 +81,7 @@ func save_image():
 	#DirAccess.make_dir_absolute("user://saves")
 
 	var img = waifa.texture.get_image()
-	#img.save_png(sys_path + "/Waifu_Hexo_Madness/" + waifa_pictures[current_pic] + ".png")
 	img.save_png(sys_path + "/Waifu_Hexo_Madness/" + waifa_pictures[current_pic] + ".png")
-
+	#img.save_png(sys_path + "/Waifu_Hexo_Madness/" + waifa_picture + ".png")
 
 

@@ -1,0 +1,54 @@
+[gd_scene load_steps=2 format=3 uid="uid://dqq3a5ixis2dk"]
+
+[ext_resource type="PackedScene" uid="uid://c0tr1j2q7f2wl" path="res://Game/default_scenes/waifa_choosing.tscn" id="1_61kho"]
+
+[node name="WaifaChoosing" instance=ExtResource("1_61kho")]
+
+[node name="HideButton" parent="." index="0"]
+visible = false
+
+[node name="HideButton2" parent="." index="1"]
+offset_left = 277.0
+offset_top = 1070.0
+offset_right = 419.0
+offset_bottom = 1120.0
+theme_override_font_sizes/font_size = 30
+
+[node name="Next" parent="Buttons" index="0"]
+offset_left = 470.0
+offset_top = 1030.0
+offset_right = 548.0
+offset_bottom = 1080.0
+theme_override_font_sizes/font_size = 30
+
+[node name="Previous" parent="Buttons" index="1"]
+offset_left = 88.0
+offset_top = 1027.0
+offset_right = 220.0
+offset_bottom = 1077.0
+theme_override_font_sizes/font_size = 30
+
+[node name="Unlock" parent="Buttons" index="2"]
+offset_left = 247.0
+offset_top = 992.0
+offset_right = 354.0
+offset_bottom = 1042.0
+theme_override_font_sizes/font_size = 30
+
+[node name="SaveImg" parent="Buttons" index="3"]
+offset_left = 370.0
+offset_top = 991.0
+offset_right = 445.0
+offset_bottom = 1041.0
+theme_override_font_sizes/font_size = 30
+
+[node name="GalleryWaifa" parent="." index="3"]
+position = Vector2(319, 543)
+
+[node name="PicNumber" parent="." index="4"]
+offset_left = 85.0
+offset_top = 94.0
+offset_right = 204.0
+offset_bottom = 122.0
+
+[connection signal="swipe" from="." to="." method="_on_swipe"]

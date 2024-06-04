@@ -71,9 +71,6 @@ offset_bottom = 741.667
 [node name="SideMenuPanel" parent="." index="9"]
 top_level = true
 
-[node name="Buttons" parent="SideMenuPanel" index="3"]
-scale = Vector2(1.5, 1.5)
-
 [node name="Map" parent="SideMenuPanel/Buttons" index="0"]
 offset_left = 20.6666
 offset_top = 217.333
@@ -81,16 +78,20 @@ offset_right = 113.667
 offset_bottom = 272.333
 
 [node name="Show_numbers" parent="SideMenuPanel/Buttons" index="1"]
-offset_left = 26.6667
-offset_top = 334.667
-offset_right = 116.667
-offset_bottom = 388.667
+offset_left = 17.0
+offset_top = 488.0
+offset_right = 384.0
+offset_bottom = 565.0
+theme_override_font_sizes/font_size = 50
+text = "Show numbers"
 
 [node name="SkipLevel" parent="SideMenuPanel/Buttons" index="2"]
-offset_left = 13.3333
-offset_top = 134.0
-offset_right = 110.333
-offset_bottom = 188.0
+offset_left = 22.0
+offset_top = 580.0
+offset_right = 257.0
+offset_bottom = 657.0
+theme_override_font_sizes/font_size = 50
+text = "Skip level"
 
 [node name="TestWithConfigs" parent="SideMenuPanel/Buttons" index="3"]
 offset_left = 36.6667

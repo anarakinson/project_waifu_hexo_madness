@@ -9,3 +9,26 @@ offset_left = 157.0
 offset_top = 196.0
 offset_right = 527.0
 offset_bottom = 850.0
+
+[node name="Start" parent="Buttons" index="0"]
+offset_left = 70.0
+offset_right = 295.0
+
+[node name="Quit" parent="Buttons" index="1"]
+offset_left = 64.0
+offset_top = 392.0
+offset_right = 289.0
+offset_bottom = 476.0
+
+[node name="Ads" parent="Buttons" index="3"]
+offset_left = 345.0
+offset_top = -152.0
+offset_right = 441.0
+offset_bottom = -75.0
+
+[node name="Gallery" parent="Buttons" index="4"]
+visible = false
+offset_left = 68.0
+offset_top = 337.0
+offset_right = 287.0
+offset_bottom = 421.0

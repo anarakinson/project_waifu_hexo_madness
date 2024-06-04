@@ -1,66 +1,74 @@
 extends Node2D
 
-@onready var gallery_waifa = $GalleryWaifa
-@onready var unlock_button = $Buttons/Unlock
-@onready var pic_number = $PicNumber
-@onready var save_button = $Buttons/SaveImg
 
+@onready var side_menu_panel = $SideMenuPanel
+@onready var waifa_choosing_node = $WaifaChoosing
+
+
+var waifa_pictures = {
+	"Waifa1" : [
+		"cyberpunk_maiden_1",
+		"cyberpunk_maiden_2",
+		"cyberpunk_maiden_3",
+		"cyberpunk_maiden_4",
+	],
+	"Waifa2" : [
+		"cyberpunk_maiden_5",
+		"cyberpunk_maiden_6",
+		"cyberpunk_maiden_7",
+	],
+	"Waifa3" : [
+		"cyberpunk_maiden_8",
+		"cyberpunk_maiden_9",
+		"cyberpunk_maiden_10",
+	]
+}
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	update_waifu()
-	pic_number.text = "Current pic: " + str(gallery_waifa.current_pic)
+	waifa_choosing_node.visible = false
+	pass # Replace with function body.
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
 
 
-
 func _notification(what):
 	if what == NOTIFICATION_WM_GO_BACK_REQUEST:
 		SceneTransition.change_scene_to_file(HexfigureSingletone.map_scene) 
-		
 
 
-func _on_map_pressed():
-	SceneTransition.change_scene_to_file(HexfigureSingletone.map_scene) 
+func _on_side_menu_pressed():
+	side_menu_panel.is_opened = true
 
 
-func _on_next_pressed():
-	gallery_waifa.next()
-	update_waifu()
-	pic_number.text = "Current pic: " + str(gallery_waifa.current_pic)
+func _on_button_waifa_1_pressed():
+	$Buttons.visible = false
+	waifa_choosing_node.gallery_waifa.waifa_pictures = waifa_pictures["Waifa1"]
+	waifa_choosing_node.current_waifa = "Waifa1"
+	waifa_choosing_node.update_available()
+	waifa_choosing_node.visible = true
 	
+func _on_button_waifa_2_pressed():
+	$Buttons.visible = false
+	waifa_choosing_node.gallery_waifa.waifa_pictures = waifa_pictures["Waifa2"]
+	waifa_choosing_node.current_waifa = "Waifa2"
+	waifa_choosing_node.update_available()
+	waifa_choosing_node.visible = true
+
+func _on_button_waifa_3_pressed():
+	$Buttons.visible = false
+	waifa_choosing_node.gallery_waifa.waifa_pictures = waifa_pictures["Waifa3"]
+	waifa_choosing_node.current_waifa = "Waifa3"
+	waifa_choosing_node.update_available()
+	waifa_choosing_node.visible = true
 
 
-func _on_previous_pressed():
-	gallery_waifa.previous()
-	update_waifu()
-	pic_number.text = "Current pic: " + str(gallery_waifa.current_pic)
-	
 
-func _on_unlock_pressed():
-	if HexfigureSingletone.players_money >= 100:
-		HexfigureSingletone.available_pictures.append(gallery_waifa.current_pic)
-		update_waifu()
-		HexfigureSingletone.players_money -= 100
-		HexfigureSingletone.update_money_counter.emit()
-		HexfigureSingletone.save_game()
-	else:
-		$Money.bump()
+func _on_waifa_choosing_not_enough_money():
+	$Money.bump()
 
-
-func _on_save_img_pressed():
-	gallery_waifa.save_image()
-
-
-func update_waifu():
-	if gallery_waifa.current_pic in HexfigureSingletone.available_pictures:
-		gallery_waifa.unlock()
-		unlock_button.disabled = true
-		save_button.disabled = false
-	else:
-		unlock_button.disabled = false
-		save_button.disabled = true
-
+func _on_waifa_choosing_hide_button_pressed():
+	$Buttons.visible = true

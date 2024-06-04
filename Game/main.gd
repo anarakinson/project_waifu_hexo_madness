@@ -57,7 +57,6 @@ func _ready():
 
 	blocking_screen.visible = false
 	congrats.visible = false
-	side_menu_panel.visible = true
 	var idx = (current_level + 
 		level_settings_modifier) % background.img_list_size
 	background.load_image(background.image_list[idx])

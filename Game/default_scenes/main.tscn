@@ -107,11 +107,11 @@ focus_mode = 0
 text = "Regenerate"
 
 [node name="SideMenuPanel" parent="." instance=ExtResource("9_ee674")]
-visible = false
 
 [node name="Buttons" type="Node2D" parent="SideMenuPanel"]
 
 [node name="Map" type="Button" parent="SideMenuPanel/Buttons"]
+visible = false
 offset_left = 617.0
 offset_top = 21.0
 offset_right = 710.0
@@ -139,6 +139,7 @@ text = "Skip
 level"
 
 [node name="TestWithConfigs" type="Button" parent="SideMenuPanel/Buttons"]
+visible = false
 offset_left = 1060.0
 offset_top = 85.0
 offset_right = 1123.0
@@ -149,6 +150,7 @@ with
 configs"
 
 [node name="Gallery" type="Button" parent="SideMenuPanel/Buttons"]
+visible = false
 offset_left = 947.0
 offset_top = 95.0
 offset_right = 1018.0

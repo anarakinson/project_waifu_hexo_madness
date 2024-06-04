@@ -1,6 +1,8 @@
 extends Node2D
 
-var time_to_quit = false
+#var time_to_quit = false
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$Background.load_image($Background.quitscreen_image)
@@ -12,7 +14,11 @@ func _ready():
 func _process(delta):
 	await get_tree().create_timer(5.).timeout
 	print("QUIT")
-	time_to_quit = true
+	#time_to_quit = true
 	get_tree().quit() # Replace with function body.
 
+
+func _notification(what):
+	if what == NOTIFICATION_WM_GO_BACK_REQUEST:
+		get_tree().quit()
 

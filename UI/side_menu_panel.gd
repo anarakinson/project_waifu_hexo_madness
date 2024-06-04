@@ -12,7 +12,8 @@ func _ready():
 	start_position = menu_panel.position
 	position.x = -menu_width * 2
 	is_opened = false
-
+	visible = true
+	$HideButton.visible = false
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -31,12 +32,30 @@ func move_menu(delta):
 			Vector2(-menu_width * 2, 0), 
 			1500 * delta
 		)
+		$HideButton.visible = false
 	else:
 		position = position.move_toward(
 			Vector2(0, 0), 
 			1500 * delta
 		)
+		$HideButton.visible = true
 
 
 func _on_open_menu_pressed():
 	is_opened = true
+
+
+func _on_hide_button_pressed():
+	is_opened = false
+
+
+func _on_map_pressed():
+	SceneTransition.change_scene_to_file(HexfigureSingletone.map_scene) 
+
+
+func _on_gallery_pressed():
+	SceneTransition.change_scene_to_file(HexfigureSingletone.gallery_scene) 
+
+
+func _on_test_with_configs_pressed():
+	SceneTransition.change_scene_to_file(HexfigureSingletone.test_config_scene) 

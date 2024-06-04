@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://cuu1q83c6s31r"]
+
+[ext_resource type="PackedScene" uid="uid://btysc62yreaw6" path="res://Game/default_scenes/gallery.tscn" id="1_qcvqn"]
+
+[node name="Gallery" instance=ExtResource("1_qcvqn")]
+
+[node name="Map" parent="SideMenuPanel" index="3"]
+layout_mode = 0

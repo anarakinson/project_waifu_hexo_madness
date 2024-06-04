@@ -12,12 +12,27 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_evaem")
 
+[node name="HideButton" type="Button" parent="."]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_top = -78.0
+offset_right = 2070.0
+offset_bottom = 1223.0
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = -345.0
+offset_right = 474.0
+offset_bottom = 1161.0
+color = Color(1, 1, 1, 0)
+
 [node name="MenuPanel" type="Sprite2D" parent="."]
 position = Vector2(59, 576.157)
 scale = Vector2(2.04265, 2.15271)
 texture = ExtResource("2_5ghby")
 
 [node name="CloseMenu" type="Button" parent="."]
+layout_mode = 0
 offset_left = 256.0
 offset_top = 28.0
 offset_right = 372.0
@@ -38,5 +53,38 @@ scale = Vector2(1.5, 1.5)
 theme_override_font_sizes/font_size = 20
 text = "OpenMenu"
 
+[node name="Map" type="Button" parent="."]
+layout_mode = 0
+offset_left = 66.0
+offset_top = 310.0
+offset_right = 180.0
+offset_bottom = 387.0
+theme_override_font_sizes/font_size = 50
+text = "Map"
+
+[node name="Gallery" type="Button" parent="."]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 403.0
+offset_right = 219.0
+offset_bottom = 480.0
+theme_override_font_sizes/font_size = 50
+text = "Gallery"
+
+[node name="TestWithConfigs" type="Button" parent="."]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 743.0
+offset_right = 246.0
+offset_bottom = 889.0
+focus_mode = 0
+theme_override_font_sizes/font_size = 50
+text = "Testing 
+page"
+
+[connection signal="pressed" from="HideButton" to="." method="_on_hide_button_pressed"]
 [connection signal="pressed" from="CloseMenu" to="." method="_on_close_menu_pressed"]
 [connection signal="pressed" from="OpenMenu" to="." method="_on_open_menu_pressed"]
+[connection signal="pressed" from="Map" to="." method="_on_map_pressed"]
+[connection signal="pressed" from="Gallery" to="." method="_on_gallery_pressed"]
+[connection signal="pressed" from="TestWithConfigs" to="." method="_on_test_with_configs_pressed"]

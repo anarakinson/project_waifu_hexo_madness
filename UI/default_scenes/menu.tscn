@@ -31,20 +31,20 @@ size_flags_vertical = 4
 
 [node name="Start" type="Button" parent="Buttons"]
 layout_mode = 0
-offset_left = 74.0
-offset_top = 230.0
-offset_right = 299.0
-offset_bottom = 308.0
+offset_left = 64.0
+offset_top = 285.0
+offset_right = 289.0
+offset_bottom = 363.0
 focus_mode = 0
 theme_override_font_sizes/font_size = 50
 text = "Start"
 
 [node name="Quit" type="Button" parent="Buttons"]
 layout_mode = 0
-offset_left = 74.0
-offset_top = 334.0
-offset_right = 299.0
-offset_bottom = 418.0
+offset_left = 71.0
+offset_top = 396.0
+offset_right = 296.0
+offset_bottom = 480.0
 focus_mode = 0
 theme_override_font_sizes/font_size = 50
 text = "Quit"
@@ -60,12 +60,39 @@ focus_mode = 0
 theme_override_font_sizes/font_size = 50
 text = "Continue"
 
+[node name="Ads" type="Button" parent="Buttons"]
+layout_mode = 0
+offset_left = 445.0
+offset_top = 26.0
+offset_right = 541.0
+offset_bottom = 103.0
+theme_override_font_sizes/font_size = 50
+text = "Ads"
+
+[node name="Gallery" type="Button" parent="Buttons"]
+layout_mode = 0
+offset_left = 712.0
+offset_top = 135.0
+offset_right = 931.0
+offset_bottom = 219.0
+theme_override_font_sizes/font_size = 50
+text = "Gallery"
+
 [node name="SubViewport" type="SubViewport" parent="."]
 size = Vector2i(720, 1280)
 
 [node name="Camera2D" type="Camera2D" parent="SubViewport"]
 process_callback = 0
 
+[node name="Label" type="Label" parent="."]
+offset_left = 150.0
+offset_top = 48.0
+offset_right = 320.0
+offset_bottom = 71.0
+text = "AAAAAAAAAAAAAAAA"
+
 [connection signal="pressed" from="Buttons/Start" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="Buttons/Quit" to="." method="_on_quit_pressed"]
 [connection signal="pressed" from="Buttons/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Buttons/Ads" to="." method="_on_ads_pressed"]
+[connection signal="pressed" from="Buttons/Gallery" to="." method="_on_gallery_pressed"]
