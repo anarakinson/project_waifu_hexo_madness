@@ -40,6 +40,8 @@ var yet_not_used
 var hexes_numbers = []
 var num_of_deleted_hexes = 0
 
+#
+#var ads_counter = 0;
 
 
 var save_path = HexfigureSingletone.save_path
@@ -66,15 +68,18 @@ func _ready():
 
 	# setup before first loop
 	first_loop = true
-	#sock_figure.visible = false
-	#hexes.visible = false
-	pass # Replace with function body.
+	# load ads
+	HexfigureSingletone._on_load_ads_pressed()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	# stuff for testing
 	best_time = update_timer(delta)
 	timer_label.text = best_time
+	if HexfigureSingletone.ads_timer > (HexfigureSingletone.ads_timeout * 60):
+		timer_label.text += "\nads ready\n" 
+	
 	# on very first loop - create tiles and field
 	if Input.is_action_just_pressed("Menu"):
 		menu_call.emit()
@@ -385,7 +390,8 @@ func _time_to_check_winner():
 func _on_recreate():
 	#get_tree().reload_current_scene()
 	HexfigureSingletone.save_game()
-	SceneTransition.change_scene_to_file(HexfigureSingletone.main_scene) 
+	HexfigureSingletone.check_ads_time(HexfigureSingletone.main_scene)
+	#SceneTransition.change_scene_to_file(HexfigureSingletone.main_scene) 
 
 
 func delete_some_hexes(number):

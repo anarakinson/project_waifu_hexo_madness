@@ -106,6 +106,29 @@ placeholder_text = "120"
 layout_mode = 2
 text = "Accept"
 
+[node name="AdsTimer" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 26.0
+offset_top = 526.0
+offset_right = 380.0
+offset_bottom = 566.0
+scale = Vector2(2.2, 2.2)
+
+[node name="Label" type="Label" parent="AdsTimer"]
+layout_mode = 2
+text = "Ads timer (min):"
+
+[node name="VSeparator" type="VSeparator" parent="AdsTimer"]
+layout_mode = 2
+
+[node name="AdsTimerLineEdit" type="LineEdit" parent="AdsTimer"]
+layout_mode = 2
+placeholder_text = "120"
+
+[node name="AdsAcceptButton" type="Button" parent="AdsTimer"]
+layout_mode = 2
+text = "Accept"
+
 [node name="Button" type="Button" parent="."]
 layout_mode = 0
 offset_left = 263.0
@@ -117,42 +140,44 @@ text = "To the map"
 
 [node name="PicturePath" type="Button" parent="."]
 layout_mode = 0
-offset_left = 99.0
-offset_top = 606.0
-offset_right = 209.0
-offset_bottom = 637.0
+offset_left = 113.0
+offset_top = 629.0
+offset_right = 346.0
+offset_bottom = 692.0
 theme_override_font_sizes/font_size = 40
 text = "System Info"
 
 [node name="PicturePathLabel" type="Label" parent="."]
 layout_mode = 0
-offset_left = 3.0
-offset_top = 684.0
-offset_right = 147.0
-offset_bottom = 753.0
+offset_left = 7.0
+offset_top = 698.0
+offset_right = 151.0
+offset_bottom = 767.0
 theme_override_font_sizes/font_size = 15
 text = "PATH:
 "
 
 [node name="Permissions" type="Label" parent="."]
 layout_mode = 0
-offset_left = 12.0
-offset_top = 742.0
-offset_right = 156.0
-offset_bottom = 811.0
+offset_left = 9.0
+offset_top = 770.0
+offset_right = 153.0
+offset_bottom = 839.0
 theme_override_font_sizes/font_size = 15
 text = "P:"
 
 [node name="SysInfo" type="Label" parent="."]
 layout_mode = 0
-offset_left = 7.0
-offset_top = 829.0
-offset_right = 151.0
-offset_bottom = 898.0
+offset_left = 11.0
+offset_top = 857.0
+offset_right = 155.0
+offset_bottom = 926.0
 theme_override_font_sizes/font_size = 15
 text = "SystemInfo: "
 
 [connection signal="text_changed" from="Gold/LineEdit" to="." method="_on_line_edit_text_changed"]
 [connection signal="pressed" from="Gold/AcceptButton" to="." method="_on_accept_button_pressed"]
+[connection signal="text_changed" from="AdsTimer/AdsTimerLineEdit" to="." method="_on_ads_timer_line_edit_text_changed"]
+[connection signal="pressed" from="AdsTimer/AdsAcceptButton" to="." method="_on_ads_accept_button_pressed"]
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="PicturePath" to="." method="_on_picture_path_pressed"]

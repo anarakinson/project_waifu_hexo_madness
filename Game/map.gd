@@ -9,3 +9,10 @@ func _notification(what):
 
 func _on_gallery_pressed():
 	SceneTransition.change_scene_to_file(HexfigureSingletone.gallery_scene) 
+
+
+func _on_side_menu_pressed():
+	$SideMenuPanel.is_opened = true
+
+
+

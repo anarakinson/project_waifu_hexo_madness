@@ -4,5 +4,14 @@
 
 [node name="Map" instance=ExtResource("1_ymd1p")]
 
+[node name="PointOfInterest" parent="PointsOfInterest" index="0"]
+scale = Vector2(3, 3)
+
+[node name="PointOfInterest2" parent="PointsOfInterest" index="1"]
+scale = Vector2(3, 3)
+
+[node name="PointOfInterest3" parent="PointsOfInterest" index="2"]
+scale = Vector2(3, 3)
+
 [node name="Money" parent="." index="4"]
 scale = Vector2(1.5, 1.5)

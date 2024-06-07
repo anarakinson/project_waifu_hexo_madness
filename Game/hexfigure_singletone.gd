@@ -61,6 +61,9 @@ var MIN_FIGURE_SIZE = 2
 var MAX_FIGURE_SIZE = 7
 
 
+var ads_timeout = 3.0
+var ads_timer = 0.
+
 
 
 # Called when the node enters the scene tree for the first time.
@@ -71,7 +74,6 @@ func _ready():
 	var dir = DirAccess.open("user://")
 	dir.make_dir("saves")
 	DirAccess.make_dir_absolute("user://saves")
-	
 	
 	print(current_OS)
 	match current_OS:
@@ -85,56 +87,25 @@ func _ready():
 			map_scene = "res://Game/mobile/map.tscn"
 			gallery_scene = "res://Game/mobile/gallery.tscn"
 			quit_scene = "res://UI/mobile/quit_screen.tscn"
-			
 			assets_path = "res://assets/mobile/"
-			DisplayServer.window_set_size(Vector2i(480, 800))
+	
+			DisplayServer.window_set_size(Vector2(648 / 4 * 3, 1152 / 4 * 3))
 			get_window().move_to_center()
-			DisplayServer.screen_set_orientation(DisplayServer.SCREEN_PORTRAIT)
+			
+			MobileAds.initialize()
+			#DisplayServer.screen_set_orientation(DisplayServer.SCREEN_PORTRAIT)
 		"Web":
 			print("Web")
-
-	#match current_OS:
-		#"Windows":
-			#print("Windows")
-			#DisplayServer.window_set_size(Vector2(1280, 720))
-			##get_window().size = Vector2i(1152, 648)
-			#get_window().move_to_center()
-		#"macOS":
-			#print("macOS")
-		#"Linux":
-			#print("Linux")
-		#"FreeBSD", "NetBSD", "OpenBSD", "BSD":
-			#print("BSD")
-		#"Android":
-			#print("Android")
-			##get_window().size = Vector2i(500, 800)
-			##get_viewport().set_size_override_stretch(true) # Enable stretch for custom size.
-			##get_viewport().set_size_override(true, Vector2(720, 1280)) # Custom size for 2D.
-			##DisplayServer.window_set_size(Vector2(720, 1280))
-		#"iOS":
-			#print("iOS")
-		#"Web":
-			#print("Web")
-
-
-
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
-	#if DisplayServer.screen_get_orientation() == 0:
-		#print("landscape")
-	#else:
-		#print("portrait")
-	
+	#start ads timer
+	ads_timer += delta
 
 
 func save_game():
 	var file = FileAccess.open(save_path, FileAccess.WRITE)
-	#file.store_var(current_level)
-	#file.store_var(current_location)
-	#file.store_var(level_settings_modifier)
 	file.store_var(location_map)
 	file.store_var(available_pictures)
 	file.store_var(players_money)
@@ -145,9 +116,6 @@ func save_game():
 func load_game():
 	if FileAccess.file_exists(save_path):
 		var file = FileAccess.open(save_path, FileAccess.READ)
-		#current_level = file.get_var()
-		#current_location = file.get_var()
-		#level_settings_modifier = file.get_var()
 		location_map = file.get_var()
 		available_pictures = file.get_var()
 		players_money = file.get_var()
@@ -155,7 +123,62 @@ func load_game():
 		file.close()
 	else:
 		pass
-		#current_level = 0
-		#current_location = ""
-		#level_settings_modifier = 0
 
+
+
+func check_ads_time(where):
+	if rewarded_ad and ads_timer > (ads_timeout * 60):
+		ads_timer = 0.
+		SceneTransition.change_scene_to_file("res://UI/ads/ads_scene.tscn") 
+	else:
+		SceneTransition.change_scene_to_file(where) 
+
+
+
+
+
+
+
+###############################################
+#################  ADS  #######################
+###############################################
+
+var rewarded_ad : RewardedAd
+var on_user_earned_reward_listener := OnUserEarnedRewardListener.new()
+var rewarded_ad_load_callback := RewardedAdLoadCallback.new()
+var full_screen_content_callback := FullScreenContentCallback.new()
+
+
+func _on_load_ads_pressed():
+	rewarded_ad_load_callback.on_ad_failed_to_load = on_rewarded_ad_failed_to_load
+	rewarded_ad_load_callback.on_ad_loaded = on_rewarded_ad_loaded
+
+	full_screen_content_callback.on_ad_dismissed_full_screen_content = func() -> void:
+		destroy()
+	
+	RewardedAdLoader.new().load("ca-app-pub-3940256099942544/1712485313", AdRequest.new(), rewarded_ad_load_callback)
+
+
+func on_rewarded_ad_failed_to_load(adError : LoadAdError) -> void:
+	print(adError.message)
+
+func on_rewarded_ad_loaded(rewarded_ad : RewardedAd) -> void:
+	print("rewarded ad loaded" + str(rewarded_ad._uid))
+	rewarded_ad.full_screen_content_callback = full_screen_content_callback
+
+	var server_side_verification_options := ServerSideVerificationOptions.new()
+	server_side_verification_options.custom_data = "TEST PURPOSE"
+	server_side_verification_options.user_id = "user_id_test"
+	rewarded_ad.set_server_side_verification_options(server_side_verification_options)
+
+	self.rewarded_ad = rewarded_ad
+
+func _on_show_ads_pressed():
+	if rewarded_ad:
+		rewarded_ad.show(on_user_earned_reward_listener)
+
+func destroy():
+	if rewarded_ad:
+		rewarded_ad.destroy()
+		rewarded_ad = null #need to load again
+		SceneTransition.change_scene_to_file(HexfigureSingletone.main_scene) 

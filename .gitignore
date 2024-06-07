@@ -18,7 +18,8 @@ mono_crash.*.json
 # release
 *.apk
 
-android/
-addons/
-release/ 
-release_andr/
+/android/
+/addons/
+/release*/
+*.zip
+*.rar 

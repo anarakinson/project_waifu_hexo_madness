@@ -6,7 +6,7 @@ extends Control
 @onready var single_hexes_button = $SingleHexes/OptionButton
 
 var gold_amount_value = HexfigureSingletone.players_money
-
+var ads_timeout = HexfigureSingletone.ads_timeout
 
 const VALUES_ARRAY : Array[String] = [
 	"0", "1", "2", "3", "4", "5", 
@@ -18,6 +18,9 @@ const VALUES_ARRAY : Array[String] = [
 func _ready():
 	$Gold/LineEdit.placeholder_text = str(gold_amount_value)
 	$Gold/AcceptButton.disabled = true
+	
+	$AdsTimer/AdsTimerLineEdit.placeholder_text = str(ads_timeout)
+	$AdsTimer/AdsAcceptButton.disabled = true
 		
 	$MaxHexes/Label.text += str(HexfigureSingletone.MAX_FIGURE_SIZE)
 	$MinHexes/Label.text += str(HexfigureSingletone.MIN_FIGURE_SIZE)
@@ -101,3 +104,18 @@ func _on_line_edit_text_changed(new_text):
 		$Gold/AcceptButton.disabled = false
 	else: 
 		$Gold/AcceptButton.disabled = true
+
+
+func _on_ads_timer_line_edit_text_changed(new_text):
+	if new_text.is_valid_float():
+		ads_timeout = float(new_text)
+		$AdsTimer/AdsAcceptButton.disabled = false
+	else: 
+		$AdsTimer/AdsAcceptButton.disabled = true
+
+
+func _on_ads_accept_button_pressed():
+	$AdsTimer/AdsTimerLineEdit.placeholder_text = str(ads_timeout)
+	HexfigureSingletone.ads_timeout = ads_timeout
+	HexfigureSingletone.ads_timer = 0
+	

@@ -47,4 +47,3 @@ func _on_gallery_pressed():
 	SceneTransition.change_scene_to_file(HexfigureSingletone.gallery_scene) 
 
 
-

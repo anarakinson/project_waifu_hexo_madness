@@ -69,15 +69,10 @@ offset_right = 135.0
 offset_bottom = 741.667
 
 [node name="SideMenuPanel" parent="." index="9"]
+visible = false
 top_level = true
 
-[node name="Map" parent="SideMenuPanel/Buttons" index="0"]
-offset_left = 20.6666
-offset_top = 217.333
-offset_right = 113.667
-offset_bottom = 272.333
-
-[node name="Show_numbers" parent="SideMenuPanel/Buttons" index="1"]
+[node name="Show_numbers" parent="SideMenuPanel/Buttons" index="0"]
 offset_left = 17.0
 offset_top = 488.0
 offset_right = 384.0
@@ -85,25 +80,13 @@ offset_bottom = 565.0
 theme_override_font_sizes/font_size = 50
 text = "Show numbers"
 
-[node name="SkipLevel" parent="SideMenuPanel/Buttons" index="2"]
+[node name="SkipLevel" parent="SideMenuPanel/Buttons" index="1"]
 offset_left = 22.0
 offset_top = 580.0
 offset_right = 257.0
 offset_bottom = 657.0
 theme_override_font_sizes/font_size = 50
 text = "Skip level"
-
-[node name="TestWithConfigs" parent="SideMenuPanel/Buttons" index="3"]
-offset_left = 36.6667
-offset_top = 395.333
-offset_right = 99.6667
-offset_bottom = 472.333
-
-[node name="Gallery" parent="SideMenuPanel/Buttons" index="4"]
-offset_left = 36.0
-offset_top = 288.0
-offset_right = 107.0
-offset_bottom = 324.0
 
 [node name="Explosion" parent="." index="14"]
 position = Vector2(319, 418)

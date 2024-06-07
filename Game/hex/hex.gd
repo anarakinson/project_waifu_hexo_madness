@@ -19,7 +19,7 @@ var picked_up_timeout = 0.2
 func _ready():
 	start_position = position
 	if (HexfigureSingletone.current_OS == "Android" or HexfigureSingletone.current_OS == "iOS"):
-		picked_up_timeout = 0.001
+		picked_up_timeout = 0.0001
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

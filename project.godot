@@ -74,6 +74,7 @@ run/main_scene="res://UI/game_load.tscn"
 config/quit_on_go_back=false
 config/features=PackedStringArray("4.2", "GL Compatibility")
 config/icon="res://icon.svg"
+config/windows_native_icon="res://assets/start_logo_small.ico"
 
 [autoload]
 

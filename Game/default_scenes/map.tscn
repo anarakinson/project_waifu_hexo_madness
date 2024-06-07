@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://chtng7wt06pcc"]
+[gd_scene load_steps=6 format=3 uid="uid://chtng7wt06pcc"]
 
 [ext_resource type="Script" path="res://Game/map.gd" id="1_33i6r"]
 [ext_resource type="PackedScene" uid="uid://d3u4dc7f7krif" path="res://Game/waifa/background.tscn" id="1_q8pg2"]
 [ext_resource type="PackedScene" uid="uid://c1vvywc77g8lj" path="res://Game/point_of_interest.tscn" id="2_kd0am"]
 [ext_resource type="PackedScene" uid="uid://bo2wcj7cpqwb0" path="res://Game/money.tscn" id="4_baay3"]
+[ext_resource type="PackedScene" uid="uid://c7leedh8vbmw1" path="res://UI/side_menu_panel.tscn" id="5_eyvnt"]
 
 [node name="Map" type="Node2D"]
 script = ExtResource("1_33i6r")
@@ -36,6 +37,7 @@ theme_override_font_sizes/font_size = 60
 text = "Choose level"
 
 [node name="Gallery" type="Button" parent="."]
+visible = false
 offset_left = 472.0
 offset_top = 4.0
 offset_right = 581.0
@@ -47,5 +49,17 @@ text = "Gallery"
 [node name="Money" parent="." instance=ExtResource("4_baay3")]
 position = Vector2(64, 47)
 
+[node name="SideMenu" type="Button" parent="."]
+offset_left = 249.0
+offset_top = 1054.0
+offset_right = 396.0
+offset_bottom = 1131.0
+theme_override_font_sizes/font_size = 50
+text = "Menu"
+
+[node name="SideMenuPanel" parent="." instance=ExtResource("5_eyvnt")]
+visible = false
+
 [connection signal="pressed" from="Gallery" to="." method="_on_gallery_pressed"]
 [connection signal="pressed" from="Gallery" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="SideMenu" to="." method="_on_side_menu_pressed"]
